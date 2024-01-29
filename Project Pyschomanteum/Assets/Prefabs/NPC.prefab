@@ -101,8 +101,12 @@ MonoBehaviour:
   detectsPlayer: 0
   isTalking: 0
   speaking: 0
-  talkSpeed: 0.5
+  talkDelay: 0.2
+  talkSound:
+  - {fileID: 0}
+  - {fileID: 0}
   dialogueBox: {fileID: 0}
+  arrow: {fileID: 0}
 --- !u!65 &1937719217329720905
 BoxCollider:
   m_ObjectHideFlags: 0

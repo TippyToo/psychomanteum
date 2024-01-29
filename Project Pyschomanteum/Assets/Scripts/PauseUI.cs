@@ -18,25 +18,18 @@ public class PauseUI : MonoBehaviour
         if (Input.GetButtonDown("Cancel")) { Pause(); }
     }
 
-    public void Resume()
-    { Pause(); }
+    public void Resume() { Pause(); }
 
-    public void Quit()
-    {
-        SceneManager.LoadScene(0);
-    }
+    public void Quit()  { SceneManager.LoadScene(0); }
 
-    private void Pause()
-    {
+    private void Pause() {
         //Pauses or unpauses the game
         paused = !paused;
-        if (paused)
-        {
+        if (paused) {
             Time.timeScale = 0;
             transform.GetChild(0).gameObject.SetActive(true);
         }
-        else
-        {
+        else {
             Time.timeScale = 1;
             transform.GetChild(0).gameObject.SetActive(false);
         }

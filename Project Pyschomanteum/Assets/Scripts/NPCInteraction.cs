@@ -5,28 +5,34 @@ using UnityEngine.UI;
 
 public class NPCInteraction : MonoBehaviour
 {
-    public bool detectsPlayer;
+    private bool detectsPlayer;
 
     //To avoid confusion, isTalking is for detecting if the npc has begun talking to show the text box
     //speaking is used for detecting if the dialogue box is currently writing out what the npc is saying
-    public bool isTalking;
-    public bool speaking;
-    public float talkSpeed;
+    private bool isTalking;
+    private bool speaking;
+
+    //Determines the speed the NPC talks. Smaller = faster
+    public float talkDelay;
+
+    private PlayerController player;
+    private AudioSource audSource;
+    public AudioClip[] talkSound;
 
     private string[] currentTotalText;
     private string currentFullText;
-    private int currNum = 0;
+    private int currNum = 1;
 
     //public Sprite[] dialogueSprites; 
-    public GameObject dialogueBox;
+    private GameObject dialogueBox;
     private Text dialogueText;
 
     //Indicates end of current dialogue 
-    public GameObject arrow;
+    private GameObject arrow;
 
     //Determine Interactions
-    public bool firstInteract = true;
-    public bool secondInteract = true;
+    private bool firstInteract = true;
+    private bool secondInteract = true;
 
     // Start is called before the first frame update
     void Start()
@@ -37,60 +43,69 @@ public class NPCInteraction : MonoBehaviour
         detectsPlayer = false;
         isTalking = false;
         speaking = false;
+        audSource = GameObject.Find("Main Camera").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (detectsPlayer && Input.GetButtonDown("Interact")) 
+        if (detectsPlayer && Input.GetButtonUp("Interact")) 
         { 
-            Debug.Log("Input Successful");
+            //Determine how the interact button should function based on the dialogue
             if (!isTalking) { 
                 //If not talking, start a dialogue
-                if (firstInteract) { CreateDialogue(new string[] {"Boo!"}, talkSpeed); firstInteract = false; }
-                else if (secondInteract) { CreateDialogue(new string[] { "Did I scare you?", "Sorry." }, talkSpeed); secondInteract = false; }
+                if (firstInteract) { CreateDialogue(new string[] {"Boo!"}, talkDelay); firstInteract = false; }
+                else if (secondInteract) { CreateDialogue(new string[] { "Did I scare you?", "Sorry." }, talkDelay); secondInteract = false; }
             } else if (speaking) {
                 //If currently speaking, end it early and display all dialogue without waiting
-                StopCoroutine("WriteText");
+                StopAllCoroutines();
+                speaking = false;
                 dialogueText.text = currentFullText;
                 StartCoroutine(ArrowBlink());
             } else {
-                StopCoroutine("ArrowBlink");
+                StopAllCoroutines();
                 //Go to the next piece of dialogue, or end the dialogue if nothing is left
                 if (currNum == currentTotalText.Length) {
                     dialogueBox.SetActive(false);
-                    currNum = 0;
+                    isTalking = false;
+                    currNum = 1;
                 } else {
                     currNum += 1;
-                    StartCoroutine(WriteText(currentTotalText[currNum], talkSpeed));
+                    StartCoroutine(WriteText(currentTotalText[currNum - 1], talkDelay));
                 }
             }
         }
+        //Locks the players movement while talking
+        if (detectsPlayer) { player.canMove = !isTalking; }
     }
     
-    public void CreateDialogue(string[] dialogue, float talkSpeed) {
+    public void CreateDialogue(string[] dialogue, float talkDelay) {
         //Opens a dialogue box
         isTalking = true;
-        speaking = true;
         currentTotalText = dialogue;
         dialogueBox.SetActive(true);
-        StartCoroutine(WriteText(dialogue[0], talkSpeed));
+        StartCoroutine(WriteText(dialogue[0], talkDelay));
     }
 
-    private IEnumerator WriteText(string fullText, float talkSpeed) {
-        //Writes out the dialogue character by character, complete with a speed scaler
+    private IEnumerator WriteText(string fullText, float talkDelay) {
+        //Writes out the dialogue character by character
+        speaking = true;
         currentFullText = fullText;
         string currText;
-        for (int i = 0; i < fullText.Length; i++) {
+        for (int i = 0; i < fullText.Length + 1; i++) {
+            int sound = Random.Range(0, talkSound.Length);
+            audSource.PlayOneShot(talkSound[sound], 1.0f);
             currText = fullText.Substring(0, i);
             dialogueText.text = currText;
-            yield return new WaitForSeconds(talkSpeed);
+            
+            yield return new WaitForSeconds(talkDelay);
         }
         speaking = false;
         StartCoroutine(ArrowBlink());
     }
 
     private IEnumerator ArrowBlink() {
+        //Makes the arrow blink
         while (true) { 
             arrow.SetActive(true);
             yield return new WaitForSeconds(0.2f);
@@ -99,7 +114,7 @@ public class NPCInteraction : MonoBehaviour
         }
     }
     private void OnTriggerEnter(Collider other) {
-        if (other.tag == "Player") { detectsPlayer = true; }
+        if (other.tag == "Player") { detectsPlayer = true; player = other.gameObject.GetComponent<PlayerController>(); }
     }
     private void OnTriggerExit(Collider other) {
         if (other.tag == "Player") { detectsPlayer = false; }
