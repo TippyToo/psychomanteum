@@ -19,7 +19,14 @@ public class NPCInteraction : MonoBehaviour
     private AudioSource audSource;
     public AudioClip[] talkSound;
 
-    private string[] currentTotalText;
+    [TextArea]
+    public string[] dialogue;
+    private int dialogueOption = 0;
+
+    private List<string> dialogueBoxes;
+
+    //Stores the current text blurb and dialogue string
+    private List<string> currentTotalText;
     private string currentFullText;
     private int currNum = 1;
 
@@ -30,9 +37,6 @@ public class NPCInteraction : MonoBehaviour
     //Indicates end of current dialogue 
     private GameObject arrow;
 
-    //Determine Interactions
-    private bool firstInteract = true;
-    private bool secondInteract = true;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +48,7 @@ public class NPCInteraction : MonoBehaviour
         isTalking = false;
         speaking = false;
         audSource = GameObject.Find("Main Camera").GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
@@ -54,8 +59,8 @@ public class NPCInteraction : MonoBehaviour
             //Determine how the interact button should function based on the dialogue
             if (!isTalking) { 
                 //If not talking, start a dialogue
-                if (firstInteract) { CreateDialogue(new string[] {"Boo!"}, talkDelay); firstInteract = false; }
-                else if (secondInteract) { CreateDialogue(new string[] { "Did I scare you?", "Sorry." }, talkDelay); secondInteract = false; }
+                if (dialogueOption < dialogue.Length)
+                CreateDialogue(dialogue[dialogueOption], talkDelay);
             } else if (speaking) {
                 //If currently speaking, end it early and display all dialogue without waiting
                 StopAllCoroutines();
@@ -65,10 +70,11 @@ public class NPCInteraction : MonoBehaviour
             } else {
                 StopAllCoroutines();
                 //Go to the next piece of dialogue, or end the dialogue if nothing is left
-                if (currNum == currentTotalText.Length) {
+                if (currNum == currentTotalText.Count) {
                     dialogueBox.SetActive(false);
                     isTalking = false;
                     currNum = 1;
+                    dialogueOption += 1;
                 } else {
                     currNum += 1;
                     StartCoroutine(WriteText(currentTotalText[currNum - 1], talkDelay));
@@ -79,12 +85,24 @@ public class NPCInteraction : MonoBehaviour
         if (detectsPlayer) { player.canMove = !isTalking; }
     }
     
-    public void CreateDialogue(string[] dialogue, float talkDelay) {
+    public void CreateDialogue(string dialogue, float talkDelay) {
         //Opens a dialogue box
+        dialogueBoxes = new List<string>();
         isTalking = true;
-        currentTotalText = dialogue;
+        int num = 0;
+        //Cut up dialogue into seperate boxes here
+        for (int i = 0; dialogue.Length > 100; i++) { 
+            dialogueBoxes.Add(dialogue.Substring(0, 100));
+            dialogue = dialogue.Substring(100, dialogue.Length - 100);
+            num += 1;
+        }
+        if (dialogue.Length <= 100 && dialogue.Length > 0) { 
+            if (num != 0) { dialogueBoxes.Add(dialogue); 
+            } else { dialogueBoxes.Add(dialogue); }
+        }
+        currentTotalText = dialogueBoxes;
         dialogueBox.SetActive(true);
-        StartCoroutine(WriteText(dialogue[0], talkDelay));
+        StartCoroutine(WriteText(currentTotalText[0], talkDelay));
     }
 
     private IEnumerator WriteText(string fullText, float talkDelay) {
@@ -94,10 +112,9 @@ public class NPCInteraction : MonoBehaviour
         string currText;
         for (int i = 0; i < fullText.Length + 1; i++) {
             int sound = Random.Range(0, talkSound.Length);
-            audSource.PlayOneShot(talkSound[sound], 1.0f);
             currText = fullText.Substring(0, i);
+            if (!currText.EndsWith(" ")) { audSource.PlayOneShot(talkSound[sound], 1.0f); }
             dialogueText.text = currText;
-            
             yield return new WaitForSeconds(talkDelay);
         }
         speaking = false;

@@ -98,15 +98,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fffbfee1d5f8666409b384f345c65d32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectsPlayer: 0
-  isTalking: 0
-  speaking: 0
   talkDelay: 0.2
   talkSound:
   - {fileID: 0}
   - {fileID: 0}
-  dialogueBox: {fileID: 0}
-  arrow: {fileID: 0}
+  dialogue:
+  - Test text Test text Test text Test text Test text Test text Test text Test text
+    Test text Test textTest textTest textvv Test textv v v vTest text v v v vTest
+    textTest text v v v vvTest textTest textTest textTest textTest textTest textTest
+    textTest textTest textTest textTest textTest textTest textTest textTest textTest
+    textTest textTest textTest textTest textTest textTest textTest textTest textTest
+    textTest textTest textTest textTest textTest text
 --- !u!65 &1937719217329720905
 BoxCollider:
   m_ObjectHideFlags: 0

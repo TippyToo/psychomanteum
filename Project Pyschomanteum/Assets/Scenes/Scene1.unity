@@ -710,8 +710,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5118061308404068874, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
+      propertyPath: dialogue.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -5118061308404068874, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
       propertyPath: talkSound.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -5118061308404068874, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: dialogue.Array.data[1]
+      value: Second Test. This is the real one folks. This one right here. This one.
+        ok I think this is long enough for the test
+      objectReference: {fileID: 0}
+    - target: {fileID: -5118061308404068874, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: dialogue.Array.data[2]
+      value: Third test. This is the real one folks. This one right here. This one.
+        ok I think this is long enough for the test
       objectReference: {fileID: 0}
     - target: {fileID: -5118061308404068874, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
