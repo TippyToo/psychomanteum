@@ -18,11 +18,19 @@ public class JournalUI : MonoBehaviour
         if (Input.GetButtonDown("Journal"))
         {
             if (journalOpen) { Close(); }
-            else { Close(); }
+            else { Open(); }
         }
     }
 
-    public void Open() { transform.Find(journalName).gameObject.SetActive(true); }
+    public void Open() 
+    { 
+        transform.Find(journalName).gameObject.SetActive(true);
+        journalOpen = true;    
+    }
 
-    public void Close() { transform.Find(journalName).gameObject.SetActive(false); }
+    public void Close() 
+    { 
+        transform.Find(journalName).gameObject.SetActive(false);
+        journalOpen = false;
+    }
 }
