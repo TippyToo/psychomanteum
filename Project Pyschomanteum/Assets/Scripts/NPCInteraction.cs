@@ -19,6 +19,7 @@ public class NPCInteraction : MonoBehaviour
     private AudioSource audSource;
     public AudioClip[] talkSound;
 
+    public int maxDialogueLength;
     [TextArea]
     public string[] dialogue;
     private int dialogueOption = 0;
@@ -91,12 +92,12 @@ public class NPCInteraction : MonoBehaviour
         isTalking = true;
         int num = 0;
         //Cut up dialogue into seperate boxes here
-        for (int i = 0; dialogue.Length > 100; i++) { 
-            dialogueBoxes.Add(dialogue.Substring(0, 100));
-            dialogue = dialogue.Substring(100, dialogue.Length - 100);
+        for (int i = 0; dialogue.Length > maxDialogueLength; i++) { 
+            dialogueBoxes.Add(dialogue.Substring(0, maxDialogueLength));
+            dialogue = dialogue.Substring(maxDialogueLength, dialogue.Length - maxDialogueLength);
             num += 1;
         }
-        if (dialogue.Length <= 100 && dialogue.Length > 0) { 
+        if (dialogue.Length <= maxDialogueLength && dialogue.Length > 0) { 
             if (num != 0) { dialogueBoxes.Add(dialogue); 
             } else { dialogueBoxes.Add(dialogue); }
         }
