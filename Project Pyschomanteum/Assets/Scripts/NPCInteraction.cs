@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class NPCInteraction : MonoBehaviour
 {
+    //Handles creating dialogue boxes, text and audio. Speaker images to be added
+
     private bool detectsPlayer;
 
     //To avoid confusion, isTalking is for detecting if the npc has begun talking to show the text box
@@ -95,7 +97,7 @@ public class NPCInteraction : MonoBehaviour
         dialogueLength = new List<int>();
         for (int i = 0; i < dialogue.Length;) {
             if ((dialogue.IndexOf("\n", i) != -1) && dialogue.IndexOf("\n", i) < (i + maxDialogueLength)) {
-                dialogueLength.Add((dialogue.IndexOf("\n") + 1));
+                dialogueLength.Add((dialogue.IndexOf("\n") + 1)); //Need to add one to the end otherwise newline will start the next textbox
                 i += dialogue.IndexOf("\n") + 1;
             } else {
                 i += maxDialogueLength;
@@ -112,6 +114,8 @@ public class NPCInteraction : MonoBehaviour
         if (dialogue.Length <= maxDialogueLength && dialogue.Length > 0) { 
             dialogueBoxes.Add(dialogue);
         }
+
+        //After everything has been decided, create the first box
         currentTotalText = dialogueBoxes;
         dialogueBox.SetActive(true);
         StartCoroutine(WriteText(currentTotalText[0], talkDelay));
@@ -125,16 +129,15 @@ public class NPCInteraction : MonoBehaviour
         for (int i = 0; i < fullText.Length + 1; i++) {
             int sound = Random.Range(0, talkSound.Length);
             currText = fullText.Substring(0, i);
-            if (!currText.EndsWith(" ")) { audSource.PlayOneShot(talkSound[sound], 1.0f); }
+            if (!currText.EndsWith(" ") || !currText.EndsWith(".")) { audSource.PlayOneShot(talkSound[sound], 1.0f); }
             dialogueText.text = currText;
             yield return new WaitForSeconds(talkDelay);
         }
         speaking = false;
         StartCoroutine(ArrowBlink());
     }
-
+    
     private IEnumerator ArrowBlink() {
-        //Makes the arrow blink
         while (true) { 
             arrow.SetActive(true);
             yield return new WaitForSeconds(0.2f);
