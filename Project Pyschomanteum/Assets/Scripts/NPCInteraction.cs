@@ -31,9 +31,11 @@ public class NPCInteraction : MonoBehaviour
     //Stores the current text blurb and dialogue string
     private List<string> currentTotalText;
     private string currentFullText;
-    private int currNum = 1;
+    private int currNum = 0;
 
-    //public Sprite[] dialogueSprites; 
+    private SpriteRenderer dialogueImage;
+    public Sprite[] dialogueSprites;
+    public int[] speakerImageOrder;
     private GameObject dialogueBox;
     private Text dialogueText;
 
@@ -46,6 +48,7 @@ public class NPCInteraction : MonoBehaviour
     {
         dialogueBox = GameObject.Find("UI").transform.GetChild(1).gameObject;
         dialogueText = dialogueBox.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>();
+        dialogueImage = dialogueBox.transform.GetChild(1).GetComponent<SpriteRenderer>();
         arrow = dialogueBox.transform.GetChild(0).transform.GetChild(1).gameObject;
         detectsPlayer = false;
         isTalking = false;
@@ -62,8 +65,9 @@ public class NPCInteraction : MonoBehaviour
             //Determine how the interact button should function based on the dialogue
             if (!isTalking) { 
                 //If not talking, start a dialogue
-                if (dialogueOption < dialogue.Length)
-                CreateDialogue(dialogue[dialogueOption], talkDelay);
+                if (dialogueOption < dialogue.Length) {
+                    CreateDialogue(dialogue[dialogueOption], talkDelay);
+                }
             } else if (speaking) {
                 //If currently speaking, end it early and display all dialogue without waiting
                 StopAllCoroutines();
@@ -73,14 +77,14 @@ public class NPCInteraction : MonoBehaviour
             } else {
                 StopAllCoroutines();
                 //Go to the next piece of dialogue, or end the dialogue if nothing is left
-                if (currNum == currentTotalText.Count) {
+                if (currNum + 1 == currentTotalText.Count) {
                     dialogueBox.SetActive(false);
                     isTalking = false;
-                    currNum = 1;
+                    currNum = 0;
                     dialogueOption += 1;
                 } else {
-                    StartCoroutine(WriteText(currentTotalText[currNum], talkDelay));
                     currNum += 1;
+                    StartCoroutine(WriteText(currentTotalText[currNum], talkDelay));
                 }
             }
         }
@@ -118,11 +122,16 @@ public class NPCInteraction : MonoBehaviour
         //After everything has been decided, create the first box
         currentTotalText = dialogueBoxes;
         dialogueBox.SetActive(true);
-        StartCoroutine(WriteText(currentTotalText[0], talkDelay));
+        StartCoroutine(WriteText(currentTotalText[currNum], talkDelay));
     }
 
     private IEnumerator WriteText(string fullText, float talkDelay) {
         //Writes out the dialogue character by character
+        if (dialogueSprites[speakerImageOrder[currNum]] != null) {
+            dialogueImage.sprite = dialogueSprites[speakerImageOrder[currNum]];
+        } else {
+            dialogueImage.sprite = dialogueSprites[speakerImageOrder[0]];
+        }
         speaking = true;
         currentFullText = fullText;
         string currText;
