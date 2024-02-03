@@ -25,7 +25,7 @@ public class NPCInteraction : MonoBehaviour
     private int dialogueOption = 0;
 
     private List<string> dialogueBoxes;
-
+    public List<int> dialogueLength;
     //Stores the current text blurb and dialogue string
     private List<string> currentTotalText;
     private string currentFullText;
@@ -77,8 +77,8 @@ public class NPCInteraction : MonoBehaviour
                     currNum = 1;
                     dialogueOption += 1;
                 } else {
+                    StartCoroutine(WriteText(currentTotalText[currNum], talkDelay));
                     currNum += 1;
-                    StartCoroutine(WriteText(currentTotalText[currNum - 1], talkDelay));
                 }
             }
         }
@@ -86,20 +86,31 @@ public class NPCInteraction : MonoBehaviour
         if (detectsPlayer) { player.canMove = !isTalking; }
     }
     
-    public void CreateDialogue(string dialogue, float talkDelay) {
+    private void CreateDialogue(string dialogue, float talkDelay) {
         //Opens a dialogue box
         dialogueBoxes = new List<string>();
         isTalking = true;
-        int num = 0;
+
+        //Determines where to seperate the dialogue boxes by detecting either the max length one can be or where it has been spacified with the return key
+        dialogueLength = new List<int>();
+        for (int i = 0; i < dialogue.Length;) {
+            if ((dialogue.IndexOf("\n", i) != -1) && dialogue.IndexOf("\n", i) < (i + maxDialogueLength)) {
+                dialogueLength.Add((dialogue.IndexOf("\n") + 1));
+                i += dialogue.IndexOf("\n") + 1;
+            } else {
+                i += maxDialogueLength;
+                if (i < dialogue.Length) { 
+                    dialogueLength.Add(maxDialogueLength);
+                }
+            }
+        }
         //Cut up dialogue into seperate boxes here
-        for (int i = 0; dialogue.Length > maxDialogueLength; i++) { 
-            dialogueBoxes.Add(dialogue.Substring(0, maxDialogueLength));
-            dialogue = dialogue.Substring(maxDialogueLength, dialogue.Length - maxDialogueLength);
-            num += 1;
+        for (int i = 0; dialogueLength.Count > i; i++) { 
+            dialogueBoxes.Add(dialogue.Substring(0, dialogueLength[i]));
+            dialogue = dialogue.Substring(dialogueLength[i], dialogue.Length - dialogueLength[i]);
         }
         if (dialogue.Length <= maxDialogueLength && dialogue.Length > 0) { 
-            if (num != 0) { dialogueBoxes.Add(dialogue); 
-            } else { dialogueBoxes.Add(dialogue); }
+            dialogueBoxes.Add(dialogue);
         }
         currentTotalText = dialogueBoxes;
         dialogueBox.SetActive(true);
