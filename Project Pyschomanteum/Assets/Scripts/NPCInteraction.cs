@@ -22,7 +22,7 @@ public class NPCInteraction : MonoBehaviour
     public AudioClip[] talkSound;
 
     public int maxDialogueLength;
-    [TextArea]
+    [TextArea(3,50)]
     public string[] dialogue;
     private int dialogueOption = 0;
 
