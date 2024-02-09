@@ -75,3 +75,5 @@ crashlytics-build.properties
 /Project Pyschomanteum/Logs
 /Project Pyschomanteum/Temp
 /Project Pyschomanteum/UserSettings/EditorUserSettings.asset
+/Project Pyschomanteum/obj/Debug/Assembly-CSharp.csproj.AssemblyReference.cache
+/Project Pyschomanteum/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
