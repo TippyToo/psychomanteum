@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Bookmarks : MonoBehaviour
 {
-    private bool hovered;
     private float maxHeight = 40;
     private float baseHeight;
     // Start is called before the first frame update
@@ -20,7 +19,7 @@ public class Bookmarks : MonoBehaviour
     }
 
     //Lifts bookmark to a desired height
-    public void Select() { hovered = true; StartCoroutine("RaiseBookmark"); }
+    public void Select() { StartCoroutine("RaiseBookmark"); }
     private IEnumerator RaiseBookmark() {
         float heightChunk = maxHeight / 5;
         for (int i = 0; i < 5; i++) {
@@ -33,7 +32,6 @@ public class Bookmarks : MonoBehaviour
     public void Deselect() {
         //If the bookmark is no longer selected, place it back to it's original spot
         StopAllCoroutines();
-        hovered = false; 
         transform.localPosition = new Vector3(transform.localPosition.x, baseHeight, transform.localPosition.z);
     }
 }
