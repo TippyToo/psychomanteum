@@ -13,7 +13,6 @@ public class StackManager : MonoBehaviour
     void Start() {
         paused = false;
         homePage = transform.Find("Home Page").gameObject;
-        Debug.Log(sections.Count);
     }
 
     // Update is called once per frame
@@ -63,4 +62,6 @@ public class StackManager : MonoBehaviour
         //"Bookmarks" the current page then closes all windows
         for (int i = 0; i < sections.Count; i++) { PopSection(); }
     }
+
+    
 }
