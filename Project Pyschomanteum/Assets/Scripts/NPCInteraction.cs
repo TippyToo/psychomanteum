@@ -118,7 +118,6 @@ public class NPCInteraction : MonoBehaviour
         if (dialogue.Length <= maxDialogueLength && dialogue.Length > 0) { 
             dialogueBoxes.Add(dialogue);
         }
-
         //After everything has been decided, create the first box
         currentTotalText = dialogueBoxes;
         dialogueBox.SetActive(true);
