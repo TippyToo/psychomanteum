@@ -39,6 +39,12 @@ public class NPCInteraction : MonoBehaviour
     private GameObject dialogueBox;
     private Text dialogueText;
 
+
+    public Conversation[] conversation;
+
+
+
+
     //Indicates end of current dialogue 
     private GameObject arrow;
 
