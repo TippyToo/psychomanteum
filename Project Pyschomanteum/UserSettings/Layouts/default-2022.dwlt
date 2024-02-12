@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ConsoleWindow
+  m_Name: ProjectBrowser
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -293,15 +293,15 @@ MonoBehaviour:
     y: 655
     width: 1977
     height: 292
-  m_MinSize: {x: 101, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 18}
+  m_MinSize: {x: 231, y: 271}
+  m_MaxSize: {x: 10001, y: 10021}
+  m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 18}
   - {fileID: 19}
   - {fileID: 20}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -467,9 +467,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 92690000
-      m_LastClickedID: 0
-      m_ExpandedIDs: 12fbffff
+      m_SelectedIDs: d4690000
+      m_LastClickedID: 27092
+      m_ExpandedIDs: 12fbffffcc6b0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -939,11 +939,11 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: -0.15853752, y: -0.034947675, z: 0.0056147687, w: -0.98672086}
     speed: 2
-    m_Value: {x: -0.15853752, y: -0.034947675, z: 0.0056147682, w: -0.98672086}
+    m_Value: {x: -0.15853712, y: -0.03494759, z: 0.0056147547, w: -0.9867184}
   m_Size:
-    m_Target: 1.826532
+    m_Target: 3.3826368
     speed: 2
-    m_Value: 1.826532
+    m_Value: 3.3826368
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1122,7 +1122,7 @@ MonoBehaviour:
     m_SkipHidden: 1
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Test
+    - Assets
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1130,16 +1130,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 55
   m_LastFolders:
-  - Assets/Scripts/Test
+  - Assets
   m_LastFoldersGridSize: 55
   m_LastProjectPath: C:\Users\Owner\Documents\Projects\psychomanteum\Project Pyschomanteum
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 41}
-    m_SelectedIDs: f26d0000
-    m_LastClickedID: 28146
-    m_ExpandedIDs: 000000009c6c0000
+    m_SelectedIDs: 9c6c0000
+    m_LastClickedID: 27804
+    m_ExpandedIDs: 000000009c6c00002a6e000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1260,7 +1260,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -1282
+  m_LastSelectedObjectID: 27092
 --- !u!114 &21
 MonoBehaviour:
   m_ObjectHideFlags: 52

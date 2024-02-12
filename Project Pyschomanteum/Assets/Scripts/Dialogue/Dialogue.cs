@@ -62,18 +62,23 @@ public class Dialogue : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        InteractButton();
+
+        //Locks the players movement while talking
+        if (detectsPlayer) { player.canMove = !isTalking; }
+    }
+
+    //Determine how the interact button should function based on the current state of dialogue
+    private void InteractButton() {
         if (detectsPlayer && Input.GetButtonUp("Interact") && !responding)
         {
-            //Determine how the interact button should function based on the dialogue
             if (!isTalking)
             {
-                //If not talking, start a dialogue
+                //If not talking and next dialogue is unlocked (cTL != 0), start a dialogue. If not, "stare" at the player in silence
                 if (conversationToLoad != -1 && conversationToLoad >= 0)
-                {
-                    CreateDialogue(conversation[conversationToLoad]);
-                    //CreateDialogue(dialogue[dialogueOption], talkDelay);
-                }
-                else { CreateDialogue(". . ."); }
+                { CreateDialogue(conversation[conversationToLoad]); }
+                else
+                { CreateDialogue(". . ."); }
             }
             else if (speaking)
             {
@@ -86,11 +91,9 @@ public class Dialogue : MonoBehaviour
             else
             {
                 StopAllCoroutines();
-                //Go to the next piece of dialogue, or end the dialogue if nothing is left
-                if (currentDialogue.Count() <= 0)//currNum + 1 == currentTotalText.Count)
-                {
-                    EndConversation();
-                }
+                arrow.SetActive(false);
+                if (currentDialogue.Count() <= 0)
+                { EndConversation(); }
                 else
                 {
                     currSentence++;
@@ -98,12 +101,12 @@ public class Dialogue : MonoBehaviour
                 }
             }
         }
-        //Locks the players movement while talking
-        if (detectsPlayer) { player.canMove = !isTalking; }
     }
 
-    private void CreateDialogue(Conversation conversation)//string dialogue, float talkDelay)
-    {
+
+    //Seperates each sentence box in the current conversation and queues them up to be written out
+    private void CreateDialogue(Conversation conversation) {
+        
         currentDialogue.Clear();
         for (int i = 0; i < conversation.sentences.Count(); i++)
         {
@@ -124,12 +127,17 @@ public class Dialogue : MonoBehaviour
         dialogueBox.SetActive(true);
         StartCoroutine(WriteText());
     }
+
+
+    //Overload to take a single string instead of an entire conversation (needed to be stared at)
     private void CreateDialogue(string nothing) {
         currentDialogue.Clear();
         currentDialogue.Enqueue(nothing);
         dialogueBox.SetActive(true);
         StartCoroutine(NothingText());
     }
+
+    //Same as WriteText but functions for the (. . .) case
     private IEnumerator NothingText() {
         isTalking = true;
         speaking = true;
@@ -144,25 +152,28 @@ public class Dialogue : MonoBehaviour
         speaking = false;
         StartCoroutine(ArrowBlink());
     }
-    private IEnumerator WriteText()//tring fullText, float talkDelay)
-    {
-        //Writes out the dialogue character by character
+
+    //Writes out the queued sentence character by character and removes it from the queue
+    private IEnumerator WriteText() {
+        
         isTalking = true;
         dialogueImage.sprite = conversation[conversationToLoad].portrait[currSentence];
         speaking = true;
         currentFullText = currentDialogue.Dequeue();
         string currText;
-        for (int i = 0; i < currentFullText.Length + 1; i++)
+        for (int i = 1; i < currentFullText.Length + 1; i++)
         {
             int sound = Random.Range(0, talkSound.Length);
             currText = currentFullText.Substring(0, i);
             if (!currText.EndsWith(" ")) { audSource.PlayOneShot(talkSound[sound], 1.0f); }
             dialogueText.text = currText;
-            yield return new WaitForSeconds(conversation[conversationToLoad].talkSpeed[currSentence]);
+            yield return new WaitForSeconds(1 / conversation[conversationToLoad].talkSpeed[currSentence]);
         }
         speaking = false;
         StartCoroutine(ArrowBlink());
     }
+
+    //After the NPC finishes their dialogue, either prompts the user with responses or closes the dialgue
     private void EndConversation() {
         currSentence = 0;
         dialogueBox.SetActive(false);
@@ -181,7 +192,10 @@ public class Dialogue : MonoBehaviour
         } else  { conversationToLoad = -1; isTalking = false; }
         Debug.Log(conversationToLoad);
     }
+
+    //If there are player responses, populate buttons with response text, and target if applicable
     private void CreatePlayerResponses() {
+        
         playerResponseBox.SetActive(true);
         for (int i = 0; i < conversation[conversationToLoad].playerResponses.Count(); i++) {
             if (conversation[conversationToLoad].nextDialogue.Count() <= 0)
@@ -194,7 +208,10 @@ public class Dialogue : MonoBehaviour
             playerResponses[i].transform.GetChild(0).GetComponent<Text>().text = conversation[conversationToLoad].playerResponses[i];
         }
     }
+
+    //After the player chooses their response, reset the buttons and prep the next conversation if applicable
     public void PlayersResponse(int toLoad) {
+        
         for (int i = 0; i < conversation[conversationToLoad].playerResponses.Count(); i++)
         {
             playerResponses[i].interactable = false;
@@ -216,8 +233,8 @@ public class Dialogue : MonoBehaviour
         responding = false;
     }
 
-    private IEnumerator ArrowBlink()
-    {
+    //Makes the next sentence arrow blink 
+    private IEnumerator ArrowBlink() {
         while (true)
         {
             arrow.SetActive(true);
@@ -226,6 +243,8 @@ public class Dialogue : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
         }
     }
+
+    //Colliders
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player") { detectsPlayer = true; player = other.gameObject.GetComponent<PlayerController>(); }

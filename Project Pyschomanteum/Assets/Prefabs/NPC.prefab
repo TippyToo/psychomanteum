@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6199082377805684377}
   - component: {fileID: 2723265754708588750}
-  - component: {fileID: -5118061308404068874}
+  - component: {fileID: 1491309711784782373}
   - component: {fileID: 1937719217329720905}
   m_Layer: 0
   m_Name: NPC
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-5118061308404068874
+--- !u!114 &1491309711784782373
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,20 +95,70 @@ MonoBehaviour:
   m_GameObject: {fileID: 9140543299801458415}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fffbfee1d5f8666409b384f345c65d32, type: 3}
+  m_Script: {fileID: 11500000, guid: 58f781be53c7112419441c97e0e6f3d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  talkDelay: 0.2
   talkSound:
-  - {fileID: 0}
-  - {fileID: 0}
-  dialogue:
-  - Test text Test text Test text Test text Test text Test text Test text Test text
-    Test text Test textTest textTest textvv Test textv v v vTest text v v v vTest
-    textTest text v v v vvTest textTest textTest textTest textTest textTest textTest
-    textTest textTest textTest textTest textTest textTest textTest textTest textTest
-    textTest textTest textTest textTest textTest textTest textTest textTest textTest
-    textTest textTest textTest textTest textTest text
+  - {fileID: 8300000, guid: 0ab3da2e96d191e49927cc6714f015f4, type: 3}
+  - {fileID: 8300000, guid: 3bf5c3e4de0b5f545bbf025165565892, type: 3}
+  - {fileID: 8300000, guid: 6477159c7c1656247ac2009ffa55c935, type: 3}
+  maxDialogueLength: 200
+  conversation:
+  - sentences:
+    - Boo!
+    - Did I scare you?
+    talkSpeed:
+    - 10
+    - 10
+    portrait:
+    - {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    nextDialogue: 0100000003000000
+    hasDialogueTree: 1
+    persistentConversation: 1
+    playerResponses:
+    - Yes
+    - No
+  - sentences:
+    - Haha!
+    - Scaredy cat!
+    - Scared by a floating cube!
+    talkSpeed:
+    - 0.5
+    - 0.5
+    - 0.5
+    portrait:
+    - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    nextDialogue: 
+    hasDialogueTree: 0
+    persistentConversation: 0
+    playerResponses: []
+  - sentences:
+    - Ok
+    talkSpeed:
+    - 0.5
+    portrait:
+    - {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    nextDialogue: 
+    hasDialogueTree: 1
+    persistentConversation: 0
+    playerResponses:
+    - Later!
+  - sentences:
+    - You're tough. Have you been here before?
+    talkSpeed:
+    - 2
+    portrait:
+    - {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    nextDialogue: 020000000200000002000000
+    hasDialogueTree: 1
+    persistentConversation: 0
+    playerResponses:
+    - Yes
+    - No
+    - Maybe
 --- !u!65 &1937719217329720905
 BoxCollider:
   m_ObjectHideFlags: 0

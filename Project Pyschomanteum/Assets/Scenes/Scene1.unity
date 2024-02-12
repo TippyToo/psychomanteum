@@ -123,85 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &44017880 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9140543299801458415, guid: 1321a03fd762cce4f8b9554cc07955a0,
-    type: 3}
-  m_PrefabInstance: {fileID: 2762076260792006179}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &44017885
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 44017880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58f781be53c7112419441c97e0e6f3d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  talkSound:
-  - {fileID: 8300000, guid: 0ab3da2e96d191e49927cc6714f015f4, type: 3}
-  - {fileID: 8300000, guid: 3bf5c3e4de0b5f545bbf025165565892, type: 3}
-  - {fileID: 8300000, guid: 6477159c7c1656247ac2009ffa55c935, type: 3}
-  maxDialogueLength: 200
-  conversation:
-  - sentences:
-    - Boo!
-    - Did I scare you?
-    talkSpeed:
-    - 0.5
-    - 0.5
-    portrait:
-    - {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-    - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    nextDialogue: 0100000003000000
-    hasDialogueTree: 1
-    persistentConversation: 1
-    playerResponses:
-    - Yes
-    - No
-  - sentences:
-    - Haha!
-    - Scaredy cat!
-    - Scared by a floating cube!
-    talkSpeed:
-    - 0.5
-    - 0.5
-    - 0.5
-    portrait:
-    - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    nextDialogue: 
-    hasDialogueTree: 0
-    persistentConversation: 0
-    playerResponses: []
-  - sentences:
-    - Ok
-    talkSpeed:
-    - 0.5
-    portrait:
-    - {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-    nextDialogue: 
-    hasDialogueTree: 1
-    persistentConversation: 0
-    playerResponses:
-    - Later!
-  - sentences:
-    - You're tough. Have you been here before?
-    talkSpeed:
-    - 2
-    portrait:
-    - {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-    nextDialogue: 020000000200000002000000
-    hasDialogueTree: 1
-    persistentConversation: 0
-    playerResponses:
-    - Yes
-    - No
-    - Maybe
 --- !u!1001 &123164264
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2343,7 +2264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2351,7 +2272,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 15ec4e9707135ee4baea9188ffe9d30f, type: 3}
     m_FontSize: 19
     m_FontStyle: 0
     m_BestFit: 0
@@ -2690,7 +2611,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2698,7 +2619,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 15ec4e9707135ee4baea9188ffe9d30f, type: 3}
     m_FontSize: 19
     m_FontStyle: 0
     m_BestFit: 0
@@ -3771,7 +3692,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3779,7 +3700,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 15ec4e9707135ee4baea9188ffe9d30f, type: 3}
     m_FontSize: 19
     m_FontStyle: 0
     m_BestFit: 0
@@ -6706,6 +6627,41 @@ PrefabInstance:
       propertyPath: conversation.Array.data[0].sentences.Array.data[1]
       value: Did I scare you?
       objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[1].portrait.Array.data[2]
+      value: 
+      objectReference: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[1].sentences.Array.data[2]
+      value: Scared by a floating square!
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[1].talkSpeed.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[1].talkSpeed.Array.data[1]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[1].talkSpeed.Array.data[2]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[2].talkSpeed.Array.data[0]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[3].talkSpeed.Array.data[0]
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6199082377805684377, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6761,15 +6717,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: -5118061308404068874, guid: 1321a03fd762cce4f8b9554cc07955a0, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 9140543299801458415, guid: 1321a03fd762cce4f8b9554cc07955a0,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 44017885}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1321a03fd762cce4f8b9554cc07955a0, type: 3}
 --- !u!224 &3252740455759891976
 RectTransform:
@@ -6981,7 +6932,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 15ec4e9707135ee4baea9188ffe9d30f, type: 3}
     m_FontSize: 98
     m_FontStyle: 0
     m_BestFit: 0

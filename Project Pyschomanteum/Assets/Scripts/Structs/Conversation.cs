@@ -5,14 +5,14 @@ using UnityEngine;
 
 [System.Serializable]
 [Tooltip("Dialogue settings for NPC")]
-public class Conversation
+public struct Conversation
 {
     [TextArea(5, 50)]
     [Tooltip("List of each dialogue box in the current \"conversation\"")]
     public string[] sentences;
-    [Tooltip("Speed that each sentence box is spoken")]
+    [Tooltip("Speed that each sentence box is spoken (Must match size of sentences. Bigger = faster)")]
     public float[] talkSpeed;
-    [Tooltip("List of each npc portrait for each sentence (Smaller = Faster)")]
+    [Tooltip("List of each npc portrait for each sentence (Must match size of sentences)")]
     public Sprite[] portrait;
     [Tooltip("Enter the element number for the next conversation chunk to load (Leave blank if there is no more dialogue unlocked. If Has Dialogue Tree is checked, enter multiple numbers corresponding to each response option even if they all go to the same place)")]
     public int[] nextDialogue;
