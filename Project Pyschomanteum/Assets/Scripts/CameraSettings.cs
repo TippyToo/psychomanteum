@@ -8,12 +8,15 @@ public class CameraSettings : MonoBehaviour
     private GameObject player;
     public float cameraHeight;
     public float cameraAngle;
-    public float zPosition;
+    public float startingZPosition;
+    private float zPosition;
     public bool followPlayerZ;
+    public bool lockMovement;
+    private bool matched = true;
     // Start is called before the first frame update
     void Start()
     {
-        
+        zPosition = startingZPosition;
         player = GameObject.Find("Player");
         transform.position = new Vector3(player.transform.position.x, cameraHeight, zPosition);
         transform.eulerAngles = new Vector3(cameraAngle, 0.0f, 0.0f);
@@ -23,8 +26,7 @@ public class CameraSettings : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (followPlayerZ) { transform.position = new Vector3(player.transform.position.x, player.transform.position.y + cameraHeight, player.transform.position.y + zPosition); }
-        else { transform.position = new Vector3(player.transform.position.x, player.transform.position.y + cameraHeight, zPosition); }
+        UpdateMovement();
     }
 
 
@@ -45,16 +47,29 @@ public class CameraSettings : MonoBehaviour
             yield return new WaitForSecondsRealtime(time / 4);
         }
     }
-    void FollowPlayer(float time = 0.0f) {
-        followPlayerZ = !followPlayerZ;
-        if (followPlayerZ && time > 0.0f) { StartCoroutine(MoveToPlayer()); }
-    }
-    private IEnumerator MoveToPlayer() {
-        //if (transform.position.z >= (player.transform.position.z + zPosition - 0.5) && transform.position.z <= (player.transform.position.z + zPosition + 0.5)) { 
 
-        //}
-        yield return new WaitForSeconds(0.0f);
+    //Toggles whether or not to follow the players z position
+    public void FollowPlayer() {
+        followPlayerZ = !followPlayerZ;
     }
+    private void UpdateMovement() {
+        float targetPosition = player.transform.position.z + zPosition;
+        if (transform.position.z >= (targetPosition - 0.5f) && transform.position.z <= (targetPosition + 0.5)) { matched = true;  } else { matched = false; }
+        if (followPlayerZ) {
+            if (matched) {
+                transform.parent = GameObject.Find("Player").transform;
+            } else {
+                if (transform.position.z > targetPosition) {
+                    transform.position = new Vector3(player.transform.position.x, player.transform.position.y + cameraHeight, transform.position.z - 0.1f);
+                }
+                else if (transform.position.z < targetPosition) {
+                    transform.position = new Vector3(player.transform.position.x, player.transform.position.y + cameraHeight, transform.position.z + 0.1f); ;
+                }
+            }
+        } 
+        else if (!lockMovement) { transform.parent = null; transform.position = new Vector3(player.transform.position.x, player.transform.position.y + cameraHeight, zPosition); }
+    }
+
     //Camera Rotation
     //Exact x y z angles to set rotation
     public void SetCameraRotation(float x = 0.0f, float y = 0.0f, float z = 0.0f) {

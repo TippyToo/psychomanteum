@@ -4076,7 +4076,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraHeight: 3.41
   cameraAngle: 18.3
-  distanceFromPlayer: -11.79763
+  startingZPosition: -11.79763
+  followPlayerZ: 0
+  lockMovement: 0
 --- !u!1 &1689570297
 GameObject:
   m_ObjectHideFlags: 0
