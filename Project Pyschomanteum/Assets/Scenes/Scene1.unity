@@ -5295,6 +5295,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
+      propertyPath: conversation.Array.data[0].talkSpeed.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
       propertyPath: conversation.Array.data[4].sentences.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -5380,6 +5385,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
+      propertyPath: conversation.Array.data[0].dialogueBoxImage.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
       propertyPath: conversation.Array.data[4].playerResponses.Array.data[0]
       value: Yes
       objectReference: {fileID: 0}
@@ -5392,6 +5402,16 @@ PrefabInstance:
         type: 3}
       propertyPath: conversation.Array.data[4].playerResponses.Array.data[2]
       value: Maybe
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[0].dialogueBoxImage.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[0].dialogueBoxImage.Array.data[1]
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6199082377805684377, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}

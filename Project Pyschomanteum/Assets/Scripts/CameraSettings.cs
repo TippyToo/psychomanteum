@@ -29,7 +29,30 @@ public class CameraSettings : MonoBehaviour
         UpdateMovement();
     }
 
-
+    private void UpdateMovement()
+    {
+        float targetPosition = player.transform.position.z + zPosition;
+        if (transform.position.z >= (targetPosition - 0.5f) && transform.position.z <= (targetPosition + 0.5)) { matched = true; } else { matched = false; }
+        if (followPlayerZ)
+        {
+            if (matched)
+            {
+                transform.parent = GameObject.Find("Player").transform;
+            }
+            else
+            {
+                if (transform.position.z > targetPosition)
+                {
+                    transform.position = new Vector3(player.transform.position.x, player.transform.position.y + cameraHeight, transform.position.z - 0.1f);
+                }
+                else if (transform.position.z < targetPosition)
+                {
+                    transform.position = new Vector3(player.transform.position.x, player.transform.position.y + cameraHeight, transform.position.z + 0.1f); ;
+                }
+            }
+        }
+        else if (!lockMovement) { transform.parent = null; transform.position = new Vector3(player.transform.position.x, player.transform.position.y + cameraHeight, zPosition); }
+    }
 
     //Camera Position
     //Exact x y z coordinates to set position 
@@ -52,23 +75,7 @@ public class CameraSettings : MonoBehaviour
     public void FollowPlayer() {
         followPlayerZ = !followPlayerZ;
     }
-    private void UpdateMovement() {
-        float targetPosition = player.transform.position.z + zPosition;
-        if (transform.position.z >= (targetPosition - 0.5f) && transform.position.z <= (targetPosition + 0.5)) { matched = true;  } else { matched = false; }
-        if (followPlayerZ) {
-            if (matched) {
-                transform.parent = GameObject.Find("Player").transform;
-            } else {
-                if (transform.position.z > targetPosition) {
-                    transform.position = new Vector3(player.transform.position.x, player.transform.position.y + cameraHeight, transform.position.z - 0.1f);
-                }
-                else if (transform.position.z < targetPosition) {
-                    transform.position = new Vector3(player.transform.position.x, player.transform.position.y + cameraHeight, transform.position.z + 0.1f); ;
-                }
-            }
-        } 
-        else if (!lockMovement) { transform.parent = null; transform.position = new Vector3(player.transform.position.x, player.transform.position.y + cameraHeight, zPosition); }
-    }
+    
 
     //Camera Rotation
     //Exact x y z angles to set rotation

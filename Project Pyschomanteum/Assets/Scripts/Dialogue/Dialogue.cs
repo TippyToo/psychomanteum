@@ -33,7 +33,8 @@ public class Dialogue : MonoBehaviour
     private Queue<string> currentDialogue;
     private int conversationToLoad = 0;
     private int currSentence = 0;
-    private SpriteRenderer dialogueImage;
+    private SpriteRenderer NPCImage;
+    private Image dialogueBoxImage;
 
 
     //Indicates end of current dialogue 
@@ -50,7 +51,8 @@ public class Dialogue : MonoBehaviour
         playerResponseBox.transform.GetChild(0).GetChild(1).GetComponent<Button>(), playerResponseBox.transform.GetChild(0).GetChild(2).GetComponent<Button>() };
         dialogueBox = GameObject.Find("UI").transform.GetChild(1).gameObject;
         dialogueText = dialogueBox.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>();
-        dialogueImage = dialogueBox.transform.GetChild(1).GetComponent<SpriteRenderer>();
+        dialogueBoxImage = dialogueBox.transform.GetChild(0).GetComponent<Image>();
+        NPCImage = dialogueBox.transform.GetChild(1).GetComponent<SpriteRenderer>();
         arrow = dialogueBox.transform.GetChild(0).transform.GetChild(1).gameObject;
         detectsPlayer = false;
         isTalking = false;
@@ -124,6 +126,7 @@ public class Dialogue : MonoBehaviour
                 currentDialogue.Enqueue(conversation.sentences[i]); 
             }
         }
+        
         dialogueBox.SetActive(true);
         StartCoroutine(WriteText());
     }
@@ -155,19 +158,35 @@ public class Dialogue : MonoBehaviour
 
     //Writes out the queued sentence character by character and removes it from the queue
     private IEnumerator WriteText() {
-        
+
         isTalking = true;
-        dialogueImage.sprite = conversation[conversationToLoad].portrait[currSentence];
         speaking = true;
         currentFullText = currentDialogue.Dequeue();
         string currText;
         for (int i = 1; i < currentFullText.Length + 1; i++)
         {
+            float talkSpeed;
+            if (conversation[conversationToLoad].dialogueBoxImage.Count() < (i)) { ; } 
+            else if (conversation[conversationToLoad].dialogueBoxImage.Count() < (2))
+            {
+                dialogueBoxImage.sprite = conversation[conversationToLoad].dialogueBoxImage[0];
+            }
+            else { dialogueBoxImage.sprite = conversation[conversationToLoad].dialogueBoxImage[currSentence]; }
+            if (conversation[conversationToLoad].talkSpeed.Count() < (2))
+            {
+                talkSpeed = conversation[conversationToLoad].talkSpeed[0];
+            }
+            else { talkSpeed = conversation[conversationToLoad].talkSpeed[currSentence]; }
+            if (conversation[conversationToLoad].portrait.Count() < (2))
+            {
+                NPCImage.sprite = conversation[conversationToLoad].portrait[0];
+            }
+            else { NPCImage.sprite = conversation[conversationToLoad].portrait[currSentence]; }
             int sound = Random.Range(0, talkSound.Length);
             currText = currentFullText.Substring(0, i);
             if (!currText.EndsWith(" ")) { audSource.PlayOneShot(talkSound[sound], 1.0f); }
             dialogueText.text = currText;
-            yield return new WaitForSeconds(1 / conversation[conversationToLoad].talkSpeed[currSentence]);
+            yield return new WaitForSeconds(1 / talkSpeed);
         }
         speaking = false;
         StartCoroutine(ArrowBlink());
@@ -190,7 +209,6 @@ public class Dialogue : MonoBehaviour
             conversationToLoad = conversation[conversationToLoad].nextDialogue[0];
             isTalking = false;
         } else  { conversationToLoad = -1; isTalking = false; }
-        Debug.Log(conversationToLoad);
     }
 
     //If there are player responses, populate buttons with response text, and target if applicable
@@ -202,7 +220,8 @@ public class Dialogue : MonoBehaviour
             {
                 playerResponses[i].GetComponent<ResponseButton>().toLoad = -1;
             }
-            else { playerResponses[i].GetComponent<ResponseButton>().toLoad = conversation[conversationToLoad].nextDialogue[i]; }
+            else { 
+                playerResponses[i].GetComponent<ResponseButton>().toLoad = conversation[conversationToLoad].nextDialogue[i]; }
             playerResponses[i].GetComponent<ResponseButton>().NPC = this.gameObject;
             playerResponses[i].interactable = true;
             playerResponses[i].transform.GetChild(0).GetComponent<Text>().text = conversation[conversationToLoad].playerResponses[i];
