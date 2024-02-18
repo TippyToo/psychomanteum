@@ -3,16 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StackManager : MonoBehaviour
+public class JournalManager : MonoBehaviour
 {
     // Start is called before the first frame update
     private Stack<GameObject> sections = new Stack<GameObject>();
     private bool paused;
     private GameObject homePage;
+    private GameObject cluesPage;
     private GameObject lastOpened = null;
+    private PlayerController player;
     void Start() {
         paused = false;
         homePage = transform.Find("Home Page").gameObject;
+        cluesPage = transform.Find("Clues Page").gameObject;
+        player = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -20,8 +24,9 @@ public class StackManager : MonoBehaviour
         if (Input.GetButtonUp("Journal")) { Pause(); }
     }
     public void Resume() { Pause(); }
-    public void SaveAndQuit() { 
+    public void SaveAndQuit() {
         //Add saving later
+        Time.timeScale = 1;
         SceneManager.LoadScene(0); 
     }
     private void Pause() {
@@ -29,9 +34,12 @@ public class StackManager : MonoBehaviour
         paused = !paused;
         if (paused) {
             Time.timeScale = 0;
-            if (lastOpened != null) { PushSection(lastOpened); }
-            else { PushSection(homePage); }
-
+            if (!player.talking){
+                if (lastOpened != null) { PushSection(lastOpened); }
+                else { PushSection(homePage); }
+            } else {
+                PushSection(cluesPage);
+            }
         } else {
             CloseJournal();
         }
@@ -61,7 +69,5 @@ public class StackManager : MonoBehaviour
     {
         //"Bookmarks" the current page then closes all windows
         for (int i = 0; i < sections.Count; i++) { PopSection(); }
-    }
-
-    
+    } 
 }

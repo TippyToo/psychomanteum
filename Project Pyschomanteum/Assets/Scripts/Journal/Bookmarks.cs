@@ -24,7 +24,6 @@ public class Bookmarks : MonoBehaviour
         float heightChunk = maxHeight / 5;
         for (int i = 0; i < 5; i++) {
             transform.localPosition += new Vector3(0.0f, heightChunk, 0.0f);
-            Debug.Log(i);
             yield return new WaitForSecondsRealtime(0.005f); 
         }
     }

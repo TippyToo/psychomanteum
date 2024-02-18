@@ -67,7 +67,7 @@ public class Dialogue : MonoBehaviour
         InteractButton();
 
         //Locks the players movement while talking
-        if (detectsPlayer) { player.canMove = !isTalking; }
+        if (detectsPlayer) { player.talking = isTalking; }
     }
 
     //Determine how the interact button should function based on the current state of dialogue

@@ -236,6 +236,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7566050232671527918, guid: c1ba94a6ba227654f857391b34e5b7cd,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 763128983}
+    - target: {fileID: 7566050232671527918, guid: c1ba94a6ba227654f857391b34e5b7cd,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PushNewJournalSection
+      objectReference: {fileID: 0}
+    - target: {fileID: 7566050232671527918, guid: c1ba94a6ba227654f857391b34e5b7cd,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: JournalManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7566050232671527918, guid: c1ba94a6ba227654f857391b34e5b7cd,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1513789254}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -255,6 +275,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1513789255}
     m_Modifications:
+    - target: {fileID: 3671487634687978162, guid: 51aaf714d5807744894c4c8726f9685a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 763128983}
+    - target: {fileID: 3671487634687978162, guid: 51aaf714d5807744894c4c8726f9685a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PushNewJournalSection
+      objectReference: {fileID: 0}
+    - target: {fileID: 3671487634687978162, guid: 51aaf714d5807744894c4c8726f9685a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: JournalManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3671487634687978162, guid: 51aaf714d5807744894c4c8726f9685a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1316611579}
     - target: {fileID: 7216990595440054312, guid: 51aaf714d5807744894c4c8726f9685a,
         type: 3}
       propertyPath: m_Name
@@ -455,7 +495,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 763128983}
-        m_TargetAssemblyTypeName: StackManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: JournalManager, Assembly-CSharp
         m_MethodName: PushNewJournalSection
         m_Mode: 2
         m_Arguments:
@@ -687,6 +727,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6164692043619974432, guid: 886675f584a9b3f4e84d1289f8ccbd95,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 763128983}
+    - target: {fileID: 6164692043619974432, guid: 886675f584a9b3f4e84d1289f8ccbd95,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PushNewJournalSection
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164692043619974432, guid: 886675f584a9b3f4e84d1289f8ccbd95,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: JournalManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164692043619974432, guid: 886675f584a9b3f4e84d1289f8ccbd95,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1695103411}
     - target: {fileID: 9125974477645944703, guid: 886675f584a9b3f4e84d1289f8ccbd95,
         type: 3}
       propertyPath: m_Name
@@ -1226,7 +1286,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 763128983}
-        m_TargetAssemblyTypeName: StackManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: JournalManager, Assembly-CSharp
         m_MethodName: SaveAndQuit
         m_Mode: 1
         m_Arguments:
@@ -1462,6 +1522,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6164692043619974432, guid: 886675f584a9b3f4e84d1289f8ccbd95,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 763128983}
+    - target: {fileID: 6164692043619974432, guid: 886675f584a9b3f4e84d1289f8ccbd95,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PushNewJournalSection
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164692043619974432, guid: 886675f584a9b3f4e84d1289f8ccbd95,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: JournalManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164692043619974432, guid: 886675f584a9b3f4e84d1289f8ccbd95,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1695103411}
     - target: {fileID: 9125974477645944703, guid: 886675f584a9b3f4e84d1289f8ccbd95,
         type: 3}
       propertyPath: m_Name
@@ -2040,6 +2120,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1571497391}
     m_Modifications:
+    - target: {fileID: 3671487634687978162, guid: 51aaf714d5807744894c4c8726f9685a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 763128983}
+    - target: {fileID: 3671487634687978162, guid: 51aaf714d5807744894c4c8726f9685a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PushNewJournalSection
+      objectReference: {fileID: 0}
+    - target: {fileID: 3671487634687978162, guid: 51aaf714d5807744894c4c8726f9685a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: JournalManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3671487634687978162, guid: 51aaf714d5807744894c4c8726f9685a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1316611579}
     - target: {fileID: 7216990595440054312, guid: 51aaf714d5807744894c4c8726f9685a,
         type: 3}
       propertyPath: m_Name
@@ -2396,6 +2496,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7566050232671527918, guid: c1ba94a6ba227654f857391b34e5b7cd,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 763128983}
+    - target: {fileID: 7566050232671527918, guid: c1ba94a6ba227654f857391b34e5b7cd,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PushNewJournalSection
+      objectReference: {fileID: 0}
+    - target: {fileID: 7566050232671527918, guid: c1ba94a6ba227654f857391b34e5b7cd,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: JournalManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7566050232671527918, guid: c1ba94a6ba227654f857391b34e5b7cd,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1513789254}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3029,7 +3149,7 @@ GameObject:
   - component: {fileID: 1316611580}
   - component: {fileID: 1316611581}
   m_Layer: 5
-  m_Name: Clues
+  m_Name: Clues Page
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3217,6 +3337,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9169503510720234986, guid: 323729239be990f4ca316c466516ce38,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 763128983}
+    - target: {fileID: 9169503510720234986, guid: 323729239be990f4ca316c466516ce38,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PushNewJournalSection
+      objectReference: {fileID: 0}
+    - target: {fileID: 9169503510720234986, guid: 323729239be990f4ca316c466516ce38,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: JournalManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9169503510720234986, guid: 323729239be990f4ca316c466516ce38,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1571497390}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3541,7 +3681,7 @@ GameObject:
   - component: {fileID: 1513789255}
   - component: {fileID: 1513789256}
   m_Layer: 5
-  m_Name: Inventory
+  m_Name: Inventory Page
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3590,7 +3730,7 @@ GameObject:
   - component: {fileID: 1571497391}
   - component: {fileID: 1571497392}
   m_Layer: 5
-  m_Name: Markdown
+  m_Name: Markdown Page
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3736,6 +3876,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6164692043619974432, guid: 886675f584a9b3f4e84d1289f8ccbd95,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 763128983}
+    - target: {fileID: 6164692043619974432, guid: 886675f584a9b3f4e84d1289f8ccbd95,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PushNewJournalSection
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164692043619974432, guid: 886675f584a9b3f4e84d1289f8ccbd95,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: JournalManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164692043619974432, guid: 886675f584a9b3f4e84d1289f8ccbd95,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1695103411}
     - target: {fileID: 9125974477645944703, guid: 886675f584a9b3f4e84d1289f8ccbd95,
         type: 3}
       propertyPath: m_Name
@@ -4372,6 +4532,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9169503510720234986, guid: 323729239be990f4ca316c466516ce38,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 763128983}
+    - target: {fileID: 9169503510720234986, guid: 323729239be990f4ca316c466516ce38,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PushNewJournalSection
+      objectReference: {fileID: 0}
+    - target: {fileID: 9169503510720234986, guid: 323729239be990f4ca316c466516ce38,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: JournalManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9169503510720234986, guid: 323729239be990f4ca316c466516ce38,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1571497390}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4595,6 +4775,16 @@ PrefabInstance:
       objectReference: {fileID: 763128983}
     - target: {fileID: 7566050232671527918, guid: c1ba94a6ba227654f857391b34e5b7cd,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PushNewJournalSection
+      objectReference: {fileID: 0}
+    - target: {fileID: 7566050232671527918, guid: c1ba94a6ba227654f857391b34e5b7cd,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: JournalManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7566050232671527918, guid: c1ba94a6ba227654f857391b34e5b7cd,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 1513789254}
@@ -4663,6 +4853,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 763128983}
+    - target: {fileID: 3671487634687978162, guid: 51aaf714d5807744894c4c8726f9685a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PushNewJournalSection
+      objectReference: {fileID: 0}
+    - target: {fileID: 3671487634687978162, guid: 51aaf714d5807744894c4c8726f9685a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: JournalManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 3671487634687978162, guid: 51aaf714d5807744894c4c8726f9685a,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
@@ -4884,8 +5084,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 763128983}
-        m_TargetAssemblyTypeName: StackManager, Assembly-CSharp
-        m_MethodName: Resume
+        m_TargetAssemblyTypeName: JournalManager, Assembly-CSharp
+        m_MethodName: CloseJournal
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5033,6 +5233,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 763128983}
+    - target: {fileID: 9169503510720234986, guid: 323729239be990f4ca316c466516ce38,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PushNewJournalSection
+      objectReference: {fileID: 0}
+    - target: {fileID: 9169503510720234986, guid: 323729239be990f4ca316c466516ce38,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: JournalManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 9169503510720234986, guid: 323729239be990f4ca316c466516ce38,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
@@ -5785,6 +5995,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 763128983}
+    - target: {fileID: 6164692043619974432, guid: 886675f584a9b3f4e84d1289f8ccbd95,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PushNewJournalSection
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164692043619974432, guid: 886675f584a9b3f4e84d1289f8ccbd95,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: JournalManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 6164692043619974432, guid: 886675f584a9b3f4e84d1289f8ccbd95,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument

@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     //Movement
-    public bool canMove;
     public float moveSpeed;
     //Raycast Stuff
         //Offset 
@@ -13,11 +12,12 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayer;
     //Debug Stuff
     public bool seeRayCast;
-
+    [HideInInspector]
+    public bool talking;
     // Start is called before the first frame update
     void Start()
     {
-        canMove = true;
+        talking = false;
     }
 
     // Update is called once per frame
@@ -42,10 +42,17 @@ public class PlayerController : MonoBehaviour
         }
 
         //Character movement controlled here
-        if (canMove) {
+        if (CanMove()) {
             float x = Input.GetAxis("Horizontal");
             float z = Input.GetAxis("Vertical");
             transform.position = new Vector3(transform.position.x + (x * moveSpeed), transform.position.y, transform.position.z + (z * moveSpeed));
         }
+    }
+
+    private bool CanMove() {
+        if (!talking)
+            return true;
+        else
+            return false;
     }
 }
