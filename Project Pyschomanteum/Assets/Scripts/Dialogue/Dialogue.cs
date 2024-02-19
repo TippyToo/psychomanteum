@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Dialogue : MonoBehaviour
+public class Dialogue : MonoBehaviour, IDataPersistance
 {
     //Handles creating dialogue boxes, text and audio. Speaker images to be added
 
@@ -26,6 +26,7 @@ public class Dialogue : MonoBehaviour
     private GameObject playerResponseBox;
     private Button[] playerResponses;
     private bool responding = false;
+
     private Text dialogueText;
     private string currentFullText;
 
@@ -39,7 +40,8 @@ public class Dialogue : MonoBehaviour
 
     //Indicates end of current dialogue 
     private GameObject arrow;
-
+    public void SaveData(ref SaveData data) { data.conversationToLoad = this.conversationToLoad; }
+    public void LoadData(SaveData data) { this.conversationToLoad = data.conversationToLoad; }
 
 
     // Start is called before the first frame update
