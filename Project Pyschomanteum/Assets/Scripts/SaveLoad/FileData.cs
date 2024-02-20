@@ -15,8 +15,8 @@ public class FileData
         this.dataFileName = dataFileName;
     }
 
-    public SaveData Load() {
-        string fullPath = Path.Combine(dataDirectoryPath, dataFileName);
+    public SaveData Load(int saveSlot) {
+        string fullPath = Path.Combine(dataDirectoryPath, dataFileName + saveSlot.ToString());
         SaveData loadedData = null;
         if (File.Exists(fullPath))
         {
@@ -37,8 +37,17 @@ public class FileData
 
     }
 
-    public void Save(SaveData data) { 
-        string fullPath = Path.Combine(dataDirectoryPath, dataFileName);
+    public SaveData[] LoadAll() { 
+        SaveData[] allSaves = new SaveData[3] { null, null, null };
+        for (int i = 0; i < 3; i++) {
+            allSaves[i] = Load(i + 1);
+        }
+        return allSaves;
+    }
+
+    public void Save(SaveData data, int saveSlot) { 
+        string fullPath = Path.Combine(dataDirectoryPath, dataFileName + saveSlot.ToString());
+        Debug.Log(fullPath);
         try { 
             Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
             string dataToStore = JsonUtility.ToJson(data, true);

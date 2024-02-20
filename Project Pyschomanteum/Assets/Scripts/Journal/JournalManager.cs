@@ -12,11 +12,13 @@ public class JournalManager : MonoBehaviour
     private GameObject cluesPage;
     private GameObject lastOpened = null;
     private PlayerController player;
+    private SaveManager saveManager;
     void Start() {
         paused = false;
         homePage = transform.Find("Home Page").gameObject;
         cluesPage = transform.Find("Clues Page").gameObject;
         player = GameObject.Find("Player").GetComponent<PlayerController>();
+        saveManager = GameObject.Find("Save Manager").GetComponent<SaveManager>();
     }
 
     // Update is called once per frame
@@ -27,6 +29,7 @@ public class JournalManager : MonoBehaviour
     public void SaveAndQuit() {
         //Add saving later
         Time.timeScale = 1;
+        saveManager.SaveGame();
         SceneManager.LoadScene(0); 
     }
     private void Pause() {

@@ -40,7 +40,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance
 
     //Indicates end of current dialogue 
     private GameObject arrow;
-    public void SaveData(ref SaveData data) { data.conversationToLoad = this.conversationToLoad; }
+    public void SaveData(ref SaveData data) { if (data != null) data.conversationToLoad = conversationToLoad; else Debug.Log("No Save Slot Found"); }
     public void LoadData(SaveData data) { this.conversationToLoad = data.conversationToLoad; }
 
 
