@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
+using Unity.Burst.Intrinsics;
 
 public class SaveSlot : MonoBehaviour
 {
@@ -54,6 +56,7 @@ public class SaveSlot : MonoBehaviour
     {
         menu.Push(deleteSavePrompt);
         Button yes = GameObject.Find("Yes").GetComponent<Button>();
+        GameObject.Find("Delete Warning").GetComponent<Text>().text = "!!WARNING!!\nYou are about to delete all save data in slot " + (saveSlot + 1) + ".\nAre you sure you want to continue?";
         yes.onClick.RemoveListener(DeleteSave);
         yes.onClick.AddListener(DeleteSave);
         Debug.Log("Data to be deleted" + saveSlot);
