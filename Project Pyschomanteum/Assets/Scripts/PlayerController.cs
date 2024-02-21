@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDataPersistance
 {
     //Movement
     public float moveSpeed;
@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     public bool seeRayCast;
     [HideInInspector]
     public bool talking;
+    public void LoadData(SaveData data) { transform.position = data.playerPosition; }
+    public void SaveData(ref SaveData data) { data.playerPosition = transform.position; }
     // Start is called before the first frame update
     void Start()
     {

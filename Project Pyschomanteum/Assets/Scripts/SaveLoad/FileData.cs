@@ -40,7 +40,7 @@ public class FileData
     public SaveData[] LoadAll() { 
         SaveData[] allSaves = new SaveData[3] { null, null, null };
         for (int i = 0; i < 3; i++) {
-            allSaves[i] = Load(i + 1);
+            allSaves[i] = Load(i);
         }
         return allSaves;
     }
