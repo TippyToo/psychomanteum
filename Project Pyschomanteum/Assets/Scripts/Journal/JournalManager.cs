@@ -13,6 +13,8 @@ public class JournalManager : MonoBehaviour
     private GameObject lastOpened = null;
     private PlayerController player;
     private SaveManager saveManager;
+    [HideInInspector]
+    public bool isOpen = false;
     void Start() {
         paused = false;
         homePage = transform.Find("Home Page").gameObject;
@@ -37,6 +39,7 @@ public class JournalManager : MonoBehaviour
         paused = !paused;
         if (paused) {
             Time.timeScale = 0;
+            isOpen = true;
             if (!player.talking){
                 if (lastOpened != null) { PushSection(lastOpened); }
                 else { PushSection(homePage); }
@@ -66,6 +69,7 @@ public class JournalManager : MonoBehaviour
     public void CloseJournal() {
         lastOpened = sections.Peek();
         PopAll();
+        isOpen = false;
         Time.timeScale = 1;
     }
     private void PopAll()

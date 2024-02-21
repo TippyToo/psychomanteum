@@ -15,6 +15,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance
     //speaking is used for detecting if the dialogue box is currently writing out what the npc is saying
     private bool isTalking;
     private bool speaking;
+    private bool responding = false;
 
     private PlayerController player;
     private AudioSource audSource;
@@ -25,7 +26,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance
     private GameObject dialogueBox;
     private GameObject playerResponseBox;
     private Button[] playerResponses;
-    private bool responding = false;
+    
 
     private Text dialogueText;
     private string currentFullText;
@@ -36,6 +37,8 @@ public class Dialogue : MonoBehaviour, IDataPersistance
     private int currSentence = 0;
     private SpriteRenderer NPCImage;
     private Image dialogueBoxImage;
+
+    private JournalManager journal;
 
 
     //Indicates end of current dialogue 
@@ -60,21 +63,31 @@ public class Dialogue : MonoBehaviour, IDataPersistance
         isTalking = false;
         speaking = false;
         audSource = GameObject.Find("Main Camera").GetComponent<AudioSource>();
-
+        journal = GameObject.Find("Journal").GetComponent<JournalManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
         InteractButton();
-
+        if ((speaking || isTalking || responding) && journal.IsPaused())
+        {
+            dialogueBox.transform.GetChild(0).gameObject.SetActive(false);
+            dialogueBox.transform.GetChild(1).gameObject.SetActive(false);
+        }
+        else if ((speaking || isTalking || responding) && !journal.IsPaused()) 
+        {
+            dialogueBox.transform.GetChild(0).gameObject.SetActive(true);
+            dialogueBox.transform.GetChild(1).gameObject.SetActive(true);
+        }
         //Locks the players movement while talking
         if (detectsPlayer) { player.talking = isTalking; }
     }
 
+
     //Determine how the interact button should function based on the current state of dialogue
     private void InteractButton() {
-        if (detectsPlayer && Input.GetButtonUp("Interact") && !responding)
+        if (detectsPlayer && Input.GetButtonUp("Interact") && !responding && !journal.isOpen)
         {
             if (!isTalking)
             {
