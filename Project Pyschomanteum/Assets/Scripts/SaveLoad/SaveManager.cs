@@ -27,11 +27,7 @@ public class SaveManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(currentSaveSlot);
-        Debug.Log(currentSave);
-        Debug.Log(saveData[0]);
-        Debug.Log(saveData[1]);
-        Debug.Log(saveData[2]);
+        
     }
     private void Awake()
     {
@@ -45,6 +41,7 @@ public class SaveManager : MonoBehaviour
         //Create new game
         currentSaveSlot = saveSlot;
         currentSave = new SaveData();
+        SaveGame();
         Debug.Log(currentSave);
     }
     public void SaveGame() {
@@ -73,8 +70,14 @@ public class SaveManager : MonoBehaviour
         }
     }
 
+    public void DeleteSave(int saveSlot) {
+        dataHandler.Delete(saveSlot);
+        saveData[saveSlot] = null;
+    }
+
     private List<IDataPersistance> FindAllDataPersistanceObjects() { 
-        IEnumerable<IDataPersistance> dataPersistanceObjects = FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistance>();
+        IEnumerable<IDataPersistance> dataPersistanceObjects = FindObjectsOfType<MonoBehaviour>() //Add true inside () next to <MonoBehavior> to also find inactive objects
+            .OfType<IDataPersistance>();
         return new List<IDataPersistance>(dataPersistanceObjects);
     }
 
@@ -85,12 +88,10 @@ public class SaveManager : MonoBehaviour
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
-        SceneManager.sceneUnloaded += OnSceneUnloaded;
     }
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
-        SceneManager.sceneUnloaded -= OnSceneUnloaded;
     }
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
         this.dataPersistanceObjects = FindAllDataPersistanceObjects();
@@ -98,7 +99,4 @@ public class SaveManager : MonoBehaviour
         LoadGame(currentSaveSlot);
     }
 
-    public void OnSceneUnloaded(Scene scene) {
-        SaveGame();
-    }
 }

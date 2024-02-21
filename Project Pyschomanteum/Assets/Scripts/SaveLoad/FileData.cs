@@ -60,4 +60,24 @@ public class FileData
             Debug.Log("Could not save data to: " + fullPath + '\n' + e);
         }
     }
+
+    public void Delete(int saveSlot) {
+        //if (data == null) {
+        //    return;
+        //}
+        string fullPath = Path.Combine(dataDirectoryPath, dataFileName + saveSlot.ToString());
+        try
+        {
+            if (File.Exists(fullPath))
+            {
+                File.Delete(fullPath);
+            }
+            else {
+                Debug.Log("No data to delete at " + fullPath);
+            }
+        }
+        catch (Exception e) {
+            Debug.Log("Failed to delete data at " + fullPath + '\n' + e);
+        }
+    }
 }
