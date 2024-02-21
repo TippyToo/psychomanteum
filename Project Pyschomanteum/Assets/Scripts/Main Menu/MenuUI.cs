@@ -1,5 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,6 +12,14 @@ public class MenuUI : MonoBehaviour
     private Stack<GameObject> menuUI = new Stack<GameObject>();
     private int sceneToLoad = 1;
 
+    //Settings variables
+    private Slider volumeSlider;
+    private Slider textSpeedSlider;
+    private List<ISettings> settingsObjList;
+    private Text volumeText;
+    private Text textSpeedText;
+
+
     private void Awake()
     {
         
@@ -16,7 +27,11 @@ public class MenuUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+       if (volumeSlider == null) volumeSlider = GameObject.Find("Volume Slider").GetComponent<Slider>();
+       if (textSpeedSlider == null) textSpeedSlider = GameObject.Find("Text Speed Slider").GetComponent<Slider>();
+       if (volumeText == null) volumeText = GameObject.Find("Volume Value").GetComponent<Text>();
+       if (textSpeedText == null) textSpeedText = GameObject.Find("Text Speed Value").GetComponent<Text>();
+        settingsObjList = FindAllSettingsObj();
     }
 
     // Update is called once per frame
@@ -54,5 +69,48 @@ public class MenuUI : MonoBehaviour
         for (int i = 0; i < 3; i++) {
             GameObject.Find("Load Save").transform.GetChild(i).GetComponent<SaveSlot>().DecideButtonBehavior();
         }
+    }
+
+    public void SaveVolume()
+    {
+        PlayerPrefs.SetFloat("Volume", volumeSlider.value);
+    }
+
+    public void SaveTextSpeed()
+    {
+        PlayerPrefs.SetInt("Text Speed", textSpeedSlider.value.ConvertTo<int>());
+    }
+
+    private void ApplyAllChanges()
+    {
+        foreach (ISettings settingsObj in settingsObjList)
+        {
+            settingsObj.ApplySettings();
+        }
+    }
+
+    private List<ISettings> FindAllSettingsObj()
+    {
+        IEnumerable<ISettings> settingsObjects = FindObjectsOfType<MonoBehaviour>().OfType<ISettings>();
+        return new List<ISettings>(settingsObjects);
+    }
+
+    public void UpdateValues()
+    {
+        volumeText.text = volumeSlider.value.ToString() + "%";
+        string temp = "";
+        switch (textSpeedSlider.value)
+        {
+            case 0:
+                temp = "Slow";
+                break;
+            case 1:
+                temp = "Medium";
+                break;
+            case 2:
+                temp = "Fast";
+                break;
+        }
+        textSpeedText.text = temp;
     }
 }
