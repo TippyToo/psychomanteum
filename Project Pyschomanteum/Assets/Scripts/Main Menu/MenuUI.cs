@@ -13,11 +13,15 @@ public class MenuUI : MonoBehaviour
     private int sceneToLoad = 1;
 
     //Settings variables
-    public Slider volumeSlider;
+
+    //Volume settings
+    public Slider dialogueVolumeSlider;
+    public Slider musicVolumeSlider;
+    public Slider ambienceVolumeSlider;
+    public Slider SFXVolumeSlider;
+
     public Slider textSpeedSlider;
     private List<ISettings> settingsObjList;
-    public Text volumeText;
-    public Text textSpeedText;
 
 
     private void Awake()
@@ -27,11 +31,9 @@ public class MenuUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       if (volumeSlider == null) volumeSlider = GameObject.Find("Volume Slider").GetComponent<Slider>();
-       if (textSpeedSlider == null) textSpeedSlider = GameObject.Find("Text Speed Slider").GetComponent<Slider>();
-       if (volumeText == null) volumeText = GameObject.Find("Volume Value").GetComponent<Text>();
-       if (textSpeedText == null) textSpeedText = GameObject.Find("Text Speed Value").GetComponent<Text>();
         settingsObjList = FindAllSettingsObj();
+        dialogueVolumeSlider.value = PlayerPrefs.GetFloat("Volume");
+        textSpeedSlider.value = PlayerPrefs.GetInt("Text Speed");
     }
 
     // Update is called once per frame
@@ -72,10 +74,10 @@ public class MenuUI : MonoBehaviour
     }
 
     
-
-    public void SaveVolume()
+    // "category" should be the one word, capitalized volume type this slider adjusts. i.e. "Music"
+    public void SaveVolume(string category)
     {
-        PlayerPrefs.SetFloat("Volume", volumeSlider.value);
+        PlayerPrefs.SetFloat(category, dialogueVolumeSlider.value);
     }
 
     public void SaveTextSpeed()
@@ -97,9 +99,37 @@ public class MenuUI : MonoBehaviour
         return new List<ISettings>(settingsObjects);
     }
 
-    public void UpdateValues()
+    // Input paramter "setting" should be the slider gameobject of the calling slider
+    // This function currently relies on hierarchy order (slider then text object), which is not ideal but I'll fix it when I can think of a better way.
+    // For now I'll just leave a warning in if it looks like they are not in the right order
+
+    // omg I'm an idiot
+
+    // I'll fix it later jesus christ I'm dense
+    public void UpdateVolumeValue(Slider setting)
     {
-        volumeText.text = ((int) (volumeSlider.value*100)).ToString() + "%";
+        // Hierarchy order warning
+        if (setting.transform.GetSiblingIndex() != 0 || setting.transform.parent.childCount != 2) {
+            Debug.LogError("Illegal hierarchy order of " + setting.transform.parent.name +
+            "\nThe parent object must have exactly two children. Slider first, Text second.");
+        }
+
+
+        Text valueText = setting.transform.parent.GetChild(1).GetComponent<Text>();
+        valueText.text = ((int) (dialogueVolumeSlider.value*100)).ToString() + "%";   
+    }
+
+    public void UpdateTextSpeedValue(Slider setting)
+    {
+        // Hierarchy order warning
+        if (setting.transform.GetSiblingIndex() != 0 || setting.transform.parent.childCount != 2)
+        {
+            Debug.LogError("Illegal hierarchy order of " + setting.transform.parent.name +
+            "\nThe parent object must have exactly two children. Slider first, Text second.");
+        }
+
+
+        Text valueText = setting.transform.parent.GetChild(1).GetComponent<Text>();
         string temp = "";
         switch (textSpeedSlider.value)
         {
@@ -113,6 +143,6 @@ public class MenuUI : MonoBehaviour
                 temp = "Fast";
                 break;
         }
-        textSpeedText.text = temp;
+        valueText.text = temp;
     }
 }

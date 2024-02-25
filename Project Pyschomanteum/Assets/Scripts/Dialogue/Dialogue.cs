@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Dialogue : MonoBehaviour, IDataPersistance
+public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
 {
     [Tooltip("ONLY FILL OUT IF DATA SHOULD BE SAVED")]
     public string npcName;
@@ -22,6 +22,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance
     private PlayerController player;
     private AudioSource audSource;
     public AudioClip[] talkSound;
+    private float talkVolume;
 
     public int maxDialogueLength;
 
@@ -83,6 +84,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance
         speaking = false;
         audSource = GameObject.Find("Main Camera").GetComponent<AudioSource>();
         journal = GameObject.Find("Journal").GetComponent<JournalManager>();
+        ApplySettings();
     }
 
     // Update is called once per frame
@@ -218,7 +220,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance
             else { NPCImage.sprite = conversation[conversationToLoad].portrait[currSentence]; }
             int sound = Random.Range(0, talkSound.Length);
             currText = currentFullText.Substring(0, i);
-            if (!currText.EndsWith(" ")) { audSource.PlayOneShot(talkSound[sound], 1.0f); }
+            if (!currText.EndsWith(" ")) { audSource.PlayOneShot(talkSound[sound], talkVolume); }
             dialogueText.text = currText;
             yield return new WaitForSeconds(1 / talkSpeed);
         }
@@ -305,5 +307,11 @@ public class Dialogue : MonoBehaviour, IDataPersistance
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player") { detectsPlayer = false; }
+    }
+
+    //Settings
+    public void ApplySettings()
+    {
+        talkVolume = PlayerPrefs.GetFloat("Dialogue");
     }
 }
