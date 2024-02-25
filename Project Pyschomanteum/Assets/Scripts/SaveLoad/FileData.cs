@@ -15,7 +15,7 @@ public class FileData
         this.dataFileName = dataFileName;
     }
 
-    public SaveData Load(int saveSlot) {
+    public SaveData Load(int saveSlot, bool backupAttempt = true) {
         string fullPath = Path.Combine(dataDirectoryPath, dataFileName + saveSlot.ToString());
         SaveData loadedData = null;
         if (File.Exists(fullPath))
@@ -30,7 +30,18 @@ public class FileData
                 loadedData = JsonUtility.FromJson<SaveData>(dataToLoad);
 
             } catch (Exception e) {
-                Debug.Log("Could not load data from: " + fullPath + '\n' + e);
+                if (backupAttempt)
+                {
+                    Debug.LogWarning("Could not load data from: " + fullPath + '\n' + e + '\n' + "Attempting to load save from a backup");
+                    bool success = LoadBackup(fullPath);
+                    if (success)
+                    {
+                        loadedData = Load(saveSlot, false);
+                    }
+                    else {
+                        Debug.LogError("Could not load backup " + fullPath + ".bak" + '\n' + e);
+                    }
+                }
             }
         }
         return loadedData;
@@ -47,6 +58,7 @@ public class FileData
 
     public void Save(SaveData data, int saveSlot) { 
         string fullPath = Path.Combine(dataDirectoryPath, dataFileName + saveSlot.ToString());
+        string backupPath = fullPath + ".bak";
         Debug.Log(fullPath);
         try { 
             Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
@@ -56,6 +68,16 @@ public class FileData
                     writer.Write(dataToStore);
                 }
             }
+
+            SaveData verifiedFiles = Load(saveSlot);
+            if (verifiedFiles != null)
+            {
+                File.Copy(fullPath, backupPath, true);
+            }
+            else {
+                throw new Exception("Could not create backup file at " + backupPath);
+            }
+
         } catch (Exception e) {
             Debug.Log("Could not save data to: " + fullPath + '\n' + e);
         }
@@ -79,5 +101,26 @@ public class FileData
         catch (Exception e) {
             Debug.Log("Failed to delete data at " + fullPath + '\n' + e);
         }
+    }
+
+    private bool LoadBackup(string fullPath) {
+        bool success = false;
+        string backupPath = fullPath + ".bak";
+        try
+        {
+            if (File.Exists(backupPath))
+            {
+                File.Copy(backupPath, fullPath, true);
+                success = true;
+            }
+            else {
+                throw new Exception("Backup file does not extis.");
+            }
+
+        }
+        catch (Exception e) {
+            Debug.LogError("Could not roll back save data for " + backupPath + '\n' + e);
+        }
+        return success;
     }
 }

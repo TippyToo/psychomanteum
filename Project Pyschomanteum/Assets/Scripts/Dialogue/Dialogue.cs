@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class Dialogue : MonoBehaviour, IDataPersistance
 {
+    [Tooltip("ONLY FILL OUT IF DATA SHOULD BE SAVED")]
+    public string npcName;
     //Handles creating dialogue boxes, text and audio. Speaker images to be added
 
     private bool detectsPlayer;
@@ -43,8 +45,25 @@ public class Dialogue : MonoBehaviour, IDataPersistance
 
     //Indicates end of current dialogue 
     private GameObject arrow;
-    public void SaveData(ref SaveData data) { if (data != null) data.conversationToLoad = conversationToLoad; else Debug.Log("No Save Slot Found"); }
-    public void LoadData(SaveData data) { this.conversationToLoad = data.conversationToLoad; }
+
+    public void SaveData(ref SaveData data) {
+        if (data != null) 
+        {
+            //data.conversationToLoad = conversationToLoad;
+            if (data.currentConversation.ContainsKey(npcName))
+            {
+                data.currentConversation.Remove(npcName);
+            }
+            data.currentConversation.Add(npcName, conversationToLoad);
+        }
+        else 
+            Debug.Log("No Save Slot Found"); 
+    }
+    public void LoadData(SaveData data) { 
+        //this.conversationToLoad = data.conversationToLoad;
+        
+        data.currentConversation.TryGetValue(npcName, out conversationToLoad);
+    }
 
 
     // Start is called before the first frame update
