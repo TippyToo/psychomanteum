@@ -13,11 +13,11 @@ public class MenuUI : MonoBehaviour
     private int sceneToLoad = 1;
 
     //Settings variables
-    private Slider volumeSlider;
-    private Slider textSpeedSlider;
+    public Slider volumeSlider;
+    public Slider textSpeedSlider;
     private List<ISettings> settingsObjList;
-    private Text volumeText;
-    private Text textSpeedText;
+    public Text volumeText;
+    public Text textSpeedText;
 
 
     private void Awake()
@@ -99,17 +99,17 @@ public class MenuUI : MonoBehaviour
 
     public void UpdateValues()
     {
-        volumeText.text = volumeSlider.value.ToString() + "%";
+        volumeText.text = ((int) (volumeSlider.value*100)).ToString() + "%";
         string temp = "";
         switch (textSpeedSlider.value)
         {
-            case 0:
+            case 1:
                 temp = "Slow";
                 break;
-            case 1:
+            case 2:
                 temp = "Medium";
                 break;
-            case 2:
+            case 3:
                 temp = "Fast";
                 break;
         }
