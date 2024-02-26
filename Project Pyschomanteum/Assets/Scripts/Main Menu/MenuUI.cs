@@ -106,30 +106,30 @@ public class MenuUI : MonoBehaviour
     // omg I'm an idiot
 
     // I'll fix it later jesus christ I'm dense
-    public void UpdateVolumeValue(Slider setting)
+    public void UpdateVolumeValue(Text valueText)
     {
         // Hierarchy order warning
-        if (setting.transform.GetSiblingIndex() != 0 || setting.transform.parent.childCount != 2) {
-            Debug.LogError("Illegal hierarchy order of " + setting.transform.parent.name +
-            "\nThe parent object must have exactly two children. Slider first, Text second.");
-        }
+        //if (setting.transform.GetSiblingIndex() != 0 || setting.transform.parent.childCount != 2) {
+        //    Debug.LogError("Illegal hierarchy order of " + setting.transform.parent.name +
+        //    "\nThe parent object must have exactly two children. Slider first, Text second.");
+        //}
 
 
-        Text valueText = setting.transform.parent.GetChild(1).GetComponent<Text>();
+        //Text valueText = setting.transform.parent.GetChild(1).GetComponent<Text>();
         valueText.text = ((int) (dialogueVolumeSlider.value*100)).ToString() + "%";   
     }
 
-    public void UpdateTextSpeedValue(Slider setting)
+    public void UpdateTextSpeedValue(Text valueText)
     {
         // Hierarchy order warning
-        if (setting.transform.GetSiblingIndex() != 0 || setting.transform.parent.childCount != 2)
-        {
-            Debug.LogError("Illegal hierarchy order of " + setting.transform.parent.name +
-            "\nThe parent object must have exactly two children. Slider first, Text second.");
-        }
+        //if (setting.transform.GetSiblingIndex() != 0 || setting.transform.parent.childCount != 2)
+        //{
+        //    Debug.LogError("Illegal hierarchy order of " + setting.transform.parent.name +
+        //    "\nThe parent object must have exactly two children. Slider first, Text second.");
+        //}
 
 
-        Text valueText = setting.transform.parent.GetChild(1).GetComponent<Text>();
+        //Text valueText = setting.transform.parent.GetChild(1).GetComponent<Text>();
         string temp = "";
         switch (textSpeedSlider.value)
         {
