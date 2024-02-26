@@ -9,8 +9,13 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
 {
     [Tooltip("ONLY FILL OUT IF DATA SHOULD BE SAVED")]
     public string npcName;
-    //Handles creating dialogue boxes, text and audio. Speaker images to be added
 
+    //Defaults
+    private const float DEFAULT_TALK_SPEED = 1.0f;
+    public Sprite DEFAULT_DIALOGUE_BOX_IMAGE;
+    public Sprite DEFAULT_NPC_SPEAKER_SPRITE;
+
+    
     private bool detectsPlayer;
 
     //To avoid confusion, isTalking is for detecting if the npc has begun talking to show the text box
@@ -199,30 +204,45 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
         speaking = true;
         currentFullText = currentDialogue.Dequeue();
         string currText;
+        float talkSpeed;
+
+        //Set Dialogue Speed
+        if (currSentence > (conversation[conversationToLoad].talkSpeed.Count() - 1))
+        { talkSpeed = DEFAULT_TALK_SPEED; }
+        else if (currSentence > conversation[conversationToLoad].talkSpeed.Count())
+        { talkSpeed = conversation[conversationToLoad].talkSpeed[0]; }
+        else
+        { talkSpeed = conversation[conversationToLoad].talkSpeed[currSentence]; }
+
+        //Set Dialogue Box's Image
+        if (currSentence > (conversation[conversationToLoad].dialogueBoxImage.Count() - 1))
+        { dialogueBoxImage.sprite = DEFAULT_DIALOGUE_BOX_IMAGE; }
+        else if (currSentence > conversation[conversationToLoad].dialogueBoxImage.Count())
+        { dialogueBoxImage.sprite = conversation[conversationToLoad].dialogueBoxImage[0]; }
+        else
+        { dialogueBoxImage.sprite = conversation[conversationToLoad].dialogueBoxImage[currSentence]; }
+
+        //Set NPC Dialogue Image
+        if (currSentence > (conversation[conversationToLoad].portrait.Count() - 1))
+        { NPCImage.sprite = DEFAULT_NPC_SPEAKER_SPRITE; }
+        else if (currSentence > conversation[conversationToLoad].portrait.Count())
+        { NPCImage.sprite = conversation[conversationToLoad].portrait[0]; }
+        else
+        { NPCImage.sprite = conversation[conversationToLoad].portrait[currSentence]; }
+
+        //Writes out the text character by character with selected settings
         for (int i = 1; i < currentFullText.Length + 1; i++)
         {
-            float talkSpeed;
-            if (conversation[conversationToLoad].dialogueBoxImage.Count() < (i)) { ; } 
-            else if (conversation[conversationToLoad].dialogueBoxImage.Count() < (2))
-            {
-                dialogueBoxImage.sprite = conversation[conversationToLoad].dialogueBoxImage[0];
-            }
-            else { dialogueBoxImage.sprite = conversation[conversationToLoad].dialogueBoxImage[currSentence]; }
-            if (conversation[conversationToLoad].talkSpeed.Count() < (2))
-            {
-                talkSpeed = conversation[conversationToLoad].talkSpeed[0];
-            }
-            else { talkSpeed = conversation[conversationToLoad].talkSpeed[currSentence]; }
-            if (conversation[conversationToLoad].portrait.Count() < (2))
-            {
-                NPCImage.sprite = conversation[conversationToLoad].portrait[0];
-            }
-            else { NPCImage.sprite = conversation[conversationToLoad].portrait[currSentence]; }
+            
             int sound = Random.Range(0, talkSound.Length);
             currText = currentFullText.Substring(0, i);
             if (!currText.EndsWith(" ")) { audSource.PlayOneShot(talkSound[sound], talkVolume); }
             dialogueText.text = currText;
-            yield return new WaitForSeconds(1 / talkSpeed);
+
+            if (talkSpeed == DEFAULT_TALK_SPEED)
+            { talkSpeed *= PlayerPrefs.GetInt("Text Speed"); }
+
+            yield return new WaitForSeconds(1 / (talkSpeed * 5));
         }
         speaking = false;
         StartCoroutine(ArrowBlink());
