@@ -110,16 +110,16 @@ public class MenuUI : MonoBehaviour
     // nvm that doesn't work, going back to the old way
     public void UpdateVolumeValue(Slider setting)
     {
-        // Hierarchy order warning
-        if (setting.transform.GetSiblingIndex() != 0 || setting.transform.parent.childCount != 2)
+        try
+        {
+            Text valueText = setting.transform.parent.GetChild(1).GetComponent<Text>();
+            valueText.text = ((int)(setting.value * 100)).ToString() + "%";
+        }
+        catch (System.NullReferenceException)
         {
             Debug.LogError("Illegal hierarchy order of " + setting.transform.parent.name +
             "\nThe parent object must have exactly two children. Slider first, Text second.");
         }
-
-
-        Text valueText = setting.transform.parent.GetChild(1).GetComponent<Text>();
-        valueText.text = ((int)(setting.value * 100)).ToString() + "%";
     }
 
     public void UpdateTextSpeedValue(Text valueText)
