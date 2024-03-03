@@ -55,7 +55,6 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
     public void SaveData(ref SaveData data) {
         if (data != null) 
         {
-            //data.conversationToLoad = conversationToLoad;
             if (data.currentConversation.ContainsKey(npcName))
             {
                 data.currentConversation.Remove(npcName);
@@ -65,11 +64,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
         else 
             Debug.Log("No Save Slot Found"); 
     }
-    public void LoadData(SaveData data) { 
-        //this.conversationToLoad = data.conversationToLoad;
-        
-        data.currentConversation.TryGetValue(npcName, out conversationToLoad);
-    }
+    public void LoadData(SaveData data) { data.currentConversation.TryGetValue(npcName, out conversationToLoad); }
 
 
     // Start is called before the first frame update

@@ -16,7 +16,7 @@ public class FileData
     }
 
     public SaveData Load(int saveSlot, bool backupAttempt = true) {
-        string fullPath = Path.Combine(dataDirectoryPath, dataFileName + saveSlot.ToString());
+        string fullPath = Path.Combine(dataDirectoryPath, dataFileName + (saveSlot + 1).ToString());
         SaveData loadedData = null;
         if (File.Exists(fullPath))
         {
@@ -57,14 +57,17 @@ public class FileData
     }
 
     public void Save(SaveData data, int saveSlot) { 
-        string fullPath = Path.Combine(dataDirectoryPath, dataFileName + saveSlot.ToString());
+        string fullPath = Path.Combine(dataDirectoryPath, dataFileName + (saveSlot + 1).ToString());
         string backupPath = fullPath + ".bak";
         Debug.Log(fullPath);
         try { 
             Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
             string dataToStore = JsonUtility.ToJson(data, true);
-            using (FileStream stream = new FileStream(fullPath, FileMode.Create)) {
-                using (StreamWriter writer = new StreamWriter(stream)) { 
+
+            using (FileStream stream = new FileStream(fullPath, FileMode.Create)) 
+            {
+                using (StreamWriter writer = new StreamWriter(stream)) 
+                { 
                     writer.Write(dataToStore);
                 }
             }
@@ -87,7 +90,7 @@ public class FileData
         //if (data == null) {
         //    return;
         //}
-        string fullPath = Path.Combine(dataDirectoryPath, dataFileName + saveSlot.ToString());
+        string fullPath = Path.Combine(dataDirectoryPath, dataFileName + (saveSlot + 1).ToString());
         try
         {
             if (File.Exists(fullPath))
