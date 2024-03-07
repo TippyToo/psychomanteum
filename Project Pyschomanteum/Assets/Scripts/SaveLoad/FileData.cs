@@ -59,7 +59,7 @@ public class FileData
     public void Save(SaveData data, int saveSlot) { 
         string fullPath = Path.Combine(dataDirectoryPath, dataFileName + (saveSlot + 1).ToString());
         string backupPath = fullPath + ".bak";
-        Debug.Log(fullPath);
+        //Debug.Log(fullPath);
         try { 
             Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
             string dataToStore = JsonUtility.ToJson(data, true);

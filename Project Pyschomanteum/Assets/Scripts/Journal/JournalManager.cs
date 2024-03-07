@@ -39,6 +39,7 @@ public class JournalManager : MonoBehaviour
         paused = !paused;
         if (paused) {
             Time.timeScale = 0;
+            GameObject.Find("Inventory Manager").GetComponent<InventoryManager>().UpdateInventory();
             isOpen = true;
             if (!player.talking){
                 if (lastOpened != null) { PushSection(lastOpened); }
@@ -70,6 +71,7 @@ public class JournalManager : MonoBehaviour
         lastOpened = sections.Peek();
         PopAll();
         isOpen = false;
+        paused = false;
         Time.timeScale = 1;
     }
     private void PopAll()
