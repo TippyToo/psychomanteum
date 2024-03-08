@@ -39,9 +39,11 @@ public class ItemBehaviour : MonoBehaviour, IDataPersistance
 
     public void AddToInventory()
     {
+        //Adds items to inventory and marks it as collected
         itemData.collect();
         collected = true;
-        GameObject.Find("Inventory Manager").GetComponent<InventoryManager>().inventory.Add(this.itemData);
+        GameObject.Find("Inventory Manager").GetComponent<InventoryManager>().totalInventory.Add(this.itemData);
+        GameObject.Find("Inventory Manager").GetComponent<InventoryManager>().UpdateInventory();
         gameObject.SetActive(false);
     }
 

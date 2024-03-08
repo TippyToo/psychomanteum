@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ItemData
 {
+    //Container of information that each item uses
+
     public string itemName;
     public string itemDescription;
     [Tooltip("Write wgat chapter the item appears in. Used for determining where in the journal the itwm will appear.")]
@@ -24,10 +26,4 @@ public class ItemData
         chapter = 0;
         collected = false;
     }
-    
-
-    
-
-    
-    
 }

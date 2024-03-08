@@ -16,12 +16,12 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
     public Sprite DEFAULT_NPC_SPEAKER_SPRITE;
 
     
-    private bool detectsPlayer;
+    private bool detectsPlayer = false;
 
     //To avoid confusion, isTalking is for detecting if the npc has begun talking to show the text box
     //speaking is used for detecting if the dialogue box is currently writing out what the npc is saying
-    private bool isTalking;
-    private bool speaking;
+    private bool isTalking = false;
+    private bool speaking = false;
     private bool responding = false;
 
     private PlayerController player;
@@ -40,7 +40,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
     private string currentFullText;
 
     public Conversation[] conversation;
-    private Queue<string> currentDialogue;
+    private Queue<string> currentDialogue = new Queue<string>();
     private int conversationToLoad = 0;
     private int currSentence = 0;
     private SpriteRenderer NPCImage;
@@ -70,7 +70,6 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
     // Start is called before the first frame update
     void Start()
     {
-        currentDialogue = new Queue<string>();
         playerResponseBox = GameObject.Find("UI").transform.GetChild(2).gameObject;
         playerResponses = new Button[]{ playerResponseBox.transform.GetChild(0).GetChild(0).GetComponent<Button>(),
         playerResponseBox.transform.GetChild(0).GetChild(1).GetComponent<Button>(), playerResponseBox.transform.GetChild(0).GetChild(2).GetComponent<Button>() };
@@ -79,9 +78,6 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
         dialogueBoxImage = dialogueBox.transform.GetChild(0).GetComponent<Image>();
         NPCImage = dialogueBox.transform.GetChild(1).GetComponent<SpriteRenderer>();
         arrow = dialogueBox.transform.GetChild(0).transform.GetChild(1).gameObject;
-        detectsPlayer = false;
-        isTalking = false;
-        speaking = false;
         audSource = GameObject.Find("Main Camera").GetComponent<AudioSource>();
         journal = GameObject.Find("Journal").GetComponent<JournalManager>();
         ApplySettings();

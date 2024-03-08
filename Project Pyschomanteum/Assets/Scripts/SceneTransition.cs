@@ -22,6 +22,7 @@ public class SceneTransition : MonoBehaviour
         }
     }
 
+    //Interact indicator fade in
     private IEnumerator FadeIn(SpriteRenderer interactSprite) {
         Color temp = interactSprite.color;
         while (temp.a < 1.0f) {
@@ -32,6 +33,8 @@ public class SceneTransition : MonoBehaviour
             yield return null;
         }
     }
+
+    //Interact indicator fade out
     private IEnumerator FadeOut(SpriteRenderer interactSprite)
     {
         Color temp = interactSprite.color;

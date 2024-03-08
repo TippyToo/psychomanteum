@@ -2,37 +2,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class InventoryManager : MonoBehaviour, IDataPersistance
 {
-    //public static InventoryManager Instance { get; private set; }
-    public List<ItemData> inventory = new List<ItemData>();
-    public List<string> inventoryText2;
-    public Text inventoryText;
+    public List<ItemData> totalInventory = new List<ItemData>();
+    private List<ItemData> displayedInventory = new List<ItemData>();
+    public GameObject inventorySlots;
+    [HideInInspector]
+    public int currentInventory = 0;
 
 
     void Awake()
     {
-        //if (Instance != null) { Debug.Log("More than one inventory manager. Destroying new one."); Destroy(this.gameObject); return; }
-        //Instance = this;
-        //DontDestroyOnLoad(this.gameObject);
+        
     }
+
     public void LoadData(SaveData data) {
         foreach (var value in data.collectedItemDescriptions) { 
             ItemData temp = new ItemData();
             temp.itemName = value.Key;
             temp.itemDescription = value.Value;
             temp.collected = true;
-            //data.collectedItems.TryGetValue(temp.itemName, out temp.collected);
-            inventory.Add(temp);
+            data.collectedItemChapters.TryGetValue(temp.itemName, out temp.chapter);
+            totalInventory.Add(temp);
         }
     }
+
     public void SaveData(ref SaveData data) {
         if (data != null)
         {
-            if (inventory.Count != 0)
+            if (totalInventory.Count != 0)
             {
-                foreach (var i in inventory)
+                foreach (var i in totalInventory)
                 {
                     if (data.collectedItemDescriptions.ContainsKey(i.itemName))
                     {
@@ -59,7 +63,7 @@ public class InventoryManager : MonoBehaviour, IDataPersistance
     // Start is called before the first frame update
     void Start()
     {
-        UpdateInventory();
+        UpdateInventory(GameObject.Find("Level Manager").GetComponent<LevelManager>().level);
     }
 
     // Update is called once per frame
@@ -67,19 +71,67 @@ public class InventoryManager : MonoBehaviour, IDataPersistance
     {
         
     }
+
     public void UpdateInventory() {
-        List<string> names = new List<string>();
-        if (inventory != null)
+        //Updates the inventory page to display the currently selected inventory items
+        displayedInventory = new List<ItemData>();
+
+        //Set all slot descriptions to be empty
+        for (int i = 1; i < 6; i++)
         {
-            foreach (var i in inventory)
+            inventorySlots.transform.GetChild(i).GetComponent<InventorySlot>().description = "";
+        }
+
+        //Populate each slot with an item name and description based on how many items have been collected
+        int x = 1;
+        foreach (ItemData i in totalInventory)
+        {
+            if (i.chapter == currentInventory)
             {
-                names.Add(i.itemName);
+                displayedInventory.Add(i);
+                Transform invSlot = inventorySlots.transform.GetChild(x);
+                invSlot.gameObject.SetActive(true);
+                invSlot.GetComponent<Text>().text = i.itemName;
+                invSlot.GetComponent<InventorySlot>().description = i.itemDescription;
+                x++;
             }
         }
-        names.Sort();
-        inventoryText.text = "";
-        foreach (var i in names) {
-            inventoryText.text += i + '\n';
+
+        //Deactivate remaining slots
+        for (; x < inventorySlots.transform.childCount; x++)
+        {
+            inventorySlots.transform.GetChild(x).gameObject.SetActive(false);
         }
+
+    }
+    public void UpdateInventory(int level)
+    {
+        //Overload that also updates the inventory page but to display a specified inventory
+        currentInventory = level;
+        displayedInventory = new List<ItemData>();
+
+        //Set all slot descriptions to be empty
+        for (int i = 1; i < 6; i++) {
+            inventorySlots.transform.GetChild(i).GetComponent<InventorySlot>().description = "";
+        }
+
+        //Populate each slot with an item name and description based on how many items have been collected
+        int x = 1;
+        foreach (ItemData i in totalInventory) {
+            if (i.chapter == level) {
+                displayedInventory.Add(i);
+                Transform invSlot = inventorySlots.transform.GetChild(x);
+                invSlot.gameObject.SetActive(true);
+                invSlot.GetComponent<Text>().text = i.itemName;
+                invSlot.GetComponent<InventorySlot>().description = i.itemDescription;
+               x++;
+            }
+        }
+
+        //Deactivate remaining slots
+        for (; x < inventorySlots.transform.childCount; x++) {
+            inventorySlots.transform.GetChild(x).gameObject.SetActive(false);
+        }
+
     }
 }

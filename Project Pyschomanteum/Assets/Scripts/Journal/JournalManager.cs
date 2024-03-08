@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class JournalManager : MonoBehaviour
 {
@@ -15,17 +16,22 @@ public class JournalManager : MonoBehaviour
     private SaveManager saveManager;
     [HideInInspector]
     public bool isOpen = false;
+
+    public GameObject chapterTabs;
+
     void Start() {
         paused = false;
         homePage = transform.Find("Home Page").gameObject;
         cluesPage = transform.Find("Clues Page").gameObject;
         player = GameObject.Find("Player").GetComponent<PlayerController>();
         saveManager = GameObject.Find("Save Manager").GetComponent<SaveManager>();
+        SetJournalChapterAccess();
     }
 
     // Update is called once per frame
     void Update() {
         if (Input.GetButtonUp("Journal")) { Pause(); }
+
     }
     public void Resume() { Pause(); }
     public void SaveAndQuit() {
@@ -39,8 +45,9 @@ public class JournalManager : MonoBehaviour
         paused = !paused;
         if (paused) {
             Time.timeScale = 0;
-            GameObject.Find("Inventory Manager").GetComponent<InventoryManager>().UpdateInventory();
+            //GameObject.Find("Inventory Manager").GetComponent<InventoryManager>().UpdateInventory();
             isOpen = true;
+            ShowChapterTabs();
             if (!player.talking){
                 if (lastOpened != null) { PushSection(lastOpened); }
                 else { PushSection(homePage); }
@@ -70,6 +77,7 @@ public class JournalManager : MonoBehaviour
     public void CloseJournal() {
         lastOpened = sections.Peek();
         PopAll();
+        HideChapterTabs();
         isOpen = false;
         paused = false;
         Time.timeScale = 1;
@@ -78,5 +86,21 @@ public class JournalManager : MonoBehaviour
     {
         //"Bookmarks" the current page then closes all windows
         for (int i = 0; i < sections.Count; i++) { PopSection(); }
-    } 
+    }
+    public void SetJournalChapterAccess()
+    {
+        int level = GameObject.Find("Level Manager").GetComponent<LevelManager>().level;
+        Transform temp = transform.GetChild(5);
+        for (int i = 0; i < level && level != 0; i++)
+        {
+            temp.GetChild(i).gameObject.SetActive(true);
+        }
+        for (int i = level + 1; i < temp.childCount && level != temp.childCount; i++)
+        {
+            temp.GetChild(i).gameObject.SetActive(false);
+        }
+    }
+    private void HideChapterTabs() { chapterTabs.SetActive(false); }
+
+    private void ShowChapterTabs() { chapterTabs.SetActive(true); }
 }
