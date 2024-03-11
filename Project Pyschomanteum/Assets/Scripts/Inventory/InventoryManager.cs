@@ -79,7 +79,7 @@ public class InventoryManager : MonoBehaviour, IDataPersistance
         //Set all slot descriptions to be empty
         for (int i = 1; i < 6; i++)
         {
-            inventorySlots.transform.GetChild(i).GetComponent<InventorySlot>().description = "";
+            inventorySlots.transform.GetChild(i).GetComponent<InventorySlot>().item = new ItemData();
         }
 
         //Populate each slot with an item name and description based on how many items have been collected
@@ -92,7 +92,7 @@ public class InventoryManager : MonoBehaviour, IDataPersistance
                 Transform invSlot = inventorySlots.transform.GetChild(x);
                 invSlot.gameObject.SetActive(true);
                 invSlot.GetComponent<Text>().text = i.itemName;
-                invSlot.GetComponent<InventorySlot>().description = i.itemDescription;
+                invSlot.GetComponent<InventorySlot>().item = i;
                 x++;
             }
         }
@@ -107,12 +107,21 @@ public class InventoryManager : MonoBehaviour, IDataPersistance
     public void UpdateInventory(int level)
     {
         //Overload that also updates the inventory page but to display a specified inventory
+        if (level != currentInventory) {
+            GameObject temp = GameObject.Find("ItemToInspect");
+            if (temp.transform.childCount > 0) {
+                foreach (Transform child in temp.transform) { 
+                    Destroy(child.gameObject);
+                }
+                GameObject.Find("Item Description").GetComponent<Text>().text = "";
+            }
+        }
         currentInventory = level;
         displayedInventory = new List<ItemData>();
 
         //Set all slot descriptions to be empty
         for (int i = 1; i < 6; i++) {
-            inventorySlots.transform.GetChild(i).GetComponent<InventorySlot>().description = "";
+            inventorySlots.transform.GetChild(i).GetComponent<InventorySlot>().item = new ItemData();
         }
 
         //Populate each slot with an item name and description based on how many items have been collected
@@ -123,8 +132,8 @@ public class InventoryManager : MonoBehaviour, IDataPersistance
                 Transform invSlot = inventorySlots.transform.GetChild(x);
                 invSlot.gameObject.SetActive(true);
                 invSlot.GetComponent<Text>().text = i.itemName;
-                invSlot.GetComponent<InventorySlot>().description = i.itemDescription;
-               x++;
+                invSlot.GetComponent<InventorySlot>().item = i;
+                x++;
             }
         }
 

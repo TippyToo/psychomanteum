@@ -98,7 +98,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
             dialogueBox.transform.GetChild(1).gameObject.SetActive(true);
         }
         //Locks the players movement while talking
-        if (detectsPlayer) { player.talking = isTalking; }
+        if (detectsPlayer) { player.canMove = !isTalking; }
     }
 
 

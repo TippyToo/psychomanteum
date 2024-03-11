@@ -42,10 +42,10 @@ public class SaveManager : MonoBehaviour
         currentSaveSlot = saveSlot;
         currentSave = new SaveData();
         SaveGame();
-        Debug.Log(currentSave);
+        //Debug.Log(currentSave);
     }
     public void SaveGame() {
-        Debug.Log(currentSave);
+        //Debug.Log(currentSave);
         //Save current game
         foreach (IDataPersistance dataPersistanceObj in dataPersistanceObjects)
         {
@@ -61,7 +61,7 @@ public class SaveManager : MonoBehaviour
         this.currentSave = this.saveData[currentSaveSlot];
         if (this.saveData[currentSaveSlot] == null) {
             Debug.Log("No Save Data Found");
-            //NewGame();
+            //NewGame(saveSlot);
         }
 
         foreach (IDataPersistance dataPersistanceObj in dataPersistanceObjects) 

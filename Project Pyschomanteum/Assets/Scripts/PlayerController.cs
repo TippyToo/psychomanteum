@@ -13,13 +13,13 @@ public class PlayerController : MonoBehaviour, IDataPersistance
     //Debug Stuff
     public bool seeRayCast;
     [HideInInspector]
-    public bool talking;
+    public bool canMove;
     public void LoadData(SaveData data) { transform.position = data.playerPosition; }
     public void SaveData(ref SaveData data) { data.playerPosition = transform.position; }
     // Start is called before the first frame update
     void Start()
     {
-        talking = false;
+        canMove = true;
     }
 
     // Update is called once per frame
@@ -52,9 +52,12 @@ public class PlayerController : MonoBehaviour, IDataPersistance
     }
 
     private bool CanMove() {
-        if (!talking)
+        if (canMove)
             return true;
         else
             return false;
     }
+
+    public void EnableMovement() { canMove = true; }
+    public void DisableMovement() { canMove = false; }
 }

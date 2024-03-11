@@ -11,10 +11,12 @@ public class ItemBehaviour : MonoBehaviour, IDataPersistance
     public Sprite itemImage;
     public bool collected = false;
     private ItemData itemData;
+    private ItemInspection itemInspector;
 
     private bool detectsPlayer = false;
     private void Awake()
     {
+        itemInspector = GameObject.Find("Item Inspection").GetComponent<ItemInspection>();
         itemData = new ItemData(itemName, itemDescription, chapter, collected);
     }
     public void SaveData(ref SaveData data)
@@ -33,6 +35,11 @@ public class ItemBehaviour : MonoBehaviour, IDataPersistance
     {
         if (detectsPlayer && Input.GetButtonUp("Interact") && !collected)
         {
+            itemInspector.OnInspect(itemData);
+            foreach (Transform child in itemInspector.transform) { 
+                child.gameObject.SetActive(true);
+            }
+            GameObject.Find("Player").GetComponent<PlayerController>().DisableMovement();
             AddToInventory();
         }
     }

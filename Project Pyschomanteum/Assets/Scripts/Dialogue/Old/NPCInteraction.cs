@@ -95,7 +95,7 @@ public class NPCInteraction : MonoBehaviour
             }
         }
         //Locks the players movement while talking
-        if (detectsPlayer) { player.talking = !isTalking; }
+        if (detectsPlayer) { player.canMove = !isTalking; }
     }
     
     private void CreateDialogue(string dialogue, float talkDelay) {

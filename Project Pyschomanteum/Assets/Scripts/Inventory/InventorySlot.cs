@@ -9,12 +9,16 @@ public class InventorySlot : MonoBehaviour
     //Behaviour for inventory slots. Populates and depopulates
 
     [HideInInspector]
-    public string description = "";
+    public ItemData item = new ItemData();
+    public ItemInspection inspector;
     
-    public void OnHover()
+    public void OnClick()
     {
-        if (description != "")
-            GameObject.Find("Item Description").GetComponent<Text>().text = description;
+        if (item.itemDescription != null)
+        {
+            GameObject.Find("Item Description").GetComponent<Text>().text = item.itemDescription;
+            inspector.OnInspect(item);
+        }
     }
 
     public void OnExit() {

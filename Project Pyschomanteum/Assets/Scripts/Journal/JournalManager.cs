@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using static Cinemachine.DocumentationSortingAttribute;
 
 public class JournalManager : MonoBehaviour
@@ -18,6 +19,9 @@ public class JournalManager : MonoBehaviour
     public bool isOpen = false;
 
     public GameObject chapterTabs;
+
+    public ItemInspection itemInspector;
+    public Text itemDescription;
 
     void Start() {
         paused = false;
@@ -48,7 +52,7 @@ public class JournalManager : MonoBehaviour
             //GameObject.Find("Inventory Manager").GetComponent<InventoryManager>().UpdateInventory();
             isOpen = true;
             ShowChapterTabs();
-            if (!player.talking){
+            if (player.canMove){
                 if (lastOpened != null) { PushSection(lastOpened); }
                 else { PushSection(homePage); }
             } else {
@@ -80,6 +84,8 @@ public class JournalManager : MonoBehaviour
         HideChapterTabs();
         isOpen = false;
         paused = false;
+        itemInspector.DeleteInspectedObject();
+        itemDescription.text = "";
         Time.timeScale = 1;
     }
     private void PopAll()
