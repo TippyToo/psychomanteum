@@ -13,6 +13,7 @@ public class InventoryManager : MonoBehaviour, IDataPersistance
     public GameObject inventorySlots;
     [HideInInspector]
     public int currentInventory = 0;
+    public Text currentInventoryText;
 
 
     void Awake()
@@ -75,7 +76,7 @@ public class InventoryManager : MonoBehaviour, IDataPersistance
     public void UpdateInventory() {
         //Updates the inventory page to display the currently selected inventory items
         displayedInventory = new List<ItemData>();
-
+        //currentInventoryText.text = "Inventory" + '\n' + "Chapter " + currentInventory;
         //Set all slot descriptions to be empty
         for (int i = 1; i < 6; i++)
         {
@@ -118,6 +119,7 @@ public class InventoryManager : MonoBehaviour, IDataPersistance
         }
         currentInventory = level;
         displayedInventory = new List<ItemData>();
+        //currentInventoryText.text = "Inventory" + '\n' + "Chapter " + currentInventory;
 
         //Set all slot descriptions to be empty
         for (int i = 1; i < 6; i++) {

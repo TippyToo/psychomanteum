@@ -9101,6 +9101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventorySlots: {fileID: 2399490025625446811}
   currentInventory: 0
+  currentInventoryText: {fileID: 2036271118}
 --- !u!1 &4411365919779107896
 GameObject:
   m_ObjectHideFlags: 0
@@ -9717,7 +9718,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 670604147345970882}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 5.364667, z: -11.797634}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
