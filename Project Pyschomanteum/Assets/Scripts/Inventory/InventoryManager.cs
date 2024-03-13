@@ -13,7 +13,7 @@ public class InventoryManager : MonoBehaviour, IDataPersistance
     public GameObject inventorySlots;
     [HideInInspector]
     public int currentInventory = 0;
-    public Text currentInventoryText;
+    private Text currentInventoryText;
 
 
     void Awake()
@@ -64,6 +64,7 @@ public class InventoryManager : MonoBehaviour, IDataPersistance
     // Start is called before the first frame update
     void Start()
     {
+        currentInventoryText = transform.GetChild(0).GetComponent<Text>();
         UpdateInventory(GameObject.Find("Level Manager").GetComponent<LevelManager>().level);
     }
 
