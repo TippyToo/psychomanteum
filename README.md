@@ -1,5 +1,6 @@
 # Asphodel Files
-https://github.com/TippyToo/psychomanteum/\
+https://github.com/TippyToo/psychomanteum/
+
 Created by Team Psychomanteum
 
  ## Game Summary
