@@ -85,7 +85,13 @@ The game will be divided into four cases total: a prologue, two client cases, an
 
 Iona introduces Polaris to the world of Asphodel as they look for an old woman named Delores to ask her what her intended last words for her daughter were. They’re successful but are ambushed by mysterious figures as they’re leaving, causing Iona to become missing in the physical world.
 
+##### Clues/Evidence
+
 #### Case 1
+
+##### Plot Summary
+
+##### Clues/Evidence
 
 #### Case 2
 
@@ -96,6 +102,10 @@ Rich man wants a potential painting purchase to be authenticated from the source
 ##### Clues/Evidence
 
 #### Case 3 (Final Case)
+
+##### Plot Summary
+
+##### Clues/Evidence
 
 
 ## Additional Resources
