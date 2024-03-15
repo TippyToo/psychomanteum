@@ -220,73 +220,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcName: 
-  DEFAULT_DIALOGUE_BOX_IMAGE: {fileID: 0}
-  DEFAULT_NPC_SPEAKER_SPRITE: {fileID: 0}
+  DEFAULT_TALK_SPEED: 1
+  DEFAULT_DIALOGUE_BOX_IMAGE: {fileID: 10907, guid: 0000000000000000f000000000000000,
+    type: 0}
+  DEFAULT_NPC_SPEAKER_SPRITE: {fileID: 10913, guid: 0000000000000000f000000000000000,
+    type: 0}
+  DEFAULT_PLAYER_SPEAKER_SPRITE: {fileID: 10913, guid: 0000000000000000f000000000000000,
+    type: 0}
+  maxDialogueLength: 200
+  conversation:
+  - npcSentences: []
+    playerSentences: []
+    persistentConversation: 0
+    nextDialogue: 
+    hasDialogueTree: 0
+    playerResponses: []
   talkSound:
   - {fileID: 8300000, guid: 0ab3da2e96d191e49927cc6714f015f4, type: 3}
   - {fileID: 8300000, guid: 3bf5c3e4de0b5f545bbf025165565892, type: 3}
   - {fileID: 8300000, guid: 6477159c7c1656247ac2009ffa55c935, type: 3}
-  maxDialogueLength: 200
-  conversation:
-  - sentences:
-    - Boo!
-    - Did I scare you?
-    dialogueBoxImage: []
-    talkSpeed:
-    - 10
-    - 10
-    portrait:
-    - {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-    - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    nextDialogue: 0100000003000000
-    hasDialogueTree: 1
-    playerResponses:
-    - Yes
-    - No
-    persistentConversation: 1
-  - sentences:
-    - Haha!
-    - Scaredy cat!
-    - Scared by a floating cube!
-    dialogueBoxImage: []
-    talkSpeed:
-    - 0.5
-    - 0.5
-    - 0.5
-    portrait:
-    - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    nextDialogue: 
-    hasDialogueTree: 0
-    playerResponses: []
-    persistentConversation: 0
-  - sentences:
-    - Ok
-    dialogueBoxImage: []
-    talkSpeed:
-    - 0.5
-    portrait:
-    - {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-    nextDialogue: 
-    hasDialogueTree: 1
-    playerResponses:
-    - Later!
-    persistentConversation: 0
-  - sentences:
-    - You're tough. Have you been here before?
-    dialogueBoxImage: []
-    talkSpeed:
-    - 2
-    portrait:
-    - {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-    nextDialogue: 020000000200000002000000
-    hasDialogueTree: 1
-    playerResponses:
-    - Yes
-    - No
-    - Maybe
-    persistentConversation: 0
 --- !u!65 &1937719217329720905
 BoxCollider:
   m_ObjectHideFlags: 0

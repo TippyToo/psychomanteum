@@ -11,11 +11,15 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
     public string npcName;
 
     //Defaults
-    private const float DEFAULT_TALK_SPEED = 1.0f;
+    public float DEFAULT_TALK_SPEED = 1.0f;
     public Sprite DEFAULT_DIALOGUE_BOX_IMAGE;
     public Sprite DEFAULT_NPC_SPEAKER_SPRITE;
+    public Sprite DEFAULT_PLAYER_SPEAKER_SPRITE;
+    public int maxDialogueLength;
+    public Conversation[] conversation;
+    public AudioClip[] talkSound;
 
-    
+
     private bool detectsPlayer = false;
 
     //To avoid confusion, isTalking is for detecting if the npc has begun talking to show the text box
@@ -26,10 +30,10 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
 
     private PlayerController player;
     private AudioSource audSource;
-    public AudioClip[] talkSound;
+    
     private float talkVolume;
 
-    public int maxDialogueLength;
+    
 
     private GameObject dialogueBox;
     private GameObject playerResponseBox;
@@ -38,14 +42,17 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
 
     private Text dialogueText;
     private string currentFullText;
-
-    public Conversation[] conversation;
     private Queue<string> currentDialogue = new Queue<string>();
     private int conversationToLoad = 0;
     private int currSentence = 0;
+
+    private List<float> dialogueTalkSpeeds;
+    private List<Sprite> dialogueBoxImages;
+    private List<int> dialogueClues;
+
+
     private SpriteRenderer NPCImage;
     private Image dialogueBoxImage;
-
     private JournalManager journal;
 
 
@@ -87,15 +94,16 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
     void Update()
     {
         InteractButton();
-        if ((speaking || isTalking || responding) && journal.IsPaused())
+        if (Input.GetButtonUp("Journal"))
         {
-            dialogueBox.transform.GetChild(0).gameObject.SetActive(false);
-            dialogueBox.transform.GetChild(1).gameObject.SetActive(false);
-        }
-        else if ((speaking || isTalking || responding) && !journal.IsPaused()) 
-        {
-            dialogueBox.transform.GetChild(0).gameObject.SetActive(true);
-            dialogueBox.transform.GetChild(1).gameObject.SetActive(true);
+            if ((speaking || isTalking || responding) && journal.IsPaused())
+            {
+                dialogueBox.SetActive(false);
+            }
+            else if ((speaking || isTalking || responding) && !journal.IsPaused())
+            {
+                dialogueBox.SetActive(true);
+            }
         }
         //Locks the players movement while talking
         if (detectsPlayer) { player.canMove = !isTalking; }
@@ -120,6 +128,17 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
                 StopAllCoroutines();
                 speaking = false;
                 dialogueText.text = currentFullText;
+                //Check for clues
+                if (dialogueClues[currSentence] == 1)
+                {
+                    //Create new container and add it to journal
+                    VerbalClueData clue;
+                    if ((currSentence + 1) > conversation[conversationToLoad].npcSentences.Count())
+                        clue = new VerbalClueData(conversation[conversationToLoad].playerSentences[currSentence - conversation[conversationToLoad].npcSentences.Count()].clueName, this.npcName, conversation[conversationToLoad].playerSentences[currSentence - conversation[conversationToLoad].npcSentences.Count()].clueText, GameObject.Find("Level Manager").GetComponent<LevelManager>().level);
+                    else
+                        clue = new VerbalClueData(conversation[conversationToLoad].npcSentences[currSentence].clueName, this.npcName, conversation[conversationToLoad].npcSentences[currSentence].clueText, GameObject.Find("Level Manager").GetComponent<LevelManager>().level);
+                    GameObject.Find("Inventory Manager").GetComponent<InventoryManager>().AddClue(clue);
+                }
                 StartCoroutine(ArrowBlink());
             }
             else
@@ -141,25 +160,77 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
     //Seperates each sentence box in the current conversation and queues them up to be written out
     private void CreateDialogue(Conversation conversation) {
         
-        currentDialogue.Clear();
-        for (int i = 0; i < conversation.sentences.Count(); i++)
+        currentDialogue.Clear(); //Clear queue
+
+        dialogueTalkSpeeds = new List<float>();
+        dialogueBoxImages = new List<Sprite>();
+        dialogueClues = new List<int>();
+
+
+        //Check and add NPC dialogue for the current conversation
+        if (conversation.npcSentences != null && conversation.npcSentences.Count() > 0)
         {
-            if (conversation.sentences[i].Length > maxDialogueLength) {
-                for (int x = 0; conversation.sentences[i].Length > maxDialogueLength; x++)
+            for (int i = 0; i < conversation.npcSentences.Count(); i++)
+            {
+                string sentenceText = conversation.npcSentences[i].sentenceText;
+                if (sentenceText.Length > maxDialogueLength)
                 {
-                    currentDialogue.Enqueue(conversation.sentences[i].Substring(0, maxDialogueLength));
-                    conversation.sentences[i] = conversation.sentences[i].Substring(maxDialogueLength, conversation.sentences[i].Length - maxDialogueLength);
+                    for (int x = 0; sentenceText.Length > maxDialogueLength; x++)
+                    {
+                        currentDialogue.Enqueue(sentenceText.Substring(0, maxDialogueLength));
+                        sentenceText = sentenceText.Substring(maxDialogueLength, sentenceText.Length - maxDialogueLength);
+                    }
+                    if (sentenceText.Length <= maxDialogueLength && sentenceText.Length > 0)
+                    {
+                        currentDialogue.Enqueue(sentenceText);
+                    }
                 }
-                if (conversation.sentences[i].Length <= maxDialogueLength && conversation.sentences[i].Length > 0)
-                { 
-                    currentDialogue.Enqueue(conversation.sentences[i]); 
+                else { currentDialogue.Enqueue(sentenceText); }
+
+                if (conversation.npcSentences[i].talkSpeed != 0.0f) { dialogueTalkSpeeds.Add(conversation.npcSentences[i].talkSpeed); }
+                else { dialogueTalkSpeeds.Add(DEFAULT_TALK_SPEED); }
+
+                if (conversation.npcSentences[i].dialogueBoxImage != null) { dialogueBoxImages.Add(conversation.npcSentences[i].dialogueBoxImage); }
+                else { dialogueBoxImages.Add(DEFAULT_DIALOGUE_BOX_IMAGE); }
+
+                if (conversation.npcSentences[i].isClue) { dialogueClues.Add(1); }
+                else { dialogueClues.Add(0); }
+
+
+            }
+        }
+        //Check and add player dialogue for the current conversation
+        if (conversation.playerSentences != null && conversation.playerSentences.Count() > 0) {
+            for (int i = 0; i < conversation.playerSentences.Count(); i++)
+            {
+                string sentenceText = conversation.playerSentences[i].sentenceText;
+                if (sentenceText.Length > maxDialogueLength)
+                {
+                    for (int x = 0; sentenceText.Length > maxDialogueLength; x++)
+                    {
+                        currentDialogue.Enqueue(sentenceText.Substring(0, maxDialogueLength));
+                        sentenceText = sentenceText.Substring(maxDialogueLength, sentenceText.Length - maxDialogueLength);
+                    }
+                    if (sentenceText.Length <= maxDialogueLength && sentenceText.Length > 0)
+                    {
+                        currentDialogue.Enqueue(sentenceText);
+                    }
                 }
-            } else { 
-                currentDialogue.Enqueue(conversation.sentences[i]); 
+                else { currentDialogue.Enqueue(sentenceText); }
+
+                if (conversation.playerSentences[i].talkSpeed != 0.0f) { dialogueTalkSpeeds.Add(conversation.playerSentences[i].talkSpeed); }
+                else { dialogueTalkSpeeds.Add(DEFAULT_TALK_SPEED); }
+
+                if (conversation.playerSentences[i].dialogueBoxImage != null) { dialogueBoxImages.Add(conversation.playerSentences[i].dialogueBoxImage); }
+                else { dialogueBoxImages.Add(DEFAULT_DIALOGUE_BOX_IMAGE); }
+
+                if (conversation.playerSentences[i].isClue) { dialogueClues.Add(1); }
+                else { dialogueClues.Add(0); }
             }
         }
         
         dialogueBox.SetActive(true);
+        dialogueBox.transform.GetChild(1).gameObject.SetActive(true);
         StartCoroutine(WriteText());
     }
 
@@ -169,6 +240,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
         currentDialogue.Clear();
         currentDialogue.Enqueue(nothing);
         dialogueBox.SetActive(true);
+        dialogueBox.transform.GetChild(1).gameObject.SetActive(true);
         StartCoroutine(NothingText());
     }
 
@@ -195,36 +267,37 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
         speaking = true;
         currentFullText = currentDialogue.Dequeue();
         string currText;
-        float talkSpeed;
+        float talkSpeed = dialogueTalkSpeeds[currSentence];
+        dialogueBoxImage.sprite = dialogueBoxImages[currSentence];
+        
 
-        //Set Dialogue Speed
-        if (currSentence > (conversation[conversationToLoad].talkSpeed.Count() - 1))
-        { talkSpeed = DEFAULT_TALK_SPEED; }
-        else if (currSentence > conversation[conversationToLoad].talkSpeed.Count())
-        { talkSpeed = conversation[conversationToLoad].talkSpeed[0]; }
-        else
-        { talkSpeed = conversation[conversationToLoad].talkSpeed[currSentence]; }
+        //Set Speaker Portraits
+        if ((currSentence + 1) > conversation[conversationToLoad].npcSentences.Count()) 
+        {
+            //Set Player Portraits
+            if (conversation[conversationToLoad].playerSentences.Count() > 0 && conversation[conversationToLoad].playerSentences[currSentence - conversation[conversationToLoad].npcSentences.Count()].speakerPortrait != null) 
+            { playerResponseBox.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = conversation[conversationToLoad].playerSentences[currSentence - conversation[conversationToLoad].npcSentences.Count()].speakerPortrait; }
+            else 
+            { playerResponseBox.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = DEFAULT_PLAYER_SPEAKER_SPRITE; }
+            dialogueBox.transform.GetChild(1).gameObject.SetActive(false);
+            playerResponseBox.transform.GetChild(1).gameObject.SetActive(true);
 
-        //Set Dialogue Box's Image
-        if (currSentence > (conversation[conversationToLoad].dialogueBoxImage.Count() - 1))
-        { dialogueBoxImage.sprite = DEFAULT_DIALOGUE_BOX_IMAGE; }
-        else if (currSentence > conversation[conversationToLoad].dialogueBoxImage.Count())
-        { dialogueBoxImage.sprite = conversation[conversationToLoad].dialogueBoxImage[0]; }
-        else
-        { dialogueBoxImage.sprite = conversation[conversationToLoad].dialogueBoxImage[currSentence]; }
+        }
+        else 
+        { 
+            // Set NPC Portraits
+            if (conversation[conversationToLoad].npcSentences.Count() > 0 && conversation[conversationToLoad].npcSentences[currSentence].speakerPortrait != null)
+            { NPCImage.sprite = conversation[conversationToLoad].npcSentences[currSentence].speakerPortrait; }
+            else
+            { NPCImage.sprite = DEFAULT_NPC_SPEAKER_SPRITE; }
+            dialogueBox.transform.GetChild(1).gameObject.SetActive(true);
+            playerResponseBox.transform.GetChild(1).gameObject.SetActive(false);
 
-        //Set NPC Dialogue Image
-        if (currSentence > (conversation[conversationToLoad].portrait.Count() - 1))
-        { NPCImage.sprite = DEFAULT_NPC_SPEAKER_SPRITE; }
-        else if (currSentence > conversation[conversationToLoad].portrait.Count())
-        { NPCImage.sprite = conversation[conversationToLoad].portrait[0]; }
-        else
-        { NPCImage.sprite = conversation[conversationToLoad].portrait[currSentence]; }
+        }
 
         //Writes out the text character by character with selected settings
         for (int i = 1; i < currentFullText.Length + 1; i++)
         {
-            
             int sound = Random.Range(0, talkSound.Length);
             currText = currentFullText.Substring(0, i);
             if (!currText.EndsWith(" ")) { audSource.PlayOneShot(talkSound[sound], talkVolume); }
@@ -235,6 +308,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
 
             yield return new WaitForSeconds(1 / (talkSpeed * 5));
         }
+
         speaking = false;
         StartCoroutine(ArrowBlink());
     }
@@ -243,6 +317,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
     private void EndConversation() {
         currSentence = 0;
         dialogueBox.SetActive(false);
+        playerResponseBox.transform.GetChild(1).gameObject.SetActive(false);
         if (conversationToLoad == -1) {
             isTalking = false;
             return;
@@ -251,17 +326,21 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
         {
             responding = true;
             CreatePlayerResponses();
+        } else if (conversation[conversationToLoad].persistentConversation && conversation[conversationToLoad].nextDialogue[0] != -1) {
+            conversationToLoad = conversation[conversationToLoad].nextDialogue[0];
+            CreateDialogue(conversation[conversationToLoad]);
         }
         else if (conversation[conversationToLoad].nextDialogue.Count() > 0) {
             conversationToLoad = conversation[conversationToLoad].nextDialogue[0];
             isTalking = false;
-        } else  { conversationToLoad = -1; isTalking = false; }
+        } else { conversationToLoad = -1; isTalking = false; }
     }
 
     //If there are player responses, populate buttons with response text, and target if applicable
     private void CreatePlayerResponses() {
-        
-        playerResponseBox.SetActive(true);
+        playerResponseBox.transform.GetChild(0).gameObject.SetActive(true);
+        playerResponseBox.transform.GetChild(1).gameObject.SetActive(true);
+        playerResponseBox.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = DEFAULT_PLAYER_SPEAKER_SPRITE;
         for (int i = 0; i < conversation[conversationToLoad].playerResponses.Count(); i++) {
             if (conversation[conversationToLoad].nextDialogue.Count() <= 0)
             {
@@ -288,14 +367,20 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
         if (conversation[conversationToLoad].persistentConversation)
         {
             conversationToLoad = toLoad;
-            CreateDialogue(conversation[conversationToLoad]);
+            if (conversationToLoad >= 0)
+                CreateDialogue(conversation[conversationToLoad]);
+            else {
+                playerResponseBox.transform.GetChild(1).gameObject.SetActive(false);
+                isTalking = false;
+            }
         }
         else
         {
             conversationToLoad = toLoad;
             isTalking = false;
+            playerResponseBox.transform.GetChild(1).gameObject.SetActive(false);
         }
-        playerResponseBox.SetActive(false);
+        playerResponseBox.transform.GetChild(0).gameObject.SetActive(false);
         responding = false;
     }
 

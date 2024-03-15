@@ -6330,8 +6330,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventorySlots: {fileID: 421024501}
+  clueSlots: {fileID: 0}
   currentInventory: 0
-  currentInventoryText: {fileID: 277332351}
 --- !u!4 &1179980980
 Transform:
   m_ObjectHideFlags: 0
@@ -7789,7 +7789,7 @@ GameObject:
   - component: {fileID: 1465182927}
   - component: {fileID: 1465182926}
   - component: {fileID: 1465182925}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7814,7 +7814,7 @@ TerrainCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_TerrainData: {fileID: 15600000, guid: 61c397ea3d11cba428bb6a1e214745f5, type: 2}
+  m_TerrainData: {fileID: 15600000, guid: 45885c41b2cf95c4295b3bdc873fadeb, type: 2}
   m_EnableTreeColliders: 1
 --- !u!218 &1465182926
 Terrain:
@@ -7825,7 +7825,7 @@ Terrain:
   m_GameObject: {fileID: 1465182924}
   m_Enabled: 1
   serializedVersion: 6
-  m_TerrainData: {fileID: 15600000, guid: 61c397ea3d11cba428bb6a1e214745f5, type: 2}
+  m_TerrainData: {fileID: 15600000, guid: 45885c41b2cf95c4295b3bdc873fadeb, type: 2}
   m_TreeDistance: 5000
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
@@ -11719,6 +11719,7 @@ MonoBehaviour:
   chapterTabs: {fileID: 1701908640}
   itemInspector: {fileID: 606874983}
   itemDescription: {fileID: 1020029307}
+  clueDescription: {fileID: 0}
 --- !u!1 &2139547624
 GameObject:
   m_ObjectHideFlags: 0

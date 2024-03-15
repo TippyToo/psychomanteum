@@ -8,7 +8,7 @@ public class ItemData
 
     public string itemName;
     public string itemDescription;
-    [Tooltip("Write wgat chapter the item appears in. Used for determining where in the journal the itwm will appear.")]
+    [Tooltip("Write what chapter the item appears in. Used for determining where in the journal the item will appear.")]
     public int chapter;
     public Sprite itemImage;
     public bool collected;

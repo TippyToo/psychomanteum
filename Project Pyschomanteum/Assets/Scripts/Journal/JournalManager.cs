@@ -22,6 +22,7 @@ public class JournalManager : MonoBehaviour
 
     public ItemInspection itemInspector;
     public Text itemDescription;
+    public Text clueDescription;
 
     void Start() {
         paused = false;
@@ -86,6 +87,7 @@ public class JournalManager : MonoBehaviour
         paused = false;
         itemInspector.DeleteInspectedObject();
         itemDescription.text = "";
+        clueDescription.text = "";
         Time.timeScale = 1;
     }
     private void PopAll()
