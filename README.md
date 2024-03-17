@@ -5,18 +5,18 @@ Created by Team Psychomanteum
 
  ## Game Summary
 
- You play Polaris Ciro, a former detective turned private investigator whose specialty is investigating cases related to the spirit world of Asphodel. After her partner disappears under mysterious circumstances, it’s up to you to find the truth of what happened, all while working cases for clients.
+ You play as Polaris Ciro, a former detective turned private investigator whose specialty is investigating cases related to the spirit world of Asphodel. After her partner disappears under mysterious circumstances, it’s up to you to find the truth of what happened, all while working cases for clients.
 
  **Target Platform:** PC\
  **Target Rating:** T for Teen
 
  ## Game Overview
 
- **Look:** The game is set in a 3D landscape with 2D characters, with the game being primarily a side-scroller with some limited forward and backward movement.
+ **Look:** The game is set in a 3D landscape with 2D characters, with the game being primarily a side-scroller with some limited forward and backward movement.Environmental objects may be 2D or 3D. Art style is stylized and does not mimic reality in terms of visuals. Loose inspiration pulled from Don’t Starve and similar cartoon styles, though with slightly more realistic proportions. The spirit world is largely confined to cool colors, contrasting with the player character’s warm color palette. 
 
  **Genre:** Mystery
 
- **Setting:** The player will primarily traverse Asphodel, a realm of spirits, as they try to solve various cases. When not in the spirit world, the player will be located in the Psychomanteum, a dark and isolated room which serves as their gateway to Asphodel
+ **Setting:** The player will primarily traverse Asphodel, a realm of spirits, as they try to solve various cases. Asphodel ranges in visual style, but the main street hub that the player character visits is inspired by New York City architecture. When not in the spirit world, the player will be located in the Psychomanteum, a dark and isolated room which serves as their gateway to Asphodel
 
  **Art Style:** Neo-Noir
 
@@ -73,7 +73,7 @@ After solving the case, the player has limited time within the Asphodel, due to 
 
 ### Core Gameplay Loop
 
-The gameplay loop consists of entering the spirit world and speaking with NPCs and investigating areas and objects to solve cases. The player uses their journal to keep track of various clues found. The player can revisit previous levels’ journal entries in further levels. Once a case is completed, the player is made aware that they have ...
+The gameplay loop consists of entering the spirit world and speaking with NPCs and investigating areas and objects to solve cases. The player uses their journal to keep track of various clues found. The player can revisit previous levels’ journal entries in further levels. Once a case is completed, the player is made aware that they have a certain amount of time left in Asphodel, which they may use to explore the world more if they so desire. However, the longer the player spends in Asphodel after completing the case, the more adverse effects they will face until they either return (either of their own free will or not) to the psychomanteum. From that point on, the player then begins the next case.
 
 ### Levels
 
