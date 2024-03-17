@@ -14,8 +14,8 @@ public class PlayerController : MonoBehaviour, IDataPersistance
     public bool seeRayCast;
     [HideInInspector]
     public bool canMove;
-    public void LoadData(SaveData data) { transform.position = data.playerPosition; }
-    public void SaveData(ref SaveData data) { data.playerPosition = transform.position; }
+    public void LoadData(SaveData data) { if (data != null) transform.position = data.playerPosition; }
+    public void SaveData(ref SaveData data) { if (data != null) data.playerPosition = transform.position; }
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +34,6 @@ public class PlayerController : MonoBehaviour, IDataPersistance
         Vector3 castPos = transform.position;
         castPos.y += 1;
         if (Physics.Raycast(castPos, -transform.up, out targ, Mathf.Infinity, groundLayer)) {
-            //Uncomment to see the raycast in the scene viewport
             if (seeRayCast) { Debug.DrawLine(castPos, new Vector3(transform.position.x, transform.position.y - 200, transform.position.z), Color.white, 5.0f, false); }
             if (targ.collider != null) {
                 Vector3 movPos = transform.position;

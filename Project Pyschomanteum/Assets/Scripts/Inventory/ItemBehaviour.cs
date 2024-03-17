@@ -18,6 +18,9 @@ public class ItemBehaviour : MonoBehaviour, IDataPersistance
     {
         itemInspector = GameObject.Find("Item Inspection").GetComponent<ItemInspection>();
         itemData = new ItemData(itemName, itemDescription, chapter, collected);
+
+        if (transform.parent != null && transform.parent.name != "ItemToInspect") { GetComponent<Collider>().enabled = true; } 
+        else if (transform.parent == null) { GetComponent<Collider>().enabled = true; }
     }
     public void SaveData(ref SaveData data)
     {
@@ -26,19 +29,22 @@ public class ItemBehaviour : MonoBehaviour, IDataPersistance
 
     public void LoadData(SaveData data)
     {
-        data.collectedItems.TryGetValue(itemName, out collected);
-        if (collected) { gameObject.SetActive(false); }
+        if (data != null)
+        {
+            data.collectedItems.TryGetValue(itemName, out collected);
+            if (collected) { gameObject.SetActive(false); }
+        }
     }
 
 
     void Update()
     {
+        if (transform.parent != null && transform.parent.name == "ItemToInspect") {
+            GetComponent<Collider>().enabled = false;
+        }
         if (detectsPlayer && Input.GetButtonUp("Interact") && !collected)
         {
             itemInspector.OnInspect(itemData);
-            foreach (Transform child in itemInspector.transform) { 
-                child.gameObject.SetActive(true);
-            }
             GameObject.Find("Player").GetComponent<PlayerController>().DisableMovement();
             AddToInventory();
         }

@@ -71,7 +71,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
         else 
             Debug.Log("No Save Slot Found"); 
     }
-    public void LoadData(SaveData data) { data.currentConversation.TryGetValue(npcName, out conversationToLoad); }
+    public void LoadData(SaveData data) { if (data != null) data.currentConversation.TryGetValue(npcName, out conversationToLoad); }
 
 
     // Start is called before the first frame update

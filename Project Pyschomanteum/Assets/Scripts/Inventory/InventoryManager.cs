@@ -25,24 +25,29 @@ public class InventoryManager : MonoBehaviour, IDataPersistance
     }
     
     public void LoadData(SaveData data) {
-        //Objects
-        foreach (var value in data.collectedItemDescriptions) { 
-            ItemData temp = new ItemData();
-            temp.itemName = value.Key;
-            temp.itemDescription = value.Value;
-            temp.collected = true;
-            data.collectedItemChapters.TryGetValue(temp.itemName, out temp.chapter);
-            totalInventory.Add(temp);
-        }
+        if (data != null)
+        {
+            //Objects
+            foreach (var value in data.collectedItemDescriptions)
+            {
+                ItemData temp = new ItemData();
+                temp.itemName = value.Key;
+                temp.itemDescription = value.Value;
+                temp.collected = true;
+                data.collectedItemChapters.TryGetValue(temp.itemName, out temp.chapter);
+                totalInventory.Add(temp);
+            }
 
-        //Clues
-        foreach (var value in data.clueDescriptions) { 
-            VerbalClueData temp = new VerbalClueData();
-            temp.name = value.Key;
-            temp.description = value.Value;
-            data.clueChapters.TryGetValue(temp.name, out temp.chapter);
-            data.clueIssuers.TryGetValue(temp.name, out temp.issuer);
-            totalClues.Add(temp);
+            //Clues
+            foreach (var value in data.clueDescriptions)
+            {
+                VerbalClueData temp = new VerbalClueData();
+                temp.name = value.Key;
+                temp.description = value.Value;
+                data.clueChapters.TryGetValue(temp.name, out temp.chapter);
+                data.clueIssuers.TryGetValue(temp.name, out temp.issuer);
+                totalClues.Add(temp);
+            }
         }
     }
 
