@@ -14,18 +14,27 @@ public class PlayerController : MonoBehaviour, IDataPersistance
     public bool seeRayCast;
     [HideInInspector]
     public bool canMove;
+
+    private Animator anim;
+    private Rigidbody rigidBody;
+    private Vector3 scale;
+
     public void LoadData(SaveData data) { if (data != null) transform.position = data.playerPosition; }
     public void SaveData(ref SaveData data) { if (data != null) data.playerPosition = transform.position; }
     // Start is called before the first frame update
     void Start()
     {
         canMove = true;
+        anim = GetComponent<Animator>();
+        rigidBody = GetComponent<Rigidbody>();
+        scale = transform.localScale;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         UpdateMovement();
+        anim.SetFloat("Speed", (Mathf.Abs(rigidBody.velocity.x) + Mathf.Abs(rigidBody.velocity.z)));
     }
 
     void UpdateMovement() {
@@ -46,7 +55,9 @@ public class PlayerController : MonoBehaviour, IDataPersistance
         if (CanMove()) {
             float x = Input.GetAxis("Horizontal");
             float z = Input.GetAxis("Vertical");
-            transform.position = new Vector3(transform.position.x + (x * moveSpeed), transform.position.y, transform.position.z + (z * moveSpeed));
+            rigidBody.velocity = new Vector3((x * moveSpeed), 0.0f, (z * moveSpeed));
+            if (x < 0) { transform.localScale = new Vector3(-scale.x, scale.y, scale.z); }
+            else if (x > 0) { transform.localScale = new Vector3(scale.x, scale.y, scale.z); }
         }
     }
 

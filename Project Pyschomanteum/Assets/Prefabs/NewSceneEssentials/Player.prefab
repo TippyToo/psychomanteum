@@ -100,12 +100,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f964e8951436ab44db10eae411e135d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canMove: 1
-  moveSpeed: 0.2
-  groundDistance: 1
+  moveSpeed: 1
+  groundDistance: 3
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  seeRayCast: 0
+  canMove: 1
 --- !u!65 &4480068390461081628
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -2203,11 +2203,6 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: -0.2800367
       objectReference: {fileID: 0}
-    - target: {fileID: 6978058640666460698, guid: 4778ed0697456444d8c96a306f05745e,
-        type: 3}
-      propertyPath: groundDistance
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
