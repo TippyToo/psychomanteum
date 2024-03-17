@@ -12,6 +12,7 @@ public class Observation : MonoBehaviour, ISettings
     public Sentence[] observations;
 
     public AudioClip[] talkSound;
+    public AudioClip clueFound;
 
     private bool isTalking = false;
     private bool speaking = false;
@@ -115,8 +116,17 @@ public class Observation : MonoBehaviour, ISettings
         speaking = false;
         StartCoroutine(ArrowBlink());
     }
+
+    private IEnumerator Scribble() {
+        Debug.Log("Do");
+        audSource.PlayOneShot(clueFound, 1);
+        dialogueBox.transform.GetChild(2).gameObject.SetActive(true);
+        yield return new WaitForSecondsRealtime(1.0f);
+        dialogueBox.transform.GetChild(2).gameObject.SetActive(false);
+    }
     private IEnumerator ArrowBlink()
     {
+        if (observations[currSentence].isClue) { StartCoroutine(Scribble()); }
         while (true)
         {
             arrow.SetActive(true);

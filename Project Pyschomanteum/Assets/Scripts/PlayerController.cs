@@ -59,6 +59,10 @@ public class PlayerController : MonoBehaviour, IDataPersistance
             if (x < 0) { transform.localScale = new Vector3(-scale.x, scale.y, scale.z); }
             else if (x > 0) { transform.localScale = new Vector3(scale.x, scale.y, scale.z); }
         }
+        else
+        {
+            rigidBody.velocity = new Vector3(0.0f, 0.0f, 0.0f);
+        }
     }
 
     private bool CanMove() {
