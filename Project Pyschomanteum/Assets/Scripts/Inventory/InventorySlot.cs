@@ -16,7 +16,7 @@ public class InventorySlot : MonoBehaviour
         if (item.itemDescription != null)
         {
             GameObject.Find("Item Description").GetComponent<Text>().text = item.itemDescription;
-            inspector.OnInspect(item);
+            inspector.OnInspect(item, true);
         }
     }
 
