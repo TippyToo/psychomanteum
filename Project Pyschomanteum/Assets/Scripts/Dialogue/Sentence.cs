@@ -19,6 +19,7 @@ public struct Sentence
     public bool isClue;
     [Tooltip("name of the clue")]
     public string clueName;
+    [TextArea(5, 50)]
     [Tooltip("What the clue will say in the journal")]
     public string clueText;
 }

@@ -8,9 +8,9 @@ public class ItemInspection : MonoBehaviour, IDragHandler, IPointerClickHandler
     private InventoryManager inventoryManager;
     private GameObject itemPrefab;
 
-    [SerializeField] protected Camera UICamera;
-    [SerializeField] protected RectTransform RawImageRectTrans;
-    [SerializeField] protected Camera RenderToTextureCamera;
+    protected Camera UICamera;
+    protected RectTransform RawImageRectTrans;
+    protected Camera RenderToTextureCamera;
     //[HideInInspector] 
     public GameObject clueFound;
 
@@ -18,6 +18,9 @@ public class ItemInspection : MonoBehaviour, IDragHandler, IPointerClickHandler
     private void Awake()
     {
         inventoryManager = GameObject.Find("Inventory Manager").GetComponent<InventoryManager>();
+        UICamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        RawImageRectTrans = transform.GetChild(2).GetComponent<RectTransform>();
+        RenderToTextureCamera = GameObject.Find("Item Inspection Camera").GetComponent<Camera>();
     }
     void Update() {
         if (itemPrefab != null) {

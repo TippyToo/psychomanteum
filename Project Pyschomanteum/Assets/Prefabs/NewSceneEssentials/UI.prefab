@@ -540,9 +540,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ff42be5597c5c24296a22e224716cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UICamera: {fileID: 0}
-  RawImageRectTrans: {fileID: 0}
-  RenderToTextureCamera: {fileID: 0}
   clueFound: {fileID: 0}
 --- !u!1 &1541092864089277500
 GameObject:
@@ -2131,9 +2128,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ff42be5597c5c24296a22e224716cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UICamera: {fileID: 0}
-  RawImageRectTrans: {fileID: 0}
-  RenderToTextureCamera: {fileID: 0}
   clueFound: {fileID: 0}
 --- !u!1 &3031086389915701966
 GameObject:
@@ -2688,7 +2682,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

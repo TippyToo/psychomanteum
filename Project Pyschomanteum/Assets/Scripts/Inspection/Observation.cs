@@ -104,15 +104,20 @@ public class Observation : MonoBehaviour, ISettings
         if (observations[currSentence].speakerPortrait != null) { playerResponseBox.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = observations[currSentence].speakerPortrait; }
         else { playerResponseBox.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = DEFAULT_PLAYER_SPEAKER_SPRITE; }
 
+        audSource.ignoreListenerPause = true;
+        audSource.ignoreListenerVolume = true;
+
         //Writes out the text character by character with selected settings
         for (int i = 1; i < currentFullText.Length + 1; i++)
         {
             int sound = Random.Range(0, talkSound.Length);
             currText = currentFullText.Substring(0, i);
-            if (!currText.EndsWith(" ")) { audSource.PlayOneShot(talkSound[sound], talkVolume); }
+            if (!currText.EndsWith(" ")) { audSource.PlayOneShot(talkSound[sound], 1); }
             dialogueText.text = currText;
             yield return new WaitForSecondsRealtime(1 / (talkSpeed * 5));
         }
+        audSource.ignoreListenerPause = false;
+        audSource.ignoreListenerVolume = false;
         speaking = false;
         StartCoroutine(ArrowBlink());
     }
@@ -141,6 +146,7 @@ public class Observation : MonoBehaviour, ISettings
         //currSentence = 0;
         dialogueBox.SetActive(false);
         playerResponseBox.transform.GetChild(1).gameObject.SetActive(false);
+        dialogueBox.transform.GetChild(2).gameObject.SetActive(false);
         isTalking = false;
         Destroy(this.gameObject);
     }
