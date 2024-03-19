@@ -2043,7 +2043,7 @@ PrefabInstance:
     - target: {fileID: 1489447890598316622, guid: 2e1f83aabbf9eb44f9671c0a109d891d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11.797633
+      value: -16
       objectReference: {fileID: 0}
     - target: {fileID: 1489447890598316622, guid: 2e1f83aabbf9eb44f9671c0a109d891d,
         type: 3}
@@ -2085,6 +2085,11 @@ PrefabInstance:
       propertyPath: inspectionCamera
       value: 
       objectReference: {fileID: 1699165888}
+    - target: {fileID: 9043292480380633572, guid: 2e1f83aabbf9eb44f9671c0a109d891d,
+        type: 3}
+      propertyPath: startingZPosition
+      value: -15
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7657345806159592911, guid: 2e1f83aabbf9eb44f9671c0a109d891d, type: 3}
     m_RemovedGameObjects: []

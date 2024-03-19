@@ -1,17 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour, IDataPersistance
 {
     //Movement
-    public float moveSpeed;
+    public float verticalMoveSpeed;
+    public float horizontalMoveSpeed;
+
     //Raycast Stuff
         //Offset 
     public float groundDistance;
     public LayerMask groundLayer;
+
     //Debug Stuff
     public bool seeRayCast;
+
+
     [HideInInspector]
     public bool canMove;
 
@@ -55,7 +61,7 @@ public class PlayerController : MonoBehaviour, IDataPersistance
         if (CanMove()) {
             float x = Input.GetAxis("Horizontal");
             float z = Input.GetAxis("Vertical");
-            rigidBody.velocity = new Vector3((x * moveSpeed), 0.0f, (z * moveSpeed));
+            rigidBody.velocity = new Vector3((x * horizontalMoveSpeed), 0.0f, (z * verticalMoveSpeed));
             if (x < 0) { transform.localScale = new Vector3(-scale.x, scale.y, scale.z); }
             else if (x > 0) { transform.localScale = new Vector3(scale.x, scale.y, scale.z); }
         }

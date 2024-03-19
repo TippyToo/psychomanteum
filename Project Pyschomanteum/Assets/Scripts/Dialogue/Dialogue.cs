@@ -129,7 +129,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
                 speaking = false;
                 dialogueText.text = currentFullText;
                 //Check for clues
-                if (dialogueClues[currSentence] == 1)
+                if (conversationToLoad != -1 && dialogueClues[currSentence] == 1)
                 {
                     //Create new container and add it to journal
                     VerbalClueData clue;
@@ -300,7 +300,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
         {
             int sound = Random.Range(0, talkSound.Length);
             currText = currentFullText.Substring(0, i);
-            if (!currText.EndsWith(" ")) { audSource.PlayOneShot(talkSound[sound], talkVolume); }
+            if (!currText.EndsWith(" ")) { audSource.PlayOneShot(talkSound[sound], 1); }
             dialogueText.text = currText;
 
             if (talkSpeed == DEFAULT_TALK_SPEED)
