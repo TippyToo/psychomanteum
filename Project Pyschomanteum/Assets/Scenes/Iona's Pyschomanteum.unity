@@ -762,13 +762,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1848688955241790953, guid: 4778ed0697456444d8c96a306f05745e,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1848688955241790953, guid: 4778ed0697456444d8c96a306f05745e,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1848688955241790953, guid: 4778ed0697456444d8c96a306f05745e,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1848688955241790953, guid: 4778ed0697456444d8c96a306f05745e,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.83
       objectReference: {fileID: 0}
     - target: {fileID: 1848688955241790953, guid: 4778ed0697456444d8c96a306f05745e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.82
+      value: 0.911
       objectReference: {fileID: 0}
     - target: {fileID: 1848688955241790953, guid: 4778ed0697456444d8c96a306f05745e,
         type: 3}
@@ -810,6 +825,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1848688955241790953, guid: 4778ed0697456444d8c96a306f05745e,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4480068390461081628, guid: 4778ed0697456444d8c96a306f05745e,
         type: 3}
       propertyPath: m_Size.y
@@ -818,12 +838,12 @@ PrefabInstance:
     - target: {fileID: 4480068390461081628, guid: 4778ed0697456444d8c96a306f05745e,
         type: 3}
       propertyPath: m_Center.y
-      value: -0.2800367
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6978058640666460698, guid: 4778ed0697456444d8c96a306f05745e,
         type: 3}
       propertyPath: groundDistance
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2244,6 +2264,79 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 324267069}
   m_CullTransparentMesh: 1
+--- !u!1001 &351029057
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1309536799974350605, guid: 95041813f0aaa594a829621b983e1197,
+        type: 3}
+      propertyPath: sceneNameToLoad
+      value: Scene1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102424327938573600, guid: 95041813f0aaa594a829621b983e1197,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102424327938573600, guid: 95041813f0aaa594a829621b983e1197,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102424327938573600, guid: 95041813f0aaa594a829621b983e1197,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.634
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102424327938573600, guid: 95041813f0aaa594a829621b983e1197,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102424327938573600, guid: 95041813f0aaa594a829621b983e1197,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102424327938573600, guid: 95041813f0aaa594a829621b983e1197,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102424327938573600, guid: 95041813f0aaa594a829621b983e1197,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102424327938573600, guid: 95041813f0aaa594a829621b983e1197,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102424327938573600, guid: 95041813f0aaa594a829621b983e1197,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102424327938573600, guid: 95041813f0aaa594a829621b983e1197,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4219602733587437656, guid: 95041813f0aaa594a829621b983e1197,
+        type: 3}
+      propertyPath: m_Name
+      value: SceneTransition
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 95041813f0aaa594a829621b983e1197, type: 3}
 --- !u!1 &371317550
 GameObject:
   m_ObjectHideFlags: 0
@@ -3476,6 +3569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ff42be5597c5c24296a22e224716cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clueFound: {fileID: 0}
 --- !u!224 &606874984
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8570,6 +8664,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ff42be5597c5c24296a22e224716cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clueFound: {fileID: 0}
 --- !u!1 &1615193509
 GameObject:
   m_ObjectHideFlags: 0
@@ -8785,7 +8880,7 @@ PrefabInstance:
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: npcName
-      value: n
+      value: Iona
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
@@ -8809,8 +8904,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
+      propertyPath: conversation.Array.data[1].hasDialogueTree
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
       propertyPath: conversation.Array.data[0].sentences.Array.size
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[0].persistentConversation
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[1].persistentConversation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[0].nextDialogue.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[0].npcSentences.Array.size
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
@@ -8869,6 +8989,198 @@ PrefabInstance:
         type: 3}
       propertyPath: conversation.Array.data[0].sentences.Array.data[7]
       value: 'Iona: Ah, well, you''ll see.
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[1].nextDialogue.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[1].npcSentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[0].nextDialogue.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[0].playerResponses.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[0].playerSentences.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[1].playerSentences.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[0].playerResponses.Array.data[0]
+      value: Continue
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[0].npcSentences.Array.data[3].clueText
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[0].npcSentences.Array.data[0].talkSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[0].npcSentences.Array.data[1].talkSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[1].npcSentences.Array.data[0].talkSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[0].npcSentences.Array.data[0].sentenceText
+      value: 'Iona: Come on! You''re gonna love it...okay, well maybe not love, but
+        it''s definitely going to blow your mind!
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[0].npcSentences.Array.data[1].sentenceText
+      value: 'Polaris: Remind me again what we''re doing in this room? Also, did
+        you light these candles before coming to meet me? Because that is definitely
+        a fire hazard.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[0].npcSentences.Array.data[2].sentenceText
+      value: 'Iona: Didn''t I already tell you what we were doing on the phone?
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[0].npcSentences.Array.data[3].sentenceText
+      value: 'Polaris: Uh...no. You just called me and said, "Come over, I''ve got
+        something cool to show you!" I asked, "what is it?" And you simply responded,
+        "we''re gonna talk to the dead!" '
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[0].npcSentences.Array.data[4].sentenceText
+      value: 'Polaris: Then I asked if you were high to which your response was "pfttt-hahahaha,"
+        which didn''t exactly refute my question...'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[0].npcSentences.Array.data[5].sentenceText
+      value: 'Polaris: ...and, honestly, after walking me into a room that makes
+        me think we''re going to recite passages from the Necronomicon, I''m still
+        half convinced you are high.
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[0].npcSentences.Array.data[6].sentenceText
+      value: 'Iona: No, I''m not high, Polaris. And, for the record, the room we''re
+        in is known as a Psychomanteum. It''s a way of creating a connection to speak
+        with the dead, or more accurately...
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[0].npcSentences.Array.data[7].sentenceText
+      value: 'Iona: ...Ah, well, you''ll see.
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[0].npcSentences.Array.data[8].sentenceText
+      value: 'Polaris: How''s a mirror and a bunch of candles supposed to allow us
+        to speak with the dead, Iona?!
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[0].npcSentences.Array.data[9].sentenceText
+      value: 'Iona: Just sit down and trust me on this, okay?!
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[0].playerSentences.Array.data[0].talkSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[1].npcSentences.Array.data[0].sentenceText
+      value: 'Iona:  Didn''t I already tell you what we were doing on the phone'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[1].playerSentences.Array.data[0].talkSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[1].playerSentences.Array.data[1].talkSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[1].playerSentences.Array.data[2].talkSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[0].npcSentences.Array.data[10].sentenceText
+      value: 'Polaris: Fineeeee, but when nothing happens, I''m going to laugh my
+        ass off.
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[0].playerSentences.Array.data[0].sentenceText
+      value: 'Polaris: Remind me again what we''re doing in this room? Also, did
+        you light these candles before coming to meet me? Because that is definitely
+        a fire hazard.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[1].playerSentences.Array.data[0].sentenceText
+      value: 'Polaris: Uh...no. You just called me and said, "Come over, I''ve got
+        something cool to show you!" I asked, "what is it?" And you simply responded,
+        "we''re gonna talk to the dead!"'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[1].playerSentences.Array.data[1].sentenceText
+      value: 'Polaris: Then I asked if you were high to which your response was "pfttt-hahahaha,"
+        which didn''t exactly refute my question...'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[1].playerSentences.Array.data[2].sentenceText
+      value: 'Polaris: ...and, honestly, after walking me into a room that makes
+        me think we''re going to recite passages from the Necronomicon, I''m still
+        half convinced you are high.
 
 '
       objectReference: {fileID: 0}
@@ -9265,7 +9577,7 @@ Transform:
   m_GameObject: {fileID: 1639554344}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.76, z: -10.77}
+  m_LocalPosition: {x: 0, y: 1.166, z: -8.441}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11971,3 +12283,4 @@ SceneRoots:
   - {fileID: 1116487546}
   - {fileID: 1629324403}
   - {fileID: 2067733168}
+  - {fileID: 351029057}
