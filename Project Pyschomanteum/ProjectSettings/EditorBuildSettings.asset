@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Scene1.unity
     guid: 5a4a0ef227fd151479b402e55df175af
+  - enabled: 1
+    path: Assets/Scenes/DaisiesByDave.unity
+    guid: f6547815c4b71f44c9d317d363e9f4ef
   m_configObjects: {}

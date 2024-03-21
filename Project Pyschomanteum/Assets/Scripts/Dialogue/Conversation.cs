@@ -11,7 +11,7 @@ public struct Conversation
     public Sentence[] npcSentences;
     [Tooltip("List of each player dialogue box in the current \"conversation\" (Only spoken after ALL npc sentences for the current element are finished (If there are none then they will be spoken right away). To have a back and forth, check persistent conversation)")]
     public Sentence[] playerSentences;
-    [Tooltip("If checked, starts the next conversation right away (Only functional with Has Dialogue Tree enabled)")]
+    [Tooltip("If checked, starts the next conversation right away")]
     public bool persistentConversation;
     [Tooltip("Enter the element number for the next conversation chunk to load (Leave blank or set to -1 if there is no more dialogue unlocked. If Has Dialogue Tree is checked, enter multiple numbers corresponding to each response option even if they all go to the same place)")]
     public int[] nextDialogue;

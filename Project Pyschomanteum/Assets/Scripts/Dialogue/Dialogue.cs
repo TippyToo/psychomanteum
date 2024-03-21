@@ -28,7 +28,8 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
     private bool speaking = false;
     private bool responding = false;
 
-    private PlayerController player;
+    [HideInInspector]
+    public PlayerController player;
     private AudioSource audSource;
     
     private float talkVolume;
@@ -54,6 +55,8 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
     private SpriteRenderer NPCImage;
     private Image dialogueBoxImage;
     private JournalManager journal;
+
+    private IsInteractable interact;
 
 
     //Indicates end of current dialogue 
@@ -87,12 +90,14 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
         arrow = dialogueBox.transform.GetChild(0).transform.GetChild(1).gameObject;
         audSource = GameObject.Find("Main Camera").GetComponent<AudioSource>();
         journal = GameObject.Find("Journal").GetComponent<JournalManager>();
+        interact = transform.GetChild(0).GetComponent<IsInteractable>();
         ApplySettings();
     }
 
     // Update is called once per frame
     void Update()
     {
+        detectsPlayer = interact.detectsPlayer;
         InteractButton();
         if (Input.GetButtonUp("Journal"))
         {
@@ -393,16 +398,6 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
             arrow.SetActive(false);
             yield return new WaitForSeconds(0.2f);
         }
-    }
-
-    //Colliders
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player") { detectsPlayer = true; player = other.gameObject.GetComponent<PlayerController>(); }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Player") { detectsPlayer = false; }
     }
 
     //Settings
