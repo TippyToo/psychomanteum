@@ -21,7 +21,7 @@ public class CameraSettings : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
-        transform.position = new Vector3(player.transform.position.x, cameraHeight, distanceFromPlayer);
+        transform.position = new Vector3(player.transform.position.x, player.transform.position.y + cameraHeight, distanceFromPlayer);
         transform.eulerAngles = new Vector3(cameraAngle, 0.0f, 0.0f);
         
     }
@@ -35,10 +35,14 @@ public class CameraSettings : MonoBehaviour
     private void UpdateMovement()
     {
         if (hasXBoundries) {
-            if (player.transform.position.x > rightBound)
+            if (player.transform.position.x > rightBound) { 
                 lockMovement = true;
-            else if (player.transform.position.x < leftBound)
+                transform.position = new Vector3(rightBound, player.transform.position.y + cameraHeight, distanceFromPlayer);
+            }
+            else if (player.transform.position.x < leftBound) { 
                 lockMovement = true;
+                transform.position = new Vector3(leftBound, player.transform.position.y + cameraHeight, distanceFromPlayer);
+            }
             else
                 lockMovement = false;
 

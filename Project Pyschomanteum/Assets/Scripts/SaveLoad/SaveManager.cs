@@ -18,6 +18,10 @@ public class SaveManager : MonoBehaviour
     private List<IDataPersistance> dataPersistanceObjects;
     private FileData dataHandler;
     private int currentSaveSlot;
+
+    public bool freshLoad = true;
+    public bool inSubWorld;
+    public Vector3 preSubWorldCoords = new Vector3();
     // Start is called before the first frame update
     void Start()
     {
