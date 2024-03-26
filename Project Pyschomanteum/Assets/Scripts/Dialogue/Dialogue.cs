@@ -31,7 +31,8 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
     [HideInInspector]
     public PlayerController player;
     private AudioSource audSource;
-    
+    public AudioClip clueFound;
+
     private float talkVolume;
 
     
@@ -133,17 +134,6 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
                 StopAllCoroutines();
                 speaking = false;
                 dialogueText.text = currentFullText;
-                //Check for clues
-                if (conversationToLoad != -1 && dialogueClues[currSentence] == 1)
-                {
-                    //Create new container and add it to journal
-                    VerbalClueData clue;
-                    if ((currSentence + 1) > conversation[conversationToLoad].npcSentences.Count())
-                        clue = new VerbalClueData(conversation[conversationToLoad].playerSentences[currSentence - conversation[conversationToLoad].npcSentences.Count()].clueName, this.npcName, conversation[conversationToLoad].playerSentences[currSentence - conversation[conversationToLoad].npcSentences.Count()].clueText, GameObject.Find("Level Manager").GetComponent<LevelManager>().level);
-                    else
-                        clue = new VerbalClueData(conversation[conversationToLoad].npcSentences[currSentence].clueName, this.npcName, conversation[conversationToLoad].npcSentences[currSentence].clueText, GameObject.Find("Level Manager").GetComponent<LevelManager>().level);
-                    GameObject.Find("Inventory Manager").GetComponent<InventoryManager>().AddClue(clue);
-                }
                 StartCoroutine(ArrowBlink());
             }
             else
@@ -391,6 +381,18 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
 
     //Makes the next sentence arrow blink 
     private IEnumerator ArrowBlink() {
+        //Check for clues
+        if (conversationToLoad != -1 && dialogueClues[currSentence] == 1)
+        {
+            //Create new container and add it to journal
+            VerbalClueData clue;
+            if ((currSentence + 1) > conversation[conversationToLoad].npcSentences.Count())
+                clue = new VerbalClueData(conversation[conversationToLoad].playerSentences[currSentence - conversation[conversationToLoad].npcSentences.Count()].clueName, this.npcName, conversation[conversationToLoad].playerSentences[currSentence - conversation[conversationToLoad].npcSentences.Count()].clueText, GameObject.Find("Level Manager").GetComponent<LevelManager>().level);
+            else
+                clue = new VerbalClueData(conversation[conversationToLoad].npcSentences[currSentence].clueName, this.npcName, conversation[conversationToLoad].npcSentences[currSentence].clueText, GameObject.Find("Level Manager").GetComponent<LevelManager>().level);
+            GameObject.Find("Inventory Manager").GetComponent<InventoryManager>().AddClue(clue);
+            StartCoroutine(Scribble());
+        }
         while (true)
         {
             arrow.SetActive(true);
@@ -398,6 +400,14 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
             arrow.SetActive(false);
             yield return new WaitForSeconds(0.2f);
         }
+    }
+    private IEnumerator Scribble()
+    {
+        Debug.Log("Do");
+        audSource.PlayOneShot(clueFound, 1);
+        dialogueBox.transform.GetChild(2).gameObject.SetActive(true);
+        yield return new WaitForSecondsRealtime(1.0f);
+        dialogueBox.transform.GetChild(2).gameObject.SetActive(false);
     }
 
     //Settings

@@ -241,6 +241,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3bf5c3e4de0b5f545bbf025165565892, type: 3}
   - {fileID: 8300000, guid: 6477159c7c1656247ac2009ffa55c935, type: 3}
   player: {fileID: 0}
+  clueFound: {fileID: 8300000, guid: d9e6bdc14d8ee3445aad9d3c57d819d5, type: 3}
 --- !u!65 &1937719217329720905
 BoxCollider:
   m_ObjectHideFlags: 0
