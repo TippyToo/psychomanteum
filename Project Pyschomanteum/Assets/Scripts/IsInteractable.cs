@@ -8,6 +8,8 @@ public class IsInteractable : MonoBehaviour
 {
 
     public float fadeTime;
+    [HideInInspector]
+    public bool detectsPlayer = false;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +53,10 @@ public class IsInteractable : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            if (transform.parent != null && transform.parent.GetComponent<Dialogue>() != null && transform.parent.GetComponent<Dialogue>().player == null) {
+                transform.parent.GetComponent<Dialogue>().player = other.GetComponent<PlayerController>();
+            }
+            detectsPlayer = true;
             StopAllCoroutines();
             StartCoroutine(FadeIn(GetComponent<SpriteRenderer>()));
         }
@@ -59,6 +65,7 @@ public class IsInteractable : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            detectsPlayer = false;
             StopAllCoroutines();
             StartCoroutine(FadeOut(GetComponent<SpriteRenderer>()));
         }

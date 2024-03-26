@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemBehaviour : MonoBehaviour, IDataPersistance
 {
-    public string itemName;
+    private string itemName;
     public string itemDescription;
     [Tooltip("Write what chapter the item appears in. Used for determining where in the journal the itwm will appear.")]
     public int chapter;
@@ -16,9 +16,9 @@ public class ItemBehaviour : MonoBehaviour, IDataPersistance
     private bool detectsPlayer = false;
     private void Awake()
     {
+        itemName = transform.name;
         itemInspector = GameObject.Find("Item Inspection").GetComponent<ItemInspection>();
         itemData = new ItemData(itemName, itemDescription, chapter, collected);
-
         if (transform.parent != null && transform.parent.name != "ItemToInspect") { GetComponent<Collider>().enabled = true; } 
         else if (transform.parent == null) { GetComponent<Collider>().enabled = true; }
     }

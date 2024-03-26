@@ -26,13 +26,15 @@ public class PhysicalClue : MonoBehaviour
                 emissiveColors.Add(mat.GetColor("_EmissionColor"));
             }
         }
+        //If the object is being inspected and the clue hasn't been found yet
+        if (transform.parent.transform.parent != null && transform.parent.transform.parent.name == "ItemToInspect" &&
+            notFound && !transform.parent.GetComponent<ItemBehaviour>().collected) { this.glow = true; }
+        else { this.glow = false; gameObject.SetActive(false); }
     }
     // Start is called before the first frame update
     void Start()
     {
-        //If the object is being inspected and the clue hasn't been found yet
-        if (transform.parent.transform.parent != null && transform.parent.transform.parent.name == "ItemToInspect" && notFound) { this.glow = true; }
-        else { this.glow = false; }
+        
     }
 
     // Update is called once per frame
@@ -49,11 +51,15 @@ public class PhysicalClue : MonoBehaviour
         }
     }
 
-    public void CollectClue() { 
-        this.notFound = false;
-        this.glow = false;
-        if (this.GetComponent<Observation>() != null) {
-            this.GetComponent<Observation>().MakeObservation();
+    public void CollectClue() {
+        if (notFound)
+        {
+            this.notFound = false;
+            this.glow = false;
+            if (this.GetComponent<Observation>() != null)
+            {
+                this.GetComponent<Observation>().MakeObservation();
+            }
         }
     }
 }

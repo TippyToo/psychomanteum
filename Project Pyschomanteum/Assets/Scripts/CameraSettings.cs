@@ -8,17 +8,20 @@ public class CameraSettings : MonoBehaviour
     private GameObject player;
     public float cameraHeight;
     public float cameraAngle;
-    public float startingZPosition;
-    private float zPosition;
-    public bool followPlayerZ;
+    public float distanceFromPlayer;
+    public bool lockDistanceFromPlayer;
     public bool lockMovement;
+
+    public bool hasXBoundries;
+    public float leftBound;
+    public float rightBound;
+
     private bool matched = true;
     // Start is called before the first frame update
     void Start()
     {
-        zPosition = startingZPosition;
         player = GameObject.Find("Player");
-        transform.position = new Vector3(player.transform.position.x, cameraHeight, zPosition);
+        transform.position = new Vector3(player.transform.position.x, cameraHeight, distanceFromPlayer);
         transform.eulerAngles = new Vector3(cameraAngle, 0.0f, 0.0f);
         
     }
@@ -31,9 +34,18 @@ public class CameraSettings : MonoBehaviour
 
     private void UpdateMovement()
     {
-        float targetPosition = player.transform.position.z + zPosition;
-        if (transform.position.z >= (targetPosition - 0.5f) && transform.position.z <= (targetPosition + 0.5)) { matched = true; } else { matched = false; }
-        if (followPlayerZ)
+        if (hasXBoundries) {
+            if (player.transform.position.x > rightBound)
+                lockMovement = true;
+            else if (player.transform.position.x < leftBound)
+                lockMovement = true;
+            else
+                lockMovement = false;
+
+        }
+        float targetPosition = player.transform.position.z + distanceFromPlayer;
+        if (transform.position.z >= (targetPosition - 0.2f) && transform.position.z <= (targetPosition + 0.2)) { matched = true; } else { matched = false; }
+        if (lockDistanceFromPlayer)
         {
             if (matched)
             {
@@ -51,7 +63,7 @@ public class CameraSettings : MonoBehaviour
                 }
             }
         }
-        else if (!lockMovement) { transform.parent = null; transform.position = new Vector3(player.transform.position.x, player.transform.position.y + cameraHeight, zPosition); }
+        else if (!lockMovement) { transform.parent = null; transform.position = new Vector3(player.transform.position.x, player.transform.position.y + cameraHeight, distanceFromPlayer); }
     }
 
     //Camera Position
@@ -73,7 +85,7 @@ public class CameraSettings : MonoBehaviour
 
     //Toggles whether or not to follow the players z position
     public void FollowPlayer() {
-        followPlayerZ = !followPlayerZ;
+        lockDistanceFromPlayer = !lockDistanceFromPlayer;
     }
     
 

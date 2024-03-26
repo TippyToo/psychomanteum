@@ -8,9 +8,9 @@ public class ItemInspection : MonoBehaviour, IDragHandler, IPointerClickHandler
     private InventoryManager inventoryManager;
     private GameObject itemPrefab;
 
-    [SerializeField] protected Camera UICamera;
-    [SerializeField] protected RectTransform RawImageRectTrans;
-    [SerializeField] protected Camera RenderToTextureCamera;
+    protected Camera UICamera;
+    protected RectTransform RawImageRectTrans;
+    protected Camera RenderToTextureCamera;
     //[HideInInspector] 
     public GameObject clueFound;
 
@@ -18,43 +18,54 @@ public class ItemInspection : MonoBehaviour, IDragHandler, IPointerClickHandler
     private void Awake()
     {
         inventoryManager = GameObject.Find("Inventory Manager").GetComponent<InventoryManager>();
+        UICamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        if (transform.name == "Item Inspection") { RawImageRectTrans = transform.GetChild(2).GetComponent<RectTransform>(); }
+        RenderToTextureCamera = GameObject.Find("Item Inspection Camera").GetComponent<Camera>();
     }
     void Update() {
         if (itemPrefab != null) {
             if (itemPrefab.transform.childCount <= 0) {
-                transform.GetChild(1).gameObject.SetActive(true);
+                if (transform.name == "Item Inspection") { transform.GetChild(1).gameObject.SetActive(true); }
             }
         }
     }
     //When inspecting an object, create that object to be inspected
-    public void OnInspect(ItemData item) {
+    public void OnInspect(ItemData item, bool inv = false) {
         transform.GetChild(0).gameObject.SetActive(true);
-        transform.GetChild(2).gameObject.SetActive(true);
+        if (!item.collected) { transform.GetChild(2).gameObject.SetActive(true); }
         if (itemPrefab != null) {
             Destroy(itemPrefab.gameObject);
         }
         itemPrefab = Instantiate(Resources.Load(item.itemName), new Vector3(10000, 10000, 10000), Quaternion.identity, GameObject.Find("ItemToInspect").transform) as GameObject;
+        if (inv) {
+            foreach (Transform child in itemPrefab.transform) { 
+                Destroy(child.gameObject);
+            }
+        }
     }
 
     //Check if a clue is found
     public void OnPointerClick(PointerEventData eventData)
     {
-        Vector2 localPoint;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(RawImageRectTrans, eventData.position, UICamera, out localPoint);
-        Vector2 normalizedPoint = Rect.PointToNormalized(RawImageRectTrans.rect, localPoint);
-
-        var renderRay = RenderToTextureCamera.ViewportPointToRay(normalizedPoint);
-        if (Physics.Raycast(renderRay, out var raycastHit))
+        if (transform.name == "Item Inspection")
         {
-            clueFound = raycastHit.collider.gameObject;
-            if ( clueFound.GetComponent<PhysicalClue>() != null)
+            Vector2 localPoint;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(RawImageRectTrans, eventData.position, UICamera, out localPoint);
+            Vector2 normalizedPoint = Rect.PointToNormalized(RawImageRectTrans.rect, localPoint);
+
+            var renderRay = RenderToTextureCamera.ViewportPointToRay(normalizedPoint);
+            if (Physics.Raycast(renderRay, out var raycastHit))
             {
-                //Debug.Log("Hit: " + raycastHit.collider.gameObject.name);
-                clueFound.GetComponent<PhysicalClue>().CollectClue();
+                clueFound = raycastHit.collider.gameObject;
+                if (clueFound.GetComponent<PhysicalClue>() != null)
+                {
+                    //Debug.Log("Hit: " + raycastHit.collider.gameObject.name);
+                    clueFound.GetComponent<PhysicalClue>().CollectClue();
+                }
             }
+            else
+            { Debug.Log("No hit object"); }
         }
-        else
-        { Debug.Log("No hit object"); }
     }
 
     public void OnDrag(PointerEventData eventData) {

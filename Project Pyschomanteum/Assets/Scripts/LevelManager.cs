@@ -5,10 +5,12 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     public int level;
+    public bool usingStarterCoords = false;
+    public Vector3 playerStartingCoords;
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (usingStarterCoords) GameObject.Find("Player").GetComponent<PlayerController>().transform.position = playerStartingCoords;
     }
 
     // Update is called once per frame
