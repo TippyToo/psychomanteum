@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Dolores Apartment.unity
     guid: ea47f537378f73448a9567629e54a625
+  - enabled: 1
+    path: Assets/Scenes/Asphodel.unity
+    guid: eb38ed1ac785ea64580c16ff04f1b6c9
   m_configObjects: {}

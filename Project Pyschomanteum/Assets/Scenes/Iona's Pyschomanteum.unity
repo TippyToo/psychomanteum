@@ -636,8 +636,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9043292480380633572, guid: 2e1f83aabbf9eb44f9671c0a109d891d,
         type: 3}
+      propertyPath: cameraHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9043292480380633572, guid: 2e1f83aabbf9eb44f9671c0a109d891d,
+        type: 3}
       propertyPath: lockMovement
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9043292480380633572, guid: 2e1f83aabbf9eb44f9671c0a109d891d,
+        type: 3}
+      propertyPath: hasXBoundries
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9043292480380633572, guid: 2e1f83aabbf9eb44f9671c0a109d891d,
+        type: 3}
+      propertyPath: distanceFromPlayer
+      value: -10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
