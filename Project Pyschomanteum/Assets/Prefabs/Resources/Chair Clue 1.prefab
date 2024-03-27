@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 344977066420437606}
   - component: {fileID: 4713638545332037710}
   m_Layer: 0
-  m_Name: Chair Clue
+  m_Name: Chair Clue 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -121,10 +121,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f49e64551f74994a8d1257318132b51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDescription: A suspiciously comfortable chair
+  itemDescription: A suspiciously uncomfortable chair
   chapter: 1
   itemImage: {fileID: 0}
-  collected: 0
+  collected: 1
 --- !u!65 &4713638545332037710
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -375,7 +375,7 @@ MonoBehaviour:
     speakerPortrait: {fileID: 0}
     talkSpeed: 0
     objectClue: {fileID: 0}
-    isVerbalClue: 1
+    isVerbalClue: 0
     clueName: 
     clueText: 
   talkSound:
@@ -662,7 +662,7 @@ MonoBehaviour:
     speakerPortrait: {fileID: 0}
     talkSpeed: 0
     objectClue: {fileID: 0}
-    isVerbalClue: 1
+    isVerbalClue: 0
     clueName: 
     clueText: 
   talkSound:

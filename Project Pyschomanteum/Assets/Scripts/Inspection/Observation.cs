@@ -131,7 +131,7 @@ public class Observation : MonoBehaviour, ISettings
     }
     private IEnumerator ArrowBlink()
     {
-        if (observations[currSentence].isClue) { StartCoroutine(Scribble()); }
+        if (observations[currSentence].isVerbalClue) { StartCoroutine(Scribble()); }
         while (true)
         {
             arrow.SetActive(true);

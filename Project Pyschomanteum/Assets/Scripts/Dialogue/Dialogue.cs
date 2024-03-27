@@ -51,6 +51,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
     private List<float> dialogueTalkSpeeds;
     private List<Sprite> dialogueBoxImages;
     private List<int> dialogueClues;
+    private List<int> objectClues;
 
 
     private SpriteRenderer NPCImage;
@@ -140,6 +141,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
             {
                 StopAllCoroutines();
                 arrow.SetActive(false);
+                dialogueBox.transform.GetChild(2).gameObject.SetActive(false);
                 if (currentDialogue.Count() <= 0)
                 { EndConversation(); }
                 else
@@ -160,6 +162,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
         dialogueTalkSpeeds = new List<float>();
         dialogueBoxImages = new List<Sprite>();
         dialogueClues = new List<int>();
+        objectClues = new List<int>();
 
 
         //Check and add NPC dialogue for the current conversation
@@ -188,10 +191,11 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
                 if (conversation.npcSentences[i].dialogueBoxImage != null) { dialogueBoxImages.Add(conversation.npcSentences[i].dialogueBoxImage); }
                 else { dialogueBoxImages.Add(DEFAULT_DIALOGUE_BOX_IMAGE); }
 
-                if (conversation.npcSentences[i].isClue) { dialogueClues.Add(1); }
+                if (conversation.npcSentences[i].isVerbalClue) { dialogueClues.Add(1); }
                 else { dialogueClues.Add(0); }
 
-
+                if (conversation.npcSentences[i].objectClue) { objectClues.Add(1); }
+                else { objectClues.Add(0); }
             }
         }
         //Check and add player dialogue for the current conversation
@@ -219,8 +223,11 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
                 if (conversation.playerSentences[i].dialogueBoxImage != null) { dialogueBoxImages.Add(conversation.playerSentences[i].dialogueBoxImage); }
                 else { dialogueBoxImages.Add(DEFAULT_DIALOGUE_BOX_IMAGE); }
 
-                if (conversation.playerSentences[i].isClue) { dialogueClues.Add(1); }
+                if (conversation.playerSentences[i].isVerbalClue) { dialogueClues.Add(1); }
                 else { dialogueClues.Add(0); }
+
+                if (conversation.playerSentences[i].objectClue) { objectClues.Add(1); }
+                else { objectClues.Add(0); }
             }
         }
         
@@ -341,8 +348,10 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
             {
                 playerResponses[i].GetComponent<ResponseButton>().toLoad = -1;
             }
-            else { 
-                playerResponses[i].GetComponent<ResponseButton>().toLoad = conversation[conversationToLoad].nextDialogue[i]; }
+            else 
+            { 
+                playerResponses[i].GetComponent<ResponseButton>().toLoad = conversation[conversationToLoad].nextDialogue[i]; 
+            }
             playerResponses[i].GetComponent<ResponseButton>().NPC = this.gameObject;
             playerResponses[i].interactable = true;
             playerResponses[i].transform.GetChild(0).GetComponent<Text>().text = conversation[conversationToLoad].playerResponses[i];
@@ -381,24 +390,34 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
 
     //Makes the next sentence arrow blink 
     private IEnumerator ArrowBlink() {
-        //Check for clues
-        if (conversationToLoad != -1 && dialogueClues[currSentence] == 1)
-        {
-            //Create new container and add it to journal
-            VerbalClueData clue;
-            if ((currSentence + 1) > conversation[conversationToLoad].npcSentences.Count())
-                clue = new VerbalClueData(conversation[conversationToLoad].playerSentences[currSentence - conversation[conversationToLoad].npcSentences.Count()].clueName, this.npcName, conversation[conversationToLoad].playerSentences[currSentence - conversation[conversationToLoad].npcSentences.Count()].clueText, GameObject.Find("Level Manager").GetComponent<LevelManager>().level);
-            else
-                clue = new VerbalClueData(conversation[conversationToLoad].npcSentences[currSentence].clueName, this.npcName, conversation[conversationToLoad].npcSentences[currSentence].clueText, GameObject.Find("Level Manager").GetComponent<LevelManager>().level);
-            GameObject.Find("Inventory Manager").GetComponent<InventoryManager>().AddClue(clue);
-            StartCoroutine(Scribble());
-        }
+        CheckForClues();
         while (true)
         {
             arrow.SetActive(true);
             yield return new WaitForSeconds(0.2f);
             arrow.SetActive(false);
             yield return new WaitForSeconds(0.2f);
+        }
+    }
+    private void CheckForClues() {
+        //Check for clues
+        if (conversationToLoad != -1)
+        {
+            if (dialogueClues[currSentence] == 1)
+            {
+                //Create new container and add it to journal
+                VerbalClueData clue;
+                if ((currSentence + 1) > conversation[conversationToLoad].npcSentences.Count())
+                    clue = new VerbalClueData(conversation[conversationToLoad].playerSentences[currSentence - conversation[conversationToLoad].npcSentences.Count()].clueName, this.npcName, conversation[conversationToLoad].playerSentences[currSentence - conversation[conversationToLoad].npcSentences.Count()].clueText, GameObject.Find("Level Manager").GetComponent<LevelManager>().level);
+                else
+                    clue = new VerbalClueData(conversation[conversationToLoad].npcSentences[currSentence].clueName, this.npcName, conversation[conversationToLoad].npcSentences[currSentence].clueText, GameObject.Find("Level Manager").GetComponent<LevelManager>().level);
+                GameObject.Find("Inventory Manager").GetComponent<InventoryManager>().AddClue(clue);
+                StartCoroutine(Scribble());
+            }
+            if (objectClues[currSentence] == 1) {
+                conversation[conversationToLoad].npcSentences[currSentence].objectClue.GetComponent<ItemBehaviour>().AddToInventoryFromDialogue();
+                StartCoroutine(Scribble());
+            }
         }
     }
     private IEnumerator Scribble()

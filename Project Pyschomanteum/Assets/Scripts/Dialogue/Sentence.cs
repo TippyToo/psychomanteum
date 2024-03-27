@@ -15,8 +15,10 @@ public struct Sentence
     public Sprite speakerPortrait;
     [Tooltip("Speed the sentence is spoken (Bigger = faster. Leave blank for default)")]
     public float talkSpeed;
+    [Tooltip("If filled, when the sentence ends the object will be added to the journal")]
+    public GameObject objectClue;
     [Tooltip("If checked, when the sentence ends a verbal clue will be added to the journal")]
-    public bool isClue;
+    public bool isVerbalClue;
     [Tooltip("name of the clue")]
     public string clueName;
     [TextArea(5, 50)]

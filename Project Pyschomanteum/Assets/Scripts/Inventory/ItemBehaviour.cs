@@ -60,6 +60,16 @@ public class ItemBehaviour : MonoBehaviour, IDataPersistance
         gameObject.SetActive(false);
     }
 
+    public void AddToInventoryFromDialogue() {
+        itemName = transform.name;
+        itemInspector = GameObject.Find("Item Inspection").GetComponent<ItemInspection>();
+        itemData = new ItemData(itemName, itemDescription, chapter, collected);
+        itemData.collect();
+        collected = true;
+        GameObject.Find("Inventory Manager").GetComponent<InventoryManager>().totalInventory.Add(this.itemData);
+        GameObject.Find("Inventory Manager").GetComponent<InventoryManager>().UpdateInventory();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player") { detectsPlayer = true; }
