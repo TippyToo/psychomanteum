@@ -45,3 +45,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fileName: data
+  saveData: []
+  currentSave:
+    chapter: 1
+    collectedItems:
+      keys: []
+      values: 
+    collectedItemChapters:
+      keys: []
+      values: 
+    collectedItemDescriptions:
+      keys: []
+      values: []
+    clueIssuers:
+      keys: []
+      values: []
+    clueDescriptions:
+      keys: []
+      values: []
+    clueChapters:
+      keys: []
+      values: 
+    currentConversation:
+      keys: []
+      values: 
+    playerPosition: {x: 0, y: 0, z: 0}
+  freshLoad: 0
+  inSubWorld: 0
+  preSubWorldCoords: {x: 0, y: 0, z: 0}

@@ -9,7 +9,7 @@ public class SceneTransition : MonoBehaviour
     [Tooltip("Set to require input to transfer scenes. False automatically changes scenes when the player gets close enough")]
     public bool interactable;
     public string sceneNameToLoad = "MainMenu";
-    
+    public bool loadingSubArea;
     private bool detectsPlayer = false;
 
 
@@ -17,8 +17,7 @@ public class SceneTransition : MonoBehaviour
     void Update()
     {
         if (detectsPlayer && Input.GetButtonUp("Interact")) {
-            GameObject.Find("Save Manager").GetComponent<SaveManager>().SaveGame();
-            SceneManager.LoadScene(sceneNameToLoad);
+            LoadNextArea(loadingSubArea);
         }
     }
 
@@ -28,8 +27,7 @@ public class SceneTransition : MonoBehaviour
         if (other.tag == "Player") { 
             detectsPlayer = true;
             if (!interactable) {
-                GameObject.Find("Save Manager").GetComponent<SaveManager>().SaveGame();
-                SceneManager.LoadScene(sceneNameToLoad);
+                LoadNextArea(loadingSubArea);
             }
         }
     }
@@ -38,5 +36,11 @@ public class SceneTransition : MonoBehaviour
         if (other.tag == "Player") { 
             detectsPlayer = false;
         }
+    }
+
+    private void LoadNextArea(bool sub) {
+        GameObject.Find("Save Manager").GetComponent<SaveManager>().inSubWorld = sub;
+        GameObject.Find("Save Manager").GetComponent<SaveManager>().SaveGame();
+        SceneManager.LoadScene(sceneNameToLoad);
     }
 }

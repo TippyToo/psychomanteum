@@ -3,22 +3,29 @@ https://github.com/TippyToo/psychomanteum/
 
 Created by Team Psychomanteum
 
- ## Game Summary
+## Game Summary
 
- You play as Polaris Ciro, a former detective turned private investigator whose specialty is investigating cases related to the spirit world of Asphodel. After her partner disappears under mysterious circumstances, it’s up to you to find the truth of what happened, all while working cases for clients.
+You play as Polaris Ciro, a former detective turned private investigator whose specialty is investigating cases related to the spirit world of Asphodel. After her partner disappears under mysterious circumstances, it’s up to you to find the truth of what happened, all while working cases for clients.
 
- **Target Platform:** PC\
- **Target Rating:** T for Teen
+**Target Platform:** PC\
+**Target Rating:** T for Teen
 
- ## Game Overview
+## Game Overview
 
- **Look:** The game is set in a 3D landscape with 2D characters, with the game being primarily a side-scroller with some limited forward and backward movement.Environmental objects may be 2D or 3D. Art style is stylized and does not mimic reality in terms of visuals. Loose inspiration pulled from Don’t Starve and similar cartoon styles, though with slightly more realistic proportions. The spirit world is largely confined to cool colors, contrasting with the player character’s warm color palette. 
+**Look:** The game is set in a 3D landscape with 2D characters, with the game being primarily a side-scroller with some limited forward and backward movement.Environmental objects may be 2D or 3D. Art style is stylized and does not mimic reality in terms of visuals. Loose inspiration pulled from Don’t Starve and similar cartoon styles, though with slightly more realistic proportions. The spirit world is largely confined to cool colors, contrasting with the player character’s warm color palette. 
 
- **Genre:** Mystery
+**Genre:** Mystery
 
- **Setting:** The player will primarily traverse Asphodel, a realm of spirits, as they try to solve various cases. Asphodel ranges in visual style, but the main street hub that the player character visits is inspired by New York City architecture. When not in the spirit world, the player will be located in the Psychomanteum, a dark and isolated room which serves as their gateway to Asphodel
+**Setting:** The player will primarily traverse Asphodel, a realm of spirits, as they try to solve various cases. Asphodel ranges in visual style, but the main street hub that the player character visits is inspired by New York City architecture. When not in the spirit world, the player will be located in the Psychomanteum, a dark and isolated room which serves as their gateway to Asphodel
 
- **Art Style:** Neo-Noir
+**Art Style:** Neo-Noir
+
+**Relevant Inspiration:**
+
+- Ace Attorney
+- Night in the Woods
+- Psychonauts
+- Backbone/Tail Noir
 
 ## Core Gameplay Mechanics
 
@@ -51,16 +58,6 @@ The notes page will be a bulleted list of short texts, one or two sentences long
 
 After solving the case, the player has limited time within the Asphodel, due to their position as a living person within the realm of the dead. The more time spent within Asphodel, the blurrier the line between alive and dead becomes and Polaris will begin to feel adverse effects. If too much time is spent, Polaris will be sent back to the Psychomanteum. The player can also choose to return to the Psychomanteum early. There is no time limit or adverse effects imposed before the player solves the case.
 
-
-
-
-#### Relevant Inspiration
-
-- Ace Attorney
-- Night in the Woods
-- Psychonauts
-- Backbone/Tail Noir
-
 ## Controls
 
 | Control           | Primary Input | Alternate Input |
@@ -87,11 +84,30 @@ Iona introduces Polaris to the world of Asphodel as they look for an old woman n
 
 ##### Clues/Evidence
 
+- TV Remote (Start with this, given to the bartender to convince him to give you your next clue, the Garden Shears)
+- Garden Shears (Acquired by talking to the Bartender, the owner and address is listed on the handle)
+- Drill (Acquired by talking to the WW1 pilot, you give this to the construction worker nearby to convince him to let you pass the roadblock)
+- VHS Tape (Acquired by returning the shears to the flower shop owner, used to acquire Delore’s “true” last words)
+- Delore’s Memory Issues: (The flower shop owner will inform you about Delore’s failing memory following certain dialogue options)
+
 #### Case 1
 
 ##### Plot Summary
 
+The son of a famous mystery author is looking to finish his last manuscript that the author died before completing. As Polaris finds and questions the author, it becomes increasingly apparent that his books are based on actual murderers he committed.
+
 ##### Clues/Evidence
+
+- Lost Book (Help the bookstore clerk find a book they misplaced before they can help you with your casework.)
+- Darren's Book (Given to Polaris by the bookstore clerk before she leaves)
+- Archive Room Key (Find the key to the Library basement archive room that the Librarian lost)
+- Darren's Early Manuscript (Found in the archive, put into shelves by Librarian though they forget exactly where)
+- Darren's Final Manuscript (Given to Polaris by Darren after their conversation, the final item Polaris needs for this case)
+- Darren's Writing (Bookstore Clerk mentions Darren's writing, calls it grotesque, etc.)
+- Darren's *other* Books (Find books in the library stacks separated by author initials, triggers Librarian appearing?)
+- Darren Visited Recently (Talking to the Librarian gives this, unlocks the options to question about Darren further)
+- Newspaper Clippings (Newspaper pieces, covering murders that Darren "took inspiration" from)
+- Librarian, mentions Iona was at the library for the archives, Polaris goes back down to the basement to find marked files the librarian said she found, finds some newspaper clippings, obituaries mostly, and a file on a "chemical spill" that got an area cordoned off by the government.
 
 #### Case 2
 
@@ -101,11 +117,25 @@ Rich man wants a potential painting purchase to be authenticated from the source
 
 ##### Clues/Evidence
 
+- Polaroids of the Monet the client wishes to buy
+- Train NPC mentions a gardener who knows Monet very well
+- Gardener mentions Monet won’t speak with people who don’t “know what they’re talking about” and that he loves his boat
+- Fanatic insulting Polaris and saying that she needs to ‘pay up’ before she gets to ‘view god’
+- An expired ticket that says “Monet Viewing Experience, 12-hour pass”
+- Monet autobiography where he rambles about “en plein air” and “painting on the spot” (a.k.a how to talk to Monet without pissing him off)
+- Merch store NPC sharing that the Monet crowd is “impenetrable” and that the people closest to him bought “all access passes” and do not move
+- A sign that says “fresh fish at pier 41 —>” that’s been halfway covered up by a Monet poster
+
+
 #### Case 3 (Final Case)
 
 ##### Plot Summary
 
+*In Progess*
+
 ##### Clues/Evidence
+
+*In Progress*
 
 
 ## Additional Resources

@@ -50,9 +50,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraHeight: 3.41
   cameraAngle: 18.3
-  startingZPosition: -11.79763
-  followPlayerZ: 0
+  distanceFromPlayer: -15
+  lockDistanceFromPlayer: 0
   lockMovement: 0
+  hasXBoundries: 0
+  leftBound: 0
+  rightBound: 0
 --- !u!82 &4415990120919814467
 AudioSource:
   m_ObjectHideFlags: 0

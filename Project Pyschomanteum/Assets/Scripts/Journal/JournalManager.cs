@@ -98,14 +98,24 @@ public class JournalManager : MonoBehaviour
     public void SetJournalChapterAccess()
     {
         int level = GameObject.Find("Level Manager").GetComponent<LevelManager>().level;
-        Transform temp = transform.GetChild(5);
-        for (int i = 0; i < level && level != 0; i++)
+        if (level > 0)
         {
-            temp.GetChild(i).gameObject.SetActive(true);
+            Transform temp = transform.GetChild(5);
+            for (int i = 0; i < level && level != 0; i++)
+            {
+                temp.GetChild(i).gameObject.SetActive(true);
+            }
+            for (int i = level + 1; i < temp.childCount && level != temp.childCount; i++)
+            {
+                temp.GetChild(i).gameObject.SetActive(false);
+            }
         }
-        for (int i = level + 1; i < temp.childCount && level != temp.childCount; i++)
-        {
-            temp.GetChild(i).gameObject.SetActive(false);
+        else {
+            Transform temp = transform.GetChild(5);
+            for (int i = 0; i < temp.childCount; i++)
+            {
+                temp.GetChild(i).gameObject.SetActive(false);
+            }
         }
     }
     private void HideChapterTabs() { chapterTabs.SetActive(false); }

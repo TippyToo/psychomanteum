@@ -25,8 +25,31 @@ public class PlayerController : MonoBehaviour, IDataPersistance
     private Rigidbody rigidBody;
     private Vector3 scale;
 
-    public void LoadData(SaveData data) { if (data != null) transform.position = data.playerPosition; }
-    public void SaveData(ref SaveData data) { if (data != null) data.playerPosition = transform.position; }
+    Vector3 checkpointPosition;
+
+    
+    public void LoadData(SaveData data) {
+        if (data != null) {
+            if (GameObject.Find("Save Manager").GetComponent<SaveManager>().freshLoad) {
+                transform.position = data.playerPosition;
+                GameObject.Find("Save Manager").GetComponent<SaveManager>().freshLoad = false;
+            }
+            else if (!GameObject.Find("Save Manager").GetComponent<SaveManager>().inSubWorld && GameObject.Find("Save Manager").GetComponent<SaveManager>().preSubWorldCoords != new Vector3())
+            { transform.position = GameObject.Find("Save Manager").GetComponent<SaveManager>().preSubWorldCoords; }
+
+        }
+    
+    }
+    public void SaveData(ref SaveData data) {
+        if (data != null) {
+            if (GameObject.Find("Save Manager").GetComponent<SaveManager>().inSubWorld)
+                { GameObject.Find("Save Manager").GetComponent<SaveManager>().preSubWorldCoords = transform.position; }
+            else {
+                data.playerPosition = checkpointPosition;
+            }
+        }
+    
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -76,6 +99,14 @@ public class PlayerController : MonoBehaviour, IDataPersistance
             return true;
         else
             return false;
+    }
+
+    public void SavePosition() {
+        checkpointPosition = transform.position;
+    }
+    public void SavePosition(Vector3 position)
+    {
+        checkpointPosition = position;
     }
 
     public void EnableMovement() { canMove = true; }
