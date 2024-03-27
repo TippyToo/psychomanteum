@@ -503,8 +503,13 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1309536799974350605, guid: 95041813f0aaa594a829621b983e1197,
         type: 3}
+      propertyPath: loadingSubArea
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1309536799974350605, guid: 95041813f0aaa594a829621b983e1197,
+        type: 3}
       propertyPath: sceneNameToLoad
-      value: Scene1
+      value: Rooftop
       objectReference: {fileID: 0}
     - target: {fileID: 4102424327938573600, guid: 95041813f0aaa594a829621b983e1197,
         type: 3}
@@ -1491,7 +1496,7 @@ PrefabInstance:
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
@@ -1526,6 +1531,16 @@ PrefabInstance:
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[1].persistentConversation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[2].persistentConversation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[3].persistentConversation
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
@@ -1601,11 +1616,31 @@ PrefabInstance:
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[1].nextDialogue.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[1].npcSentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[2].nextDialogue.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[2].npcSentences.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[3].nextDialogue.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[3].npcSentences.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
@@ -1625,7 +1660,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
+      propertyPath: conversation.Array.data[1].nextDialogue.Array.data[0]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
       propertyPath: conversation.Array.data[1].playerSentences.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[2].nextDialogue.Array.data[0]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[2].playerSentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[3].nextDialogue.Array.data[0]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[3].playerSentences.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
@@ -1769,12 +1829,36 @@ PrefabInstance:
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[1].playerSentences.Array.data[1].talkSpeed
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[1].playerSentences.Array.data[2].talkSpeed
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[2].npcSentences.Array.data[0].sentenceText
+      value: 'Iona: No, I''m not high, Polaris. And, for the record, the room we''re
+        in is known as a Psychomanteum. It''s a way of creating a connection to speak
+        with the dead, or more accurately...'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[2].npcSentences.Array.data[1].sentenceText
+      value: ...ah, well, you'll see.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[3].npcSentences.Array.data[0].sentenceText
+      value: 'Iona: Just sit down and trust me on this, okay?!
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[3].npcSentences.Array.data[1].sentenceText
+      value: ...ah, well, you'll see.
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
@@ -1801,15 +1885,29 @@ PrefabInstance:
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[1].playerSentences.Array.data[1].sentenceText
-      value: 'Polaris: Then I asked if you were high to which your response was "pfttt-hahahaha,"
-        which didn''t exactly refute my question...'
+      value: Then I asked if you were high to which your response was "pfttt-hahahaha,"
+        which didn't exactly refute my question...
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[1].playerSentences.Array.data[2].sentenceText
-      value: 'Polaris: ...and, honestly, after walking me into a room that makes
-        me think we''re going to recite passages from the Necronomicon, I''m still
-        half convinced you are high.
+      value: ...and, honestly, after walking me into a room that makes me think we're
+        going to recite passages from the Necronomicon, I'm still half convinced
+        you are high.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[2].playerSentences.Array.data[0].sentenceText
+      value: 'Polaris: How''s a mirror and a bunch of candles supposed to allow us
+        to speak with the dead, Iona?!
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[3].playerSentences.Array.data[0].sentenceText
+      value: 'Polaris: Fineeeee, but when nothing happens, I''m going to laugh my
+        ass off.
 
 '
       objectReference: {fileID: 0}
