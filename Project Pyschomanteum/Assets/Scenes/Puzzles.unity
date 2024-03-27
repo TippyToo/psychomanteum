@@ -489,7 +489,7 @@ PrefabInstance:
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[2].npcSentences.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
@@ -588,9 +588,12 @@ PrefabInstance:
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[2].npcSentences.Array.data[2].sentenceText
-      value: 'Tony: No freakin'' way!
-
-'
+      value: "What? You know how hard it is to change the channel on this thing with
+        the remote? I gotta hold up a mirror just to see that I'm using the right
+        knob, and then I have to turn it in the opposite direction since it's flipped
+        backward in the mirror, it's just easier to cut out the middleman! Anyway,
+        my memory is coming back to me now. She was in here all right, just a day
+        ago. I think she left something behind, let me check the back.\r"
       objectReference: {fileID: 0}
     - target: {fileID: 5150859441709233091, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
