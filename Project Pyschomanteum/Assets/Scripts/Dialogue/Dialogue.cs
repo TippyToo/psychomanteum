@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +8,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
 {
     [Tooltip("ONLY FILL OUT IF DATA SHOULD BE SAVED")]
     public string npcName;
-
+    public bool speakOnProximity;
     //Defaults
     public float DEFAULT_TALK_SPEED = 1.0f;
     public Sprite DEFAULT_DIALOGUE_BOX_IMAGE;
@@ -34,8 +33,6 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
     public AudioClip clueFound;
 
     private float talkVolume;
-
-    
 
     private GameObject dialogueBox;
     private GameObject playerResponseBox;
@@ -64,6 +61,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
     //Indicates end of current dialogue 
     private GameObject arrow;
 
+    #region Save and Load
     public void SaveData(ref SaveData data) {
         if (data != null) 
         {
@@ -77,7 +75,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
             Debug.Log("No Save Slot Found"); 
     }
     public void LoadData(SaveData data) { if (data != null) data.currentConversation.TryGetValue(npcName, out conversationToLoad); }
-
+    #endregion
 
     // Start is called before the first frame update
     void Start()
@@ -119,7 +117,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
 
     //Determine how the interact button should function based on the current state of dialogue
     private void InteractButton() {
-        if (detectsPlayer && Input.GetButtonUp("Interact") && !responding && !journal.isOpen)
+        if (detectsPlayer && Input.GetButtonUp("Interact") && !responding && !journal.isOpen && !speakOnProximity)
         {
             if (!isTalking)
             {
@@ -315,7 +313,54 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
         StartCoroutine(ArrowBlink());
     }
 
-    //After the NPC finishes their dialogue, either prompts the user with responses or closes the dialgue
+    #region End Behaviour
+    //Makes the next sentence arrow blink 
+    private IEnumerator ArrowBlink()
+    {
+        CheckForClues();
+        while (true)
+        {
+            arrow.SetActive(true);
+            yield return new WaitForSeconds(0.2f);
+            arrow.SetActive(false);
+            yield return new WaitForSeconds(0.2f);
+        }
+    }
+    #region Clues
+    private void CheckForClues()
+    {
+        //Check for clues
+        if (conversationToLoad != -1)
+        {
+            if (dialogueClues[currSentence] == 1)
+            {
+                //Create new container and add it to journal
+                VerbalClueData clue;
+                if ((currSentence + 1) > conversation[conversationToLoad].npcSentences.Count())
+                    clue = new VerbalClueData(conversation[conversationToLoad].playerSentences[currSentence - conversation[conversationToLoad].npcSentences.Count()].clueName, this.npcName, conversation[conversationToLoad].playerSentences[currSentence - conversation[conversationToLoad].npcSentences.Count()].clueText, GameObject.Find("Level Manager").GetComponent<LevelManager>().level);
+                else
+                    clue = new VerbalClueData(conversation[conversationToLoad].npcSentences[currSentence].clueName, this.npcName, conversation[conversationToLoad].npcSentences[currSentence].clueText, GameObject.Find("Level Manager").GetComponent<LevelManager>().level);
+                GameObject.Find("Inventory Manager").GetComponent<InventoryManager>().AddClue(clue);
+                StartCoroutine(Scribble());
+            }
+            if (objectClues[currSentence] == 1)
+            {
+                conversation[conversationToLoad].npcSentences[currSentence].objectClue.GetComponent<ItemBehaviour>().AddToInventoryFromDialogue();
+                StartCoroutine(Scribble());
+            }
+        }
+    }
+    private IEnumerator Scribble()
+    {
+        Debug.Log("Do");
+        audSource.PlayOneShot(clueFound, 1);
+        dialogueBox.transform.GetChild(2).gameObject.SetActive(true);
+        yield return new WaitForSecondsRealtime(1.0f);
+        dialogueBox.transform.GetChild(2).gameObject.SetActive(false);
+    }
+    #endregion
+
+    //After the NPC finishes their dialogue, cleans up and prepares the end behaviour
     private void EndConversation() {
         currSentence = 0;
         dialogueBox.SetActive(false);
@@ -324,11 +369,29 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
             isTalking = false;
             return;
         }
-        if (conversation[conversationToLoad].hasDialogueTree)
+
+        EndBehaviour endBehaviour = conversation[conversationToLoad].endBehaviour;
+
+        if (endBehaviour.presentClues) {
+            PresentClues();
+        }
+
+        if (endBehaviour.warp) {
+            if (endBehaviour.hasDialogueTree) { Debug.LogError("Can not warp and respond to an NPC at the same time", transform); }
+            if (!endBehaviour.presentClues)
+            { player.transform.position = endBehaviour.warpLocation; }
+            else 
+            {
+                PresentClues(true);
+            }
+        }
+
+        //Determines what conversation to load next
+        if (endBehaviour.hasDialogueTree)
         {
             responding = true;
             CreatePlayerResponses();
-        } else if (conversation[conversationToLoad].persistentConversation && conversation[conversationToLoad].nextDialogue[0] != -1) {
+        } else if (!endBehaviour.warp && conversation[conversationToLoad].persistentConversation && conversation[conversationToLoad].nextDialogue[0] != -1) {
             conversationToLoad = conversation[conversationToLoad].nextDialogue[0];
             CreateDialogue(conversation[conversationToLoad]);
         }
@@ -336,6 +399,14 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
             conversationToLoad = conversation[conversationToLoad].nextDialogue[0];
             isTalking = false;
         } else { conversationToLoad = -1; isTalking = false; }
+
+        if (endBehaviour.setNextConversationToStartOnProximity) {
+            speakOnProximity = true;
+        }
+    }
+
+    private void PresentClues(bool warpAfter = false) { 
+    
     }
 
     //If there are player responses, populate buttons with response text, and target if applicable
@@ -343,7 +414,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
         playerResponseBox.transform.GetChild(0).gameObject.SetActive(true);
         playerResponseBox.transform.GetChild(1).gameObject.SetActive(true);
         playerResponseBox.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = DEFAULT_PLAYER_SPEAKER_SPRITE;
-        for (int i = 0; i < conversation[conversationToLoad].playerResponses.Count(); i++) {
+        for (int i = 0; i < conversation[conversationToLoad].endBehaviour.playerResponses.Count(); i++) {
             if (conversation[conversationToLoad].nextDialogue.Count() <= 0)
             {
                 playerResponses[i].GetComponent<ResponseButton>().toLoad = -1;
@@ -354,14 +425,14 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
             }
             playerResponses[i].GetComponent<ResponseButton>().NPC = this.gameObject;
             playerResponses[i].interactable = true;
-            playerResponses[i].transform.GetChild(0).GetComponent<Text>().text = conversation[conversationToLoad].playerResponses[i];
+            playerResponses[i].transform.GetChild(0).GetComponent<Text>().text = conversation[conversationToLoad].endBehaviour.playerResponses[i];
         }
     }
 
     //After the player chooses their response, reset the buttons and prep the next conversation if applicable
     public void PlayersResponse(int toLoad) {
         
-        for (int i = 0; i < conversation[conversationToLoad].playerResponses.Count(); i++)
+        for (int i = 0; i < conversation[conversationToLoad].endBehaviour.playerResponses.Count(); i++)
         {
             playerResponses[i].interactable = false;
             playerResponses[i].transform.GetChild(0).GetComponent<Text>().text = "";
@@ -387,48 +458,19 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
         playerResponseBox.transform.GetChild(0).gameObject.SetActive(false);
         responding = false;
     }
+    #endregion
 
-    //Makes the next sentence arrow blink 
-    private IEnumerator ArrowBlink() {
-        CheckForClues();
-        while (true)
+    public void SpeakOnProximity() {
+        if (speakOnProximity)
         {
-            arrow.SetActive(true);
-            yield return new WaitForSeconds(0.2f);
-            arrow.SetActive(false);
-            yield return new WaitForSeconds(0.2f);
+            //If not talking and next dialogue is unlocked (cTL != 0), start a dialogue. If not, "stare" at the player in silence
+            if (conversationToLoad != -1 && conversationToLoad >= 0)
+            { CreateDialogue(conversation[conversationToLoad]); }
+            else
+            { CreateDialogue(". . ."); }
+            speakOnProximity = false;
         }
     }
-    private void CheckForClues() {
-        //Check for clues
-        if (conversationToLoad != -1)
-        {
-            if (dialogueClues[currSentence] == 1)
-            {
-                //Create new container and add it to journal
-                VerbalClueData clue;
-                if ((currSentence + 1) > conversation[conversationToLoad].npcSentences.Count())
-                    clue = new VerbalClueData(conversation[conversationToLoad].playerSentences[currSentence - conversation[conversationToLoad].npcSentences.Count()].clueName, this.npcName, conversation[conversationToLoad].playerSentences[currSentence - conversation[conversationToLoad].npcSentences.Count()].clueText, GameObject.Find("Level Manager").GetComponent<LevelManager>().level);
-                else
-                    clue = new VerbalClueData(conversation[conversationToLoad].npcSentences[currSentence].clueName, this.npcName, conversation[conversationToLoad].npcSentences[currSentence].clueText, GameObject.Find("Level Manager").GetComponent<LevelManager>().level);
-                GameObject.Find("Inventory Manager").GetComponent<InventoryManager>().AddClue(clue);
-                StartCoroutine(Scribble());
-            }
-            if (objectClues[currSentence] == 1) {
-                conversation[conversationToLoad].npcSentences[currSentence].objectClue.GetComponent<ItemBehaviour>().AddToInventoryFromDialogue();
-                StartCoroutine(Scribble());
-            }
-        }
-    }
-    private IEnumerator Scribble()
-    {
-        Debug.Log("Do");
-        audSource.PlayOneShot(clueFound, 1);
-        dialogueBox.transform.GetChild(2).gameObject.SetActive(true);
-        yield return new WaitForSecondsRealtime(1.0f);
-        dialogueBox.transform.GetChild(2).gameObject.SetActive(false);
-    }
-
     //Settings
     public void ApplySettings()
     {

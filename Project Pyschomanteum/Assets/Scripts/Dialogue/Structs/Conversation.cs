@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 
 [System.Serializable]
 [Tooltip("Dialogue settings for NPC")]
@@ -15,8 +12,6 @@ public struct Conversation
     public bool persistentConversation;
     [Tooltip("Enter the element number for the next conversation chunk to load (Leave blank or set to -1 if there is no more dialogue unlocked. If Has Dialogue Tree is checked, enter multiple numbers corresponding to each response option even if they all go to the same place)")]
     public int[] nextDialogue;
-    [Tooltip("If checked, when the current conversation element ends, prompts user for a response")]
-    public bool hasDialogueTree;
-    [Tooltip("Only populate if Has Dialogue Tree is checked (Max of three options/up to element 2)")]
-    public string[] playerResponses;
+    public EndBehaviour endBehaviour;
+
 }

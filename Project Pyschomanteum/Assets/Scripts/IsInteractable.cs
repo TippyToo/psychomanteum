@@ -60,6 +60,9 @@ public class IsInteractable : MonoBehaviour
             StopAllCoroutines();
             StartCoroutine(FadeIn(GetComponent<SpriteRenderer>()));
         }
+        if (transform.parent.GetComponent<Dialogue>() != null) {
+            transform.parent.GetComponent<Dialogue>().SpeakOnProximity();
+        }
     }
     private void OnTriggerExit(Collider other)
     {
@@ -69,5 +72,6 @@ public class IsInteractable : MonoBehaviour
             StopAllCoroutines();
             StartCoroutine(FadeOut(GetComponent<SpriteRenderer>()));
         }
+        
     }
 }
