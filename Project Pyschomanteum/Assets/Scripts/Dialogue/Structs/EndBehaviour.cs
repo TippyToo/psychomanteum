@@ -3,7 +3,7 @@ using UnityEngine;
 [System.Serializable]
 public struct EndBehaviour
 {
-    [Tooltip("Not implemented yet")]
+    [Tooltip("Check to make the player present the correct clue to progress. Correct guesses load Next Dialogue element0. Wrong guesses load Next Dialogue element1")]
     public bool presentClues;
     [Tooltip("Name of the clue that will advance the dialogue")]
     public string correctClueName;

@@ -60,7 +60,7 @@ public class IsInteractable : MonoBehaviour
             StopAllCoroutines();
             StartCoroutine(FadeIn(GetComponent<SpriteRenderer>()));
         }
-        if (transform.parent.GetComponent<Dialogue>() != null) {
+        if (transform.parent != null && transform.parent.GetComponent<Dialogue>() != null) {
             transform.parent.GetComponent<Dialogue>().SpeakOnProximity();
         }
     }

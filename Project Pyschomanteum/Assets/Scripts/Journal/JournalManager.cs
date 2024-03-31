@@ -17,6 +17,10 @@ public class JournalManager : MonoBehaviour
     private SaveManager saveManager;
     [HideInInspector]
     public bool isOpen = false;
+    public bool canOpen = true;
+    public bool canClose = true;
+
+    public bool isPresenting = false;
 
     public GameObject chapterTabs;
 
@@ -45,10 +49,11 @@ public class JournalManager : MonoBehaviour
         saveManager.SaveGame();
         SceneManager.LoadScene(0); 
     }
-    private void Pause() {
+    public void Pause() {
         //Pauses or unpauses the game
         paused = !paused;
         if (paused) {
+            if (canOpen) { 
             Time.timeScale = 0;
             //GameObject.Find("Inventory Manager").GetComponent<InventoryManager>().UpdateInventory();
             isOpen = true;
@@ -59,8 +64,11 @@ public class JournalManager : MonoBehaviour
             } else {
                 PushSection(cluesPage);
             }
+            }
         } else {
-            CloseJournal();
+            if (canClose) { 
+                CloseJournal();
+            }
         }
     }
     public bool IsPaused() { return paused; }
@@ -81,6 +89,8 @@ public class JournalManager : MonoBehaviour
     }
     public void CloseJournal() {
         lastOpened = sections.Peek();
+        GameObject responseButton = transform.GetChild(6).gameObject; // Set response button to not show
+        responseButton.GetComponent<PresentClue>().OnClose();
         PopAll();
         HideChapterTabs();
         isOpen = false;
@@ -95,6 +105,25 @@ public class JournalManager : MonoBehaviour
         //"Bookmarks" the current page then closes all windows
         for (int i = 0; i < sections.Count; i++) { PopSection(); }
     }
+    #region Present Button
+    public void PopulatePresentButton(ItemData item = null) {
+        if (isPresenting) {
+            GameObject button = transform.GetChild(6).gameObject;
+            button.SetActive(true);
+            if (item != null) { button.GetComponent<PresentClue>().itemToPresent = item; }
+        }
+    }
+    public void PopulatePresentButton(VerbalClueData vClue = null)
+    {
+        if (isPresenting)
+        {
+            GameObject button = transform.GetChild(6).gameObject;
+            button.SetActive(true);
+            if (vClue != null) { button.GetComponent<PresentClue>().clueData = vClue; }
+        }
+    }
+    #endregion
+
     public void SetJournalChapterAccess()
     {
         int level = GameObject.Find("Level Manager").GetComponent<LevelManager>().level;

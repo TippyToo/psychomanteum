@@ -42,7 +42,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
     private Text dialogueText;
     private string currentFullText;
     private Queue<string> currentDialogue = new Queue<string>();
-    private int conversationToLoad = 0;
+    public int conversationToLoad = 0;
     private int currSentence = 0;
 
     private List<float> dialogueTalkSpeeds;
@@ -153,7 +153,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
 
 
     //Seperates each sentence box in the current conversation and queues them up to be written out
-    private void CreateDialogue(Conversation conversation) {
+    public void CreateDialogue(Conversation conversation) {
         
         currentDialogue.Clear(); //Clear queue
 
@@ -372,41 +372,52 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
 
         EndBehaviour endBehaviour = conversation[conversationToLoad].endBehaviour;
 
-        if (endBehaviour.presentClues) {
-            PresentClues();
-        }
+        if (endBehaviour.presentClues && endBehaviour.correctClueName != null) {
+            PresentClues(endBehaviour.correctClueName);
+        } else { 
 
-        if (endBehaviour.warp) {
-            if (endBehaviour.hasDialogueTree) { Debug.LogError("Can not warp and respond to an NPC at the same time", transform); }
-            if (!endBehaviour.presentClues)
-            { player.transform.position = endBehaviour.warpLocation; }
-            else 
-            {
-                PresentClues(true);
+            if (endBehaviour.warp) {
+                if (endBehaviour.hasDialogueTree) { Debug.LogError("Can not warp and respond to an NPC at the same time", transform); }
+                if (!endBehaviour.presentClues)
+                { player.transform.position = endBehaviour.warpLocation; }
             }
-        }
 
-        //Determines what conversation to load next
-        if (endBehaviour.hasDialogueTree)
-        {
-            responding = true;
-            CreatePlayerResponses();
-        } else if (!endBehaviour.warp && conversation[conversationToLoad].persistentConversation && conversation[conversationToLoad].nextDialogue[0] != -1) {
-            conversationToLoad = conversation[conversationToLoad].nextDialogue[0];
-            CreateDialogue(conversation[conversationToLoad]);
-        }
-        else if (conversation[conversationToLoad].nextDialogue.Count() > 0) {
-            conversationToLoad = conversation[conversationToLoad].nextDialogue[0];
-            isTalking = false;
-        } else { conversationToLoad = -1; isTalking = false; }
+            //Determines what conversation to load next
+            if (endBehaviour.hasDialogueTree)
+            {
+                responding = true;
+                CreatePlayerResponses();
+            } else if (!endBehaviour.warp && conversation[conversationToLoad].persistentConversation && conversation[conversationToLoad].nextDialogue[0] != -1) {
+                conversationToLoad = conversation[conversationToLoad].nextDialogue[0];
+                CreateDialogue(conversation[conversationToLoad]);
+            }
+            else if (conversation[conversationToLoad].nextDialogue.Count() > 0) {
+                conversationToLoad = conversation[conversationToLoad].nextDialogue[0];
+                isTalking = false;
+            } else { conversationToLoad = -1; isTalking = false; }
 
-        if (endBehaviour.setNextConversationToStartOnProximity) {
-            speakOnProximity = true;
+            if (endBehaviour.setNextConversationToStartOnProximity) {
+                speakOnProximity = true;
+            }
         }
     }
 
-    private void PresentClues(bool warpAfter = false) { 
-    
+    private void PresentClues(string correctClue) {
+        PresentClue presentButton = GameObject.Find("UI").transform.GetChild(0).GetChild(6).gameObject.GetComponent<PresentClue>();
+        presentButton.correctItem = correctClue;
+        presentButton.NPC = this;
+        if (conversation[conversationToLoad].nextDialogue.Length > 1)
+        {
+            presentButton.correctLoad = conversation[conversationToLoad].nextDialogue[0];
+            presentButton.wrongLoad = conversation[conversationToLoad].nextDialogue[1];
+        }
+        else {
+            presentButton.correctLoad = -1;
+            presentButton.wrongLoad = -1;
+        }
+        journal.Pause();
+        journal.canClose = false;
+        journal.isPresenting = true;
     }
 
     //If there are player responses, populate buttons with response text, and target if applicable

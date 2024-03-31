@@ -17,6 +17,7 @@ public class InventorySlot : MonoBehaviour
         {
             GameObject.Find("Item Description").GetComponent<Text>().text = item.itemDescription;
             inspector.OnInspect(item, true);
+            GameObject.Find("UI").transform.GetChild(0).GetComponent<JournalManager>().PopulatePresentButton(item);
         }
     }
 
