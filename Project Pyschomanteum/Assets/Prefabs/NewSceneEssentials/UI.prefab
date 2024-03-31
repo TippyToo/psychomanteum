@@ -185,21 +185,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: EnableMovement
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1423356387153017827}
-        m_TargetAssemblyTypeName: ItemInspection, Assembly-CSharp
-        m_MethodName: DeleteInspectedObject
+      - m_Target: {fileID: 5212741669893205314}
+        m_TargetAssemblyTypeName: JournalManager, Assembly-CSharp
+        m_MethodName: EnableJournalBehaviour
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1849,6 +1837,7 @@ MonoBehaviour:
   correctLoad: 0
   wrongLoad: 0
   toPresent: 
+  NPC: {fileID: 0}
 --- !u!1 &2669123808500751101
 GameObject:
   m_ObjectHideFlags: 0

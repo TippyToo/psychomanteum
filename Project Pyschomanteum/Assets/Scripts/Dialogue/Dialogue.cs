@@ -103,11 +103,13 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
         {
             if ((speaking || isTalking || responding) && journal.IsPaused())
             {
-                dialogueBox.SetActive(false);
+                dialogueBox.transform.GetChild(0).gameObject.SetActive(true);
+                dialogueBox.transform.GetChild(1).gameObject.SetActive(true);
             }
             else if ((speaking || isTalking || responding) && !journal.IsPaused())
             {
-                dialogueBox.SetActive(true);
+                dialogueBox.transform.GetChild(0).gameObject.SetActive(false);
+                dialogueBox.transform.GetChild(1).gameObject.SetActive(false);
             }
         }
         //Locks the players movement while talking
@@ -362,6 +364,10 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
 
     //After the NPC finishes their dialogue, cleans up and prepares the end behaviour
     private void EndConversation() {
+        if (journal.isOpen)
+        {
+            journal.CloseJournal();
+        }
         currSentence = 0;
         dialogueBox.SetActive(false);
         playerResponseBox.transform.GetChild(1).gameObject.SetActive(false);
@@ -377,7 +383,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
         } else { 
 
             if (endBehaviour.warp) {
-                if (endBehaviour.hasDialogueTree) { Debug.LogError("Can not warp and respond to an NPC at the same time", transform); }
+                if (endBehaviour.hasDialogueTree) { Debug.LogError("Can not warp and respond to an NPC at the same time at element " + conversationToLoad, transform); }
                 if (!endBehaviour.presentClues)
                 { player.transform.position = endBehaviour.warpLocation; }
             }

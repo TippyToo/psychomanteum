@@ -85,6 +85,8 @@ public class InventoryManager : MonoBehaviour, IDataPersistance
     // Start is called before the first frame update
     void Start()
     {
+        inventorySlots = GameObject.Find("UI").transform.GetChild(0).GetChild(1).GetChild(6).gameObject;
+        clueSlots = GameObject.Find("UI").transform.GetChild(0).GetChild(2).GetChild(6).gameObject;
         currentInventoryText = inventorySlots.transform.GetChild(0).GetComponent<Text>();
         currentClueText = clueSlots.transform.GetChild(0).GetComponent<Text>();
         UpdateInventory(GameObject.Find("Level Manager").GetComponent<LevelManager>().level);

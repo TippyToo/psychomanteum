@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,21 +16,6 @@ public class PresentClue : MonoBehaviour
     public string toPresent;
 
     public Dialogue NPC;
-    // Start is called before the first frame update
-    private void Awake()
-    {
-        
-    }
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void OnClick() {
         GameObject temp = journalManager.transform.GetChild(7).gameObject;
@@ -68,9 +50,13 @@ public class PresentClue : MonoBehaviour
         }
         journalManager.CloseJournal();
         NPC.CreateDialogue(NPC.conversation[NPC.conversationToLoad]);
-
     }
-
+    public void Cancel() {
+        journalManager.canClose = true;
+        NPC.conversationToLoad = wrongLoad;
+        journalManager.CloseJournal();
+        NPC.CreateDialogue(NPC.conversation[NPC.conversationToLoad]);
+    }
     public void No() { journalManager.PopSection(); }
     public void OnClose() {
         itemToPresent = null;

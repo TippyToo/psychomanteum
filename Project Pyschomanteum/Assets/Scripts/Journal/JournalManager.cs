@@ -54,20 +54,20 @@ public class JournalManager : MonoBehaviour
         paused = !paused;
         if (paused) {
             if (canOpen) { 
-            Time.timeScale = 0;
-            //GameObject.Find("Inventory Manager").GetComponent<InventoryManager>().UpdateInventory();
-            isOpen = true;
-            ShowChapterTabs();
-            if (player.canMove){
-                if (lastOpened != null) { PushSection(lastOpened); }
-                else { PushSection(homePage); }
-            } else {
-                PushSection(cluesPage);
-            }
+                Time.timeScale = 0;
+                //GameObject.Find("Inventory Manager").GetComponent<InventoryManager>().UpdateInventory();
+                isOpen = true;
+                ShowChapterTabs();
+                if (player.canMove){
+                    if (lastOpened != null) { PushSection(lastOpened); }
+                    else { PushSection(homePage); }
+                } else {
+                    PushSection(cluesPage);
+                }
             }
         } else {
-            if (canClose) { 
-                CloseJournal();
+            if (canClose) {
+                if (isOpen) { CloseJournal(); }
             }
         }
     }
@@ -79,8 +79,12 @@ public class JournalManager : MonoBehaviour
     }
     public void PushNewJournalSection(GameObject section) {
         //Add specified section
-        PopAll();
-        PushSection(section);
+        if (section.name == "Home Page") {
+            if (isPresenting) { transform.GetChild(6).GetComponent<PresentClue>().Cancel(); }
+        } else { 
+            PopAll();
+            PushSection(section);
+        }
     }
     public void PopSection() {
         //Remove current section
@@ -99,6 +103,15 @@ public class JournalManager : MonoBehaviour
         itemDescription.text = "";
         clueDescription.text = "";
         Time.timeScale = 1;
+    }
+    public void EnableJournalBehaviour() {
+        canOpen = true;
+        canClose = true;
+    }
+    public void DisableJournalBehaviour()
+    {
+        canOpen = false;
+        canClose = false;
     }
     private void PopAll()
     {
@@ -124,6 +137,7 @@ public class JournalManager : MonoBehaviour
     }
     #endregion
 
+    //Changes the amount of chapters you have access to in your journal based on the level
     public void SetJournalChapterAccess()
     {
         int level = GameObject.Find("Level Manager").GetComponent<LevelManager>().level;

@@ -44,6 +44,7 @@ public class ItemBehaviour : MonoBehaviour, IDataPersistance
         }
         if (detectsPlayer && Input.GetButtonUp("Interact") && !collected)
         {
+            GameObject.Find("UI").transform.GetChild(0).GetComponent<JournalManager>().canOpen = false;
             itemInspector.OnInspect(itemData);
             GameObject.Find("Player").GetComponent<PlayerController>().DisableMovement();
             AddToInventory();

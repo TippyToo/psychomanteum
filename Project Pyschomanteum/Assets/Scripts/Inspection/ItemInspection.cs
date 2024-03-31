@@ -80,6 +80,7 @@ public class ItemInspection : MonoBehaviour, IDragHandler, IPointerClickHandler
     public void DisableChildren() {
         DeleteInspectedObject();
         itemPrefab = null;
+        GameObject.Find("Player").GetComponent<PlayerController>().EnableMovement();
         transform.GetChild(0).gameObject.SetActive(false);
         transform.GetChild(1).gameObject.SetActive(false);
         transform.GetChild(2).gameObject.SetActive(false);
