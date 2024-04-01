@@ -53,15 +53,16 @@ public class IsInteractable : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            if (transform.parent != null && transform.parent.GetComponent<Dialogue>() != null && transform.parent.GetComponent<Dialogue>().player == null) {
-                transform.parent.GetComponent<Dialogue>().player = other.GetComponent<PlayerController>();
+            if (transform.parent != null && transform.parent.GetComponent<Dialogue>() != null) {
+                if (transform.parent.GetComponent<Dialogue>().player == null)
+                {
+                    transform.parent.GetComponent<Dialogue>().player = other.GetComponent<PlayerController>();
+                }
+                transform.parent.GetComponent<Dialogue>().SpeakOnProximity();
             }
             detectsPlayer = true;
             StopAllCoroutines();
             StartCoroutine(FadeIn(GetComponent<SpriteRenderer>()));
-        }
-        if (transform.parent != null && transform.parent.GetComponent<Dialogue>() != null) {
-            transform.parent.GetComponent<Dialogue>().SpeakOnProximity();
         }
     }
     private void OnTriggerExit(Collider other)
