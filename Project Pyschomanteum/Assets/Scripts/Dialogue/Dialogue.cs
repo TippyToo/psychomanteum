@@ -46,7 +46,8 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
     public int conversationToLoad = 0;
     private int currSentence = 0;
     private bool inspectAfter = false;
-    private bool inspecting = false;
+    [HideInInspector]
+    public bool inspecting = false;
 
     private List<float> dialogueTalkSpeeds;
     private List<Sprite> dialogueBoxImages;
@@ -106,13 +107,11 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
         {
             if ((speaking || isTalking || responding) && journal.IsPaused())
             {
-                dialogueBox.transform.GetChild(0).gameObject.SetActive(true);
-                dialogueBox.transform.GetChild(1).gameObject.SetActive(true);
+                dialogueBox.SetActive(false);
             }
             else if ((speaking || isTalking || responding) && !journal.IsPaused())
             {
-                dialogueBox.transform.GetChild(0).gameObject.SetActive(false);
-                dialogueBox.transform.GetChild(1).gameObject.SetActive(false);
+                dialogueBox.SetActive(true);
             }
         }
         //Locks the players movement while talking
@@ -147,6 +146,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
                 dialogueBox.transform.GetChild(2).gameObject.SetActive(false);
                 if (inspectAfter)
                 {
+                    dialogueBox.SetActive(false);
                     inspecting = true;
                     inspectAfter = false;
                     GameObject tempObj = conversation[conversationToLoad].npcSentences[currSentence].objectClue;

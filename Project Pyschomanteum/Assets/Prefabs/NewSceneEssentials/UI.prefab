@@ -687,6 +687,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clueFound: {fileID: 0}
+  NPC: {fileID: 0}
 --- !u!1 &1541092864089277500
 GameObject:
   m_ObjectHideFlags: 0
@@ -2811,6 +2812,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clueFound: {fileID: 0}
+  NPC: {fileID: 0}
 --- !u!1 &3031086389915701966
 GameObject:
   m_ObjectHideFlags: 0
@@ -3822,7 +3824,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d671e2d8e02721149b4558933d5fb0c3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7f7e7b63d01d5084ab14a87b62e9a761, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

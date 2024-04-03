@@ -761,7 +761,7 @@ TerrainCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_TerrainData: {fileID: 15600000, guid: 6f59b6d72e41ab64880542e3ba970669, type: 2}
+  m_TerrainData: {fileID: 15600000, guid: caee070c980c721429e041eff5a435b9, type: 2}
   m_EnableTreeColliders: 1
 --- !u!218 &2038061336
 Terrain:
@@ -772,7 +772,7 @@ Terrain:
   m_GameObject: {fileID: 2038061334}
   m_Enabled: 1
   serializedVersion: 6
-  m_TerrainData: {fileID: 15600000, guid: 6f59b6d72e41ab64880542e3ba970669, type: 2}
+  m_TerrainData: {fileID: 15600000, guid: caee070c980c721429e041eff5a435b9, type: 2}
   m_TreeDistance: 5000
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
@@ -1492,7 +1492,7 @@ PrefabInstance:
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[0].persistentConversation
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
@@ -1733,6 +1733,11 @@ PrefabInstance:
         type: 3}
       propertyPath: conversation.Array.data[1].endBehaviour.warpLocation.x
       value: -11.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[1].endBehaviour.warpLocation.y
+      value: 13.44
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}

@@ -7052,7 +7052,7 @@ PrefabInstance:
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[2].npcSentences.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
@@ -7062,7 +7062,7 @@ PrefabInstance:
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[3].npcSentences.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
@@ -7161,7 +7161,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
+      propertyPath: conversation.Array.data[3].npcSentences.Array.data[1].clueName
+      value: Kawaski Drill
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
       propertyPath: conversation.Array.data[3].npcSentences.Array.data[0].objectClue
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[3].npcSentences.Array.data[1].objectClue
       value: 
       objectReference: {fileID: 9070863077436328185, guid: fe5c82fdf0610214c8a0c3a7be1fb297,
         type: 3}
@@ -7203,8 +7213,13 @@ PrefabInstance:
       propertyPath: conversation.Array.data[2].npcSentences.Array.data[0].sentenceText
       value: 'Victorian Salesman: Why, I''ve got this wonderful little green toy
         pistol here. It comes straight from the Orient! When you pull the trigger,
-        the little bit at the front spins! Certainly doesn''t look like any pistol
-        I''ve ever seen, by George, but it''s sure to be a blast for little Tommy!'
+        the little bit at the front spins! Certainly doesn''t look '
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[2].npcSentences.Array.data[1].sentenceText
+      value: like any pistol I've ever seen, by George, but it's sure to be a blast
+        for little Tommy!
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
@@ -7214,9 +7229,14 @@ PrefabInstance:
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[3].npcSentences.Array.data[0].sentenceText
-      value: 'Victorian Salesman: Normally, something like this would run you a hundred
-        pence, but I''ll what, by Golly by George, I like the cut of your jib guvnah!
-        It''s on the house! A gift from the King if you will!
+      value: "Victorian Salesman: Normally, something like this would run you a hundred
+        pence, but I'll what, by Golly by George, I like the cut of your jib guvnah!
+        It's on the house! \n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[3].npcSentences.Array.data[1].sentenceText
+      value: 'A gift from the King if you will!
 
 '
       objectReference: {fileID: 0}

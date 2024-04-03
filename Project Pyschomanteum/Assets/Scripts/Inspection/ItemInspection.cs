@@ -87,6 +87,7 @@ public class ItemInspection : MonoBehaviour, IDragHandler, IPointerClickHandler
         if (NPC != null) {
             Dialogue temp = NPC.GetComponent<Dialogue>();
             temp.DecideEndBehaviour();
+            temp.inspecting = false;
         }
     }
 }
