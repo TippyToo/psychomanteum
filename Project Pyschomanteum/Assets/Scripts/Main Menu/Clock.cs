@@ -10,13 +10,13 @@ public class Clock : MonoBehaviour
     int minute;
     bool isPM;
 
-    public Image meridiemSlot;
+    public GameObject amSlot;
+    public GameObject pmSlot;
     public Image hourSlot1;
     public Image hourSlot2;
     public Image minuteSlot1;
     public Image minuteSlot2;
 
-    public Sprite[] meridiemSprites = new Sprite[2];
     public Sprite[] digitSprites = new Sprite[10];
 
     // Start is called before the first frame update
@@ -41,17 +41,24 @@ public class Clock : MonoBehaviour
         minute = time.Minute;
 
         // Assign AM/PM
-        meridiemSlot.sprite = isPM ? meridiemSprites[1] : meridiemSprites[0];
+        amSlot.SetActive(!isPM);
+        pmSlot.SetActive(isPM);
 
         // Assign hour slots
         if (hour > 9)
         {
+            hourSlot1.gameObject.SetActive(true);
             hourSlot1.sprite = digitSprites[1];
             hourSlot2.sprite = digitSprites[hour-10];
         }
+        else if (hour == 0)
+        {
+            hourSlot1.sprite = digitSprites[1];
+            hourSlot2.sprite = digitSprites[2];
+        }
         else
         {
-            hourSlot1.sprite = null;
+            hourSlot1.gameObject.SetActive(false);
             hourSlot2.sprite = digitSprites[hour];
         }
 
