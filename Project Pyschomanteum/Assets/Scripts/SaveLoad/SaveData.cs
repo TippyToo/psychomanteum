@@ -8,6 +8,7 @@ public class SaveData
     //Add things that would need to be saved here. Including but is not limited to journal entries, dialogue, checkpoints, inventory, world falgs, etc.
 
     public int chapter;
+    public string sceneToLoad; 
 
     //Objects
     public SerializableDictionary<string, bool> collectedItems;
@@ -25,6 +26,7 @@ public class SaveData
 
     public SaveData() {
         chapter = 1;
+        sceneToLoad = "Iona's Pyschomanteum";
         collectedItems = new SerializableDictionary<string, bool>();
         collectedItemChapters = new SerializableDictionary<string, int>();
         collectedItemDescriptions = new SerializableDictionary<string, string>();

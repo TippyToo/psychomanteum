@@ -976,6 +976,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
+      propertyPath: conversation.Array.data[7].endBehaviour.changeScene
+      value: Asphodel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
       propertyPath: conversation.Array.data[0].nextDialogue.Array.data[0]
       value: 1
       objectReference: {fileID: 0}
@@ -1472,6 +1477,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978058640666460698, guid: 4778ed0697456444d8c96a306f05745e,
+        type: 3}
+      propertyPath: lock2D
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6978058640666460698, guid: 4778ed0697456444d8c96a306f05745e,
         type: 3}

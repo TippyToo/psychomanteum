@@ -52,6 +52,16 @@ public class SaveSlot : MonoBehaviour
 
     }
 
+    public void Play() {
+        if (saveManager.saveData[saveSlot] != null)
+        {
+            
+        }
+        else {
+            //SceneManager.LoadScene(saveManager.saveData[saveSlot].sceneToLoad);
+        }
+    }
+
     public void DeleteSavePrompt()
     {
         menu.Push(deleteSavePrompt);
@@ -68,8 +78,10 @@ public class SaveSlot : MonoBehaviour
 
     private void LoadGame() {
         saveManager.LoadGame(saveSlot);
+        SceneManager.LoadScene(saveManager.saveData[saveSlot].sceneToLoad);
     }
     private void NewGame() {
         saveManager.NewGame(saveSlot);
+        SceneManager.LoadScene(saveManager.saveData[saveSlot].sceneToLoad);
     }
 }
