@@ -1480,6 +1480,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6978058640666460698, guid: 4778ed0697456444d8c96a306f05745e,
         type: 3}
+      propertyPath: lock2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978058640666460698, guid: 4778ed0697456444d8c96a306f05745e,
+        type: 3}
       propertyPath: groundDistance
       value: 1
       objectReference: {fileID: 0}
