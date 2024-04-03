@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &1470537814357723133
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 344977066420437606, guid: 6d1a27c44de6d1741a517b52eb877198,
+        type: 3}
+      propertyPath: itemDescription
+      value: 'Property of Dave Cicero: If found, return to 346 Rose Way.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1816454958470049418, guid: 6d1a27c44de6d1741a517b52eb877198,
+        type: 3}
+      propertyPath: m_Name
+      value: Shear Clue
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298009206901429769, guid: 6d1a27c44de6d1741a517b52eb877198,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300002, guid: c562592af2b0f46a9b70b72062643dfe, type: 3}
+    - target: {fileID: 7985777526096110652, guid: 6d1a27c44de6d1741a517b52eb877198,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.087698
+      objectReference: {fileID: 0}
+    - target: {fileID: 7985777526096110652, guid: 6d1a27c44de6d1741a517b52eb877198,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.55334795
+      objectReference: {fileID: 0}
+    - target: {fileID: 7985777526096110652, guid: 6d1a27c44de6d1741a517b52eb877198,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.379249
+      objectReference: {fileID: 0}
+    - target: {fileID: 7985777526096110652, guid: 6d1a27c44de6d1741a517b52eb877198,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7985777526096110652, guid: 6d1a27c44de6d1741a517b52eb877198,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7985777526096110652, guid: 6d1a27c44de6d1741a517b52eb877198,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7985777526096110652, guid: 6d1a27c44de6d1741a517b52eb877198,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7985777526096110652, guid: 6d1a27c44de6d1741a517b52eb877198,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7985777526096110652, guid: 6d1a27c44de6d1741a517b52eb877198,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7985777526096110652, guid: 6d1a27c44de6d1741a517b52eb877198,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 3600297742040084262, guid: 6d1a27c44de6d1741a517b52eb877198, type: 3}
+    - {fileID: 4463801942187555961, guid: 6d1a27c44de6d1741a517b52eb877198, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6d1a27c44de6d1741a517b52eb877198, type: 3}
