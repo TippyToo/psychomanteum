@@ -64,9 +64,10 @@ public class ItemBehaviour : MonoBehaviour, IDataPersistance
         }
     }
 
-    public void AddToInventoryFromDialogue() {
+    public void AddToInventoryFromDialogue(GameObject NPC) {
         itemName = transform.name;
         itemInspector = GameObject.Find("Item Inspection").GetComponent<ItemInspection>();
+        itemInspector.NPC = NPC;
         itemData = new ItemData(itemName, itemDescription, chapter, collected);
         GameObject.Find("UI").transform.GetChild(0).GetComponent<JournalManager>().canOpen = false;
         itemInspector.OnInspect(itemData);

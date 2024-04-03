@@ -46,6 +46,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
     public int conversationToLoad = 0;
     private int currSentence = 0;
     private bool inspectAfter = false;
+    private bool inspecting = false;
 
     private List<float> dialogueTalkSpeeds;
     private List<Sprite> dialogueBoxImages;
@@ -121,7 +122,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
 
     //Determine how the interact button should function based on the current state of dialogue
     private void InteractButton() {
-        if (detectsPlayer && Input.GetButtonUp("Interact") && !responding && !journal.isOpen && !speakOnProximity)
+        if (detectsPlayer && Input.GetButtonUp("Interact") && !responding && !journal.isOpen && !speakOnProximity && !inspecting)
         {
             if (!isTalking)
             {
@@ -144,12 +145,16 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
                 StopAllCoroutines();
                 arrow.SetActive(false);
                 dialogueBox.transform.GetChild(2).gameObject.SetActive(false);
-                if (currentDialogue.Count() <= 0)
-                { EndConversation(); }
+                if (inspectAfter)
+                {
+                    inspecting = true;
+                    inspectAfter = false;
+                    GameObject tempObj = conversation[conversationToLoad].npcSentences[currSentence].objectClue;
+                    tempObj.GetComponent<ItemBehaviour>().AddToInventoryFromDialogue(this.gameObject);
+                }
                 else
                 {
-                    currSentence++;
-                    StartCoroutine(WriteText());
+                    DecideEndBehaviour();
                 }
             }
         }
@@ -349,8 +354,6 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
             }
             if (objectClues[currSentence] == 1)
             {
-                GameObject tempObj = conversation[conversationToLoad].npcSentences[currSentence].objectClue;
-                tempObj.GetComponent<ItemBehaviour>().AddToInventoryFromDialogue();
                 StartCoroutine(Scribble());
                 inspectAfter = true;
             }
@@ -365,9 +368,18 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
         dialogueBox.transform.GetChild(2).gameObject.SetActive(false);
     }
     #endregion
-
+    public void DecideEndBehaviour()
+    {
+        if (currentDialogue.Count() <= 0)
+        { EndConversation(); }
+        else
+        {
+            currSentence++;
+            StartCoroutine(WriteText());
+        }
+    }
     //After the NPC finishes their dialogue, cleans up and prepares the end behaviour
-    private void EndConversation() {
+    public void EndConversation() {
         if (journal.isOpen)
         {
             journal.CloseJournal();

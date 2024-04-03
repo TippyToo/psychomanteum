@@ -11,10 +11,10 @@ public class ItemInspection : MonoBehaviour, IDragHandler, IPointerClickHandler
     protected Camera UICamera;
     protected RectTransform RawImageRectTrans;
     protected Camera RenderToTextureCamera;
-    //[HideInInspector] 
+    [HideInInspector] 
     public GameObject clueFound;
-
-
+    [HideInInspector]
+    public GameObject NPC = null;
     private void Awake()
     {
         inventoryManager = GameObject.Find("Inventory Manager").GetComponent<InventoryManager>();
@@ -84,5 +84,9 @@ public class ItemInspection : MonoBehaviour, IDragHandler, IPointerClickHandler
         transform.GetChild(0).gameObject.SetActive(false);
         transform.GetChild(1).gameObject.SetActive(false);
         transform.GetChild(2).gameObject.SetActive(false);
+        if (NPC != null) {
+            Dialogue temp = NPC.GetComponent<Dialogue>();
+            temp.DecideEndBehaviour();
+        }
     }
 }
