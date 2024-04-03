@@ -439,7 +439,7 @@ PrefabInstance:
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.size
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
@@ -460,6 +460,11 @@ PrefabInstance:
         type: 3}
       propertyPath: conversation.Array.data[2].persistentConversation
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[3].persistentConversation
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
@@ -493,6 +498,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
+      propertyPath: conversation.Array.data[3].nextDialogue.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[3].npcSentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[4].nextDialogue.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[4].npcSentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[0].endBehaviour.presentClues
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
       propertyPath: conversation.Array.data[0].nextDialogue.Array.data[0]
       value: 1
       objectReference: {fileID: 0}
@@ -504,7 +534,7 @@ PrefabInstance:
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[1].nextDialogue.Array.data[0]
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
@@ -523,6 +553,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
+      propertyPath: conversation.Array.data[3].nextDialogue.Array.data[0]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[4].nextDialogue.Array.data[0]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[0].endBehaviour.correctClueName
+      value: Dossier
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
       propertyPath: conversation.Array.data[0].playerResponses.Array.data[0]
       value: Present Dossier
       objectReference: {fileID: 0}
@@ -536,6 +581,21 @@ PrefabInstance:
       propertyPath: conversation.Array.data[2].playerResponses.Array.data[0]
       value: Present TV Remote
       objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[3].npcSentences.Array.data[0].clueName
+      value: Shears
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[4].npcSentences.Array.data[0].clueName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[3].npcSentences.Array.data[0].objectClue
+      value: 
+      objectReference: {fileID: 767012439}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[0].npcSentences.Array.data[0].sentenceText
@@ -594,6 +654,34 @@ PrefabInstance:
         backward in the mirror, it's just easier to cut out the middleman! Anyway,
         my memory is coming back to me now. She was in here all right, just a day
         ago. I think she left something behind, let me check the back.\r"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[3].npcSentences.Array.data[0].sentenceText
+      value: 'Tony: Not entirely sure what she was doing with these, but there''s
+        an address written on them. Knock yourself out.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[3].npcSentences.Array.data[1].sentenceText
+      value: 'Tony: No freakin'' way!
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[3].npcSentences.Array.data[2].sentenceText
+      value: "What? You know how hard it is to change the channel on this thing with
+        the remote? I gotta hold up a mirror just to see that I'm using the right
+        knob, and then I have to turn it in the opposite direction since it's flipped
+        backward in the mirror, it's just easier to cut out the middleman! Anyway,
+        my memory is coming back to me now. She was in here all right, just a day
+        ago. I think she left something behind, let me check the back.\r"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[4].npcSentences.Array.data[0].sentenceText
+      value: 'Iona: Thanks, Tony. We''ll be on our way now.'
       objectReference: {fileID: 0}
     - target: {fileID: 5150859441709233091, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
@@ -1423,6 +1511,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1497236322}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &767012439 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1742647763144210, guid: 723f84f13904f514ab8f3ca3d5b57c77,
+    type: 3}
+  m_PrefabInstance: {fileID: 2039706623}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &778588845
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1999,7 +2093,7 @@ PrefabInstance:
     - target: {fileID: 1309536799974350605, guid: 95041813f0aaa594a829621b983e1197,
         type: 3}
       propertyPath: sceneNameToLoad
-      value: Scene1
+      value: Asphodel
       objectReference: {fileID: 0}
     - target: {fileID: 4102424327938573600, guid: 95041813f0aaa594a829621b983e1197,
         type: 3}
@@ -3658,6 +3752,63 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 442281040}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2039706623
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1742647763144210, guid: 723f84f13904f514ab8f3ca3d5b57c77, type: 3}
+      propertyPath: m_Name
+      value: ScissorsForGrass
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454761049188796, guid: 723f84f13904f514ab8f3ca3d5b57c77, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 11.945205
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454761049188796, guid: 723f84f13904f514ab8f3ca3d5b57c77, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.00022538076
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454761049188796, guid: 723f84f13904f514ab8f3ca3d5b57c77, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.798682
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454761049188796, guid: 723f84f13904f514ab8f3ca3d5b57c77, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454761049188796, guid: 723f84f13904f514ab8f3ca3d5b57c77, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454761049188796, guid: 723f84f13904f514ab8f3ca3d5b57c77, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454761049188796, guid: 723f84f13904f514ab8f3ca3d5b57c77, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454761049188796, guid: 723f84f13904f514ab8f3ca3d5b57c77, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454761049188796, guid: 723f84f13904f514ab8f3ca3d5b57c77, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454761049188796, guid: 723f84f13904f514ab8f3ca3d5b57c77, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 723f84f13904f514ab8f3ca3d5b57c77, type: 3}
 --- !u!1001 &2057478564
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3748,3 +3899,4 @@ SceneRoots:
   - {fileID: 840367937}
   - {fileID: 901351904}
   - {fileID: 256552212}
+  - {fileID: 2039706623}

@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Asphodel.unity
     guid: eb38ed1ac785ea64580c16ff04f1b6c9
+  - enabled: 1
+    path: Assets/Scenes/Puzzles.unity
+    guid: 7f2697bd3ac4d2a4aae738e4432732ac
   m_configObjects: {}
