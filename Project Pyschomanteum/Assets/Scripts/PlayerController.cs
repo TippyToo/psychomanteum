@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour, IDataPersistance
     public float verticalMoveSpeed;
     public float horizontalMoveSpeed;
 
+    public bool lock2D = false;
+
     //Raycast Stuff
         //Offset 
     public float groundDistance;
@@ -83,7 +85,9 @@ public class PlayerController : MonoBehaviour, IDataPersistance
         //Character movement controlled here
         if (CanMove()) {
             float x = Input.GetAxis("Horizontal");
-            float z = Input.GetAxis("Vertical");
+            float z = 0;
+            if (lock2D) { z = 0; }
+            else { z = Input.GetAxis("Vertical"); }
             rigidBody.velocity = new Vector3((x * horizontalMoveSpeed), 0.0f, (z * verticalMoveSpeed));
             if (x < 0) { transform.localScale = new Vector3(-scale.x, scale.y, scale.z); }
             else if (x > 0) { transform.localScale = new Vector3(scale.x, scale.y, scale.z); }
