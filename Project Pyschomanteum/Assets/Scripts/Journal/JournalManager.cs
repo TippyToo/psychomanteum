@@ -79,9 +79,9 @@ public class JournalManager : MonoBehaviour
     }
     public void PushNewJournalSection(GameObject section) {
         //Add specified section
-        if (section.name == "Home Page") {
-            if (isPresenting) { transform.GetChild(6).GetComponent<PresentClue>().Cancel(); }
-        } else { 
+        if (isPresenting && section.name == "Home Page") {
+            transform.GetChild(6).GetComponent<PresentClue>().Cancel();
+        } else {
             PopAll();
             PushSection(section);
         }
