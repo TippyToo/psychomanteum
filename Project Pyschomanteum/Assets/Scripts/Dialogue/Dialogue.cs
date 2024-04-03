@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
 {
@@ -44,6 +45,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
     private Queue<string> currentDialogue = new Queue<string>();
     public int conversationToLoad = 0;
     private int currSentence = 0;
+    private bool inspectAfter = false;
 
     private List<float> dialogueTalkSpeeds;
     private List<Sprite> dialogueBoxImages;
@@ -347,8 +349,10 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
             }
             if (objectClues[currSentence] == 1)
             {
-                conversation[conversationToLoad].npcSentences[currSentence].objectClue.GetComponent<ItemBehaviour>().AddToInventoryFromDialogue();
+                GameObject tempObj = conversation[conversationToLoad].npcSentences[currSentence].objectClue;
+                tempObj.GetComponent<ItemBehaviour>().AddToInventoryFromDialogue();
                 StartCoroutine(Scribble());
+                inspectAfter = true;
             }
         }
     }
@@ -377,6 +381,10 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
         }
 
         EndBehaviour endBehaviour = conversation[conversationToLoad].endBehaviour;
+
+        if (endBehaviour.changeScene != "" && endBehaviour.changeScene != null) {
+            SceneManager.LoadScene(endBehaviour.changeScene);
+        }
 
         if (endBehaviour.presentClues && endBehaviour.correctClueName != null) {
             PresentClues(endBehaviour.correctClueName);

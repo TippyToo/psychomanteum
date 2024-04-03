@@ -15,5 +15,7 @@ public struct EndBehaviour
     public bool hasDialogueTree;
     [Tooltip("Only populate if Has Dialogue Tree is checked (Max of three options/up to element 2)")]
     public string[] playerResponses;
+    [Tooltip("Name of the scene to change to after dialogue ends.")]
+    public string changeScene;
     public bool setNextConversationToStartOnProximity;
 }

@@ -51,24 +51,27 @@ public class ItemBehaviour : MonoBehaviour, IDataPersistance
         }
     }
 
-    public void AddToInventory()
+    public void AddToInventory(bool fromNPC = false)
     {
         //Adds items to inventory and marks it as collected
         itemData.collect();
-        collected = true;
         GameObject.Find("Inventory Manager").GetComponent<InventoryManager>().totalInventory.Add(this.itemData);
         GameObject.Find("Inventory Manager").GetComponent<InventoryManager>().UpdateInventory();
-        gameObject.SetActive(false);
+        if (fromNPC == false)
+        {
+            gameObject.SetActive(false);
+            collected = true;
+        }
     }
 
     public void AddToInventoryFromDialogue() {
         itemName = transform.name;
         itemInspector = GameObject.Find("Item Inspection").GetComponent<ItemInspection>();
         itemData = new ItemData(itemName, itemDescription, chapter, collected);
-        itemData.collect();
-        collected = true;
-        GameObject.Find("Inventory Manager").GetComponent<InventoryManager>().totalInventory.Add(this.itemData);
-        GameObject.Find("Inventory Manager").GetComponent<InventoryManager>().UpdateInventory();
+        GameObject.Find("UI").transform.GetChild(0).GetComponent<JournalManager>().canOpen = false;
+        itemInspector.OnInspect(itemData);
+        GameObject.Find("Player").GetComponent<PlayerController>().DisableMovement();
+        AddToInventory(true);
     }
 
     private void OnTriggerEnter(Collider other)
