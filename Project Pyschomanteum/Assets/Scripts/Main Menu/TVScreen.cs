@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -7,7 +8,7 @@ using UnityEngine.UIElements;
 public class TVScreen : MonoBehaviour
 {
     Stack<GameObject> tvScreen = new Stack<GameObject>();
-    private int sceneToLoad = 1;
+
 
     // Stack functions
     public void Push(GameObject screen)
@@ -27,15 +28,17 @@ public class TVScreen : MonoBehaviour
     }
 
 
-    // Button functions
-    public void Play()
-    {
-        SceneManager.LoadScene(sceneToLoad);
-    }
-
     public void Quit()
     {
         Application.Quit();
+    }
+
+    public void DecideLoadButtonBehaviors()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            transform.GetChild(0).GetChild(i).GetComponent<SaveSlot>().DecideButtonBehavior();
+        }
     }
 
 }
