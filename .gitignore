@@ -83,3 +83,4 @@ crashlytics-build.properties
 /Project Pyschomanteum/UserSettings/Layouts/default-2022.dwlt
 /Project Pyschomanteum/obj/Debug/Assembly-CSharp-Editor.csproj.AssemblyReference.cache
 *.dwit
+*.dwlt
