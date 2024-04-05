@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 public class TVScreen : MonoBehaviour
 {
     Stack<GameObject> tvScreen = new Stack<GameObject>();
-
+    private int saveSlots = 3;
 
     // Stack functions
     public void Push(GameObject screen)
@@ -35,9 +35,9 @@ public class TVScreen : MonoBehaviour
 
     public void DecideLoadButtonBehaviors()
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < saveSlots; i++)
         {
-            transform.GetChild(0).GetChild(i).GetComponent<SaveSlot>().DecideButtonBehavior();
+            transform.GetChild(1).GetChild(i).GetComponent<SaveSlot>().DecideButtonBehavior();
         }
     }
 

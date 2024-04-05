@@ -11,8 +11,6 @@ public class TapeMover : MonoBehaviour
     public Tape activeTape;
     private TVScreen screen;
 
-    private float tapeMoveSpeed = 200; 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -25,10 +23,6 @@ public class TapeMover : MonoBehaviour
         screen = FindObjectOfType<TVScreen>();
     }
 
-    private void Update()
-    {
-        
-    }
     public void MoveTape(Tape tape)
     {
         
@@ -46,12 +40,6 @@ public class TapeMover : MonoBehaviour
 
     void ActivateTape(Tape tape) 
     {
-        int timer = 0;
-        while (tape.transform.position != slots[0] && ++timer < 1000)
-        {
-            tape.transform.position = Vector3.MoveTowards(tape.transform.position, slots[0], tapeMoveSpeed);
-            print("movin " + timer);
-        }
         tape.transform.position = slots[0];
         activeTape = tape;
         screen.Push(tape.associatedScreen);
@@ -59,12 +47,6 @@ public class TapeMover : MonoBehaviour
 
     void DeactivateTape(Tape tape) 
     {
-        int timer = 0;
-        while (tape.transform.position != slots[tape.homeSlot] && ++timer < 1000)
-        {
-            tape.transform.position = Vector3.MoveTowards(tape.transform.position, slots[tape.homeSlot], tapeMoveSpeed);
-            print("movin " + timer);
-        }
         tape.transform.position = slots[tape.homeSlot];
         activeTape = null;
         screen.PopAll();

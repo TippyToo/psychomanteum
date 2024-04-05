@@ -500,11 +500,11 @@ RectTransform:
   m_LocalScale: {x: 0.300354, y: 0.300354, z: 0.300354}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 988590455}
   - {fileID: 1218560261}
   - {fileID: 1007471440}
   - {fileID: 687184881}
   - {fileID: 286817168}
-  - {fileID: 988590455}
   m_Father: {fileID: 821719752}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5046,7 +5046,7 @@ GameObject:
   - component: {fileID: 988590457}
   - component: {fileID: 988590456}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: Black Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
