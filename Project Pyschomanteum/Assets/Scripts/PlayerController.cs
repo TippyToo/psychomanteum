@@ -24,7 +24,8 @@ public class PlayerController : MonoBehaviour, IDataPersistance
     public bool canMove;
 
     private Animator anim;
-    private Rigidbody rigidBody;
+    [HideInInspector]
+    public Rigidbody rigidBody;
     private Vector3 scale;
 
     Vector3 checkpointPosition;
