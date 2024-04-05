@@ -37,7 +37,7 @@ public class TVScreen : MonoBehaviour
     {
         for (int i = 0; i < saveSlots; i++)
         {
-            transform.GetChild(1).GetChild(i).GetComponent<SaveSlot>().DecideButtonBehavior();
+            transform.GetChild(0).GetChild(i).GetComponent<SaveSlot>().DecideButtonBehavior();
         }
     }
 
