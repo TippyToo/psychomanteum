@@ -53,6 +53,18 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
     private List<Sprite> dialogueBoxImages;
     private List<int> dialogueClues;
     private List<int> objectClues;
+    class Portraits
+    {
+        public Sprite sprite;
+        public string speaker;
+        public Portraits(Sprite sprite, string speaker)
+        {
+            this.sprite = sprite;
+            this.speaker = speaker;
+        }
+    }
+
+    private List<Portraits> portraits;
 
 
     private SpriteRenderer NPCImage;
@@ -149,7 +161,8 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
                     dialogueBox.SetActive(false);
                     inspecting = true;
                     inspectAfter = false;
-                    GameObject tempObj = conversation[conversationToLoad].npcSentences[currSentence].objectClue;
+                    Debug.Log(currSentence - (objectClues.Count() - conversation[conversationToLoad].npcSentences.Count()));
+                    GameObject tempObj = conversation[conversationToLoad].npcSentences[currSentence - (objectClues.Count() - (conversation[conversationToLoad].npcSentences.Count() + conversation[conversationToLoad].playerSentences.Count()))].objectClue;
                     tempObj.GetComponent<ItemBehaviour>().AddToInventoryFromDialogue(this.gameObject);
                 }
                 else
@@ -170,7 +183,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
         dialogueBoxImages = new List<Sprite>();
         dialogueClues = new List<int>();
         objectClues = new List<int>();
-
+        portraits = new List<Portraits>();
 
         //Check and add NPC dialogue for the current conversation
         if (conversation.npcSentences != null && conversation.npcSentences.Count() > 0)
@@ -184,25 +197,18 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
                     {
                         currentDialogue.Enqueue(sentenceText.Substring(0, maxDialogueLength));
                         sentenceText = sentenceText.Substring(maxDialogueLength, sentenceText.Length - maxDialogueLength);
+                        ConversationSettings(conversation, "npc", i, false);
                     }
                     if (sentenceText.Length <= maxDialogueLength && sentenceText.Length > 0)
                     {
                         currentDialogue.Enqueue(sentenceText);
+                        ConversationSettings(conversation, "npc", i, true);
                     }
                 }
-                else { currentDialogue.Enqueue(sentenceText); }
-
-                if (conversation.npcSentences[i].talkSpeed != 0.0f) { dialogueTalkSpeeds.Add(conversation.npcSentences[i].talkSpeed); }
-                else { dialogueTalkSpeeds.Add(DEFAULT_TALK_SPEED); }
-
-                if (conversation.npcSentences[i].dialogueBoxImage != null) { dialogueBoxImages.Add(conversation.npcSentences[i].dialogueBoxImage); }
-                else { dialogueBoxImages.Add(DEFAULT_DIALOGUE_BOX_IMAGE); }
-
-                if (conversation.npcSentences[i].isVerbalClue) { dialogueClues.Add(1); }
-                else { dialogueClues.Add(0); }
-
-                if (conversation.npcSentences[i].objectClue) { objectClues.Add(1); }
-                else { objectClues.Add(0); }
+                else { 
+                    currentDialogue.Enqueue(sentenceText);
+                    ConversationSettings(conversation, "npc", i, true);
+                }
             }
         }
         //Check and add player dialogue for the current conversation
@@ -216,31 +222,62 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
                     {
                         currentDialogue.Enqueue(sentenceText.Substring(0, maxDialogueLength));
                         sentenceText = sentenceText.Substring(maxDialogueLength, sentenceText.Length - maxDialogueLength);
+                        ConversationSettings(conversation, "player", i, false);
                     }
                     if (sentenceText.Length <= maxDialogueLength && sentenceText.Length > 0)
                     {
                         currentDialogue.Enqueue(sentenceText);
+                        ConversationSettings(conversation, "player", i, true);
                     }
                 }
-                else { currentDialogue.Enqueue(sentenceText); }
-
-                if (conversation.playerSentences[i].talkSpeed != 0.0f) { dialogueTalkSpeeds.Add(conversation.playerSentences[i].talkSpeed); }
-                else { dialogueTalkSpeeds.Add(DEFAULT_TALK_SPEED); }
-
-                if (conversation.playerSentences[i].dialogueBoxImage != null) { dialogueBoxImages.Add(conversation.playerSentences[i].dialogueBoxImage); }
-                else { dialogueBoxImages.Add(DEFAULT_DIALOGUE_BOX_IMAGE); }
-
-                if (conversation.playerSentences[i].isVerbalClue) { dialogueClues.Add(1); }
-                else { dialogueClues.Add(0); }
-
-                if (conversation.playerSentences[i].objectClue) { objectClues.Add(1); }
-                else { objectClues.Add(0); }
+                else { 
+                    currentDialogue.Enqueue(sentenceText);
+                    ConversationSettings(conversation, "player", i, true);
+                }
             }
         }
         
         dialogueBox.SetActive(true);
         dialogueBox.transform.GetChild(1).gameObject.SetActive(true);
         StartCoroutine(WriteText());
+    }
+
+    //Set settings for each conversation in the current dialogue
+    private void ConversationSettings(Conversation conversation, string speaker, int i, bool addClues) {
+        if (speaker == "npc")
+        {
+            if (conversation.npcSentences[i].talkSpeed != 0.0f) { dialogueTalkSpeeds.Add(conversation.npcSentences[i].talkSpeed); }
+            else { dialogueTalkSpeeds.Add(DEFAULT_TALK_SPEED); }
+
+            if (conversation.npcSentences[i].dialogueBoxImage != null) { dialogueBoxImages.Add(conversation.npcSentences[i].dialogueBoxImage); }
+            else { dialogueBoxImages.Add(DEFAULT_DIALOGUE_BOX_IMAGE); }
+
+            if (conversation.npcSentences[i].isVerbalClue && addClues) { dialogueClues.Add(1); }
+            else { dialogueClues.Add(0); }
+
+            if (conversation.npcSentences[i].objectClue && addClues) { objectClues.Add(1); }
+            else { objectClues.Add(0); }
+
+            if (conversation.npcSentences[i].speakerPortrait != null) { portraits.Add(new Portraits(conversation.npcSentences[i].speakerPortrait, "npc")); }
+            else { portraits.Add(new Portraits(DEFAULT_NPC_SPEAKER_SPRITE, "npc")); }
+        }
+        else if (speaker == "player") 
+        {
+            if (conversation.playerSentences[i].talkSpeed != 0.0f) { dialogueTalkSpeeds.Add(conversation.playerSentences[i].talkSpeed); }
+            else { dialogueTalkSpeeds.Add(DEFAULT_TALK_SPEED); }
+
+            if (conversation.playerSentences[i].dialogueBoxImage != null) { dialogueBoxImages.Add(conversation.playerSentences[i].dialogueBoxImage); }
+            else { dialogueBoxImages.Add(DEFAULT_DIALOGUE_BOX_IMAGE); }
+
+            if (conversation.playerSentences[i].isVerbalClue && addClues) { dialogueClues.Add(1); }
+            else { dialogueClues.Add(0); }
+
+            if (conversation.playerSentences[i].objectClue && addClues) { objectClues.Add(1); }
+            else { objectClues.Add(0); }
+
+            if (conversation.playerSentences[i].speakerPortrait != null) { portraits.Add(new Portraits(conversation.playerSentences[i].speakerPortrait, "player")); }
+            else { portraits.Add(new Portraits(DEFAULT_PLAYER_SPEAKER_SPRITE, "player")); }
+        }
     }
 
 
@@ -281,27 +318,19 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
         
 
         //Set Speaker Portraits
-        if ((currSentence + 1) > conversation[conversationToLoad].npcSentences.Count()) 
+        if (portraits[currSentence].speaker == "player") 
         {
             //Set Player Portraits
-            if (conversation[conversationToLoad].playerSentences.Count() > 0 && conversation[conversationToLoad].playerSentences[currSentence - conversation[conversationToLoad].npcSentences.Count()].speakerPortrait != null) 
-            { playerResponseBox.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = conversation[conversationToLoad].playerSentences[currSentence - conversation[conversationToLoad].npcSentences.Count()].speakerPortrait; }
-            else 
-            { playerResponseBox.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = DEFAULT_PLAYER_SPEAKER_SPRITE; }
+            playerResponseBox.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = portraits[currSentence].sprite;
             dialogueBox.transform.GetChild(1).gameObject.SetActive(false);
             playerResponseBox.transform.GetChild(1).gameObject.SetActive(true);
-
         }
         else 
         { 
             // Set NPC Portraits
-            if (conversation[conversationToLoad].npcSentences.Count() > 0 && conversation[conversationToLoad].npcSentences[currSentence].speakerPortrait != null)
-            { NPCImage.sprite = conversation[conversationToLoad].npcSentences[currSentence].speakerPortrait; }
-            else
-            { NPCImage.sprite = DEFAULT_NPC_SPEAKER_SPRITE; }
+            NPCImage.sprite = portraits[currSentence].sprite;
             dialogueBox.transform.GetChild(1).gameObject.SetActive(true);
             playerResponseBox.transform.GetChild(1).gameObject.SetActive(false);
-
         }
 
         //Writes out the text character by character with selected settings
@@ -345,10 +374,16 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
             {
                 //Create new container and add it to journal
                 VerbalClueData clue;
-                if ((currSentence + 1) > conversation[conversationToLoad].npcSentences.Count())
-                    clue = new VerbalClueData(conversation[conversationToLoad].playerSentences[currSentence - conversation[conversationToLoad].npcSentences.Count()].clueName, this.npcName, conversation[conversationToLoad].playerSentences[currSentence - conversation[conversationToLoad].npcSentences.Count()].clueText, GameObject.Find("Level Manager").GetComponent<LevelManager>().level);
+                if (portraits[currSentence].speaker == "player")
+                {
+                    int index = currSentence - (objectClues.Count() - (conversation[conversationToLoad].npcSentences.Count() + conversation[conversationToLoad].playerSentences.Count()) - conversation[conversationToLoad].npcSentences.Count());
+                    clue = new VerbalClueData(conversation[conversationToLoad].playerSentences[index].clueName, this.npcName, conversation[conversationToLoad].playerSentences[index].clueText, GameObject.Find("Level Manager").GetComponent<LevelManager>().level);
+                }
                 else
-                    clue = new VerbalClueData(conversation[conversationToLoad].npcSentences[currSentence].clueName, this.npcName, conversation[conversationToLoad].npcSentences[currSentence].clueText, GameObject.Find("Level Manager").GetComponent<LevelManager>().level);
+                {
+                    int index = currSentence - (objectClues.Count() - (conversation[conversationToLoad].npcSentences.Count() + conversation[conversationToLoad].playerSentences.Count()));
+                    clue = new VerbalClueData(conversation[conversationToLoad].npcSentences[index].clueName, this.npcName, conversation[conversationToLoad].npcSentences[index].clueText, GameObject.Find("Level Manager").GetComponent<LevelManager>().level);
+                }
                 GameObject.Find("Inventory Manager").GetComponent<InventoryManager>().AddClue(clue);
                 StartCoroutine(Scribble());
             }
@@ -375,6 +410,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
         else
         {
             currSentence++;
+            dialogueBox.SetActive(true);
             StartCoroutine(WriteText());
         }
     }

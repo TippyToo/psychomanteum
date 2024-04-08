@@ -13,5 +13,4 @@ public struct Conversation
     [Tooltip("Enter the element number for the next conversation chunk to load (Leave blank or set to -1 if there is no more dialogue unlocked. If Has Dialogue Tree is checked, enter multiple numbers corresponding to each response option even if they all go to the same place)")]
     public int[] nextDialogue;
     public EndBehaviour endBehaviour;
-
 }
