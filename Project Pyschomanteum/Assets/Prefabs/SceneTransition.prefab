@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeTime: 0.5
   detectsPlayer: 0
+  unlocked: 1
 --- !u!114 &1309536799974350605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,6 +65,7 @@ MonoBehaviour:
   interactable: 1
   sceneNameToLoad: MainMenu
   loadingSubArea: 0
+  unlocked: 1
 --- !u!212 &5444823190446371724
 SpriteRenderer:
   m_ObjectHideFlags: 0

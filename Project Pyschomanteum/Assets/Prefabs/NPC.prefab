@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeTime: 0.5
   detectsPlayer: 0
+  unlocked: 1
 --- !u!212 &6781676631923336920
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -221,6 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcName: 
+  speakOnProximity: 0
   DEFAULT_TALK_SPEED: 1
   DEFAULT_DIALOGUE_BOX_IMAGE: {fileID: 10907, guid: 0000000000000000f000000000000000,
     type: 0}
@@ -234,14 +236,23 @@ MonoBehaviour:
     playerSentences: []
     persistentConversation: 0
     nextDialogue: 
-    hasDialogueTree: 0
-    playerResponses: []
+    endBehaviour:
+      presentClues: 0
+      correctClueName: 
+      warp: 0
+      warpLocation: {x: 0, y: 0, z: 0}
+      hasDialogueTree: 0
+      playerResponses: []
+      changeScene: 
+      setNextConversationToStartOnProximity: 0
   talkSound:
   - {fileID: 8300000, guid: 0ab3da2e96d191e49927cc6714f015f4, type: 3}
   - {fileID: 8300000, guid: 3bf5c3e4de0b5f545bbf025165565892, type: 3}
   - {fileID: 8300000, guid: 6477159c7c1656247ac2009ffa55c935, type: 3}
   player: {fileID: 0}
   clueFound: {fileID: 8300000, guid: d9e6bdc14d8ee3445aad9d3c57d819d5, type: 3}
+  conversationToLoad: 0
+  inspecting: 0
 --- !u!65 &1937719217329720905
 BoxCollider:
   m_ObjectHideFlags: 0

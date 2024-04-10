@@ -11,6 +11,7 @@ public class SceneTransition : MonoBehaviour
     public string sceneNameToLoad = "MainMenu";
     public bool loadingSubArea;
     private bool detectsPlayer = false;
+    public bool unlocked;
 
 
     // Update is called once per frame
@@ -39,8 +40,11 @@ public class SceneTransition : MonoBehaviour
     }
 
     private void LoadNextArea(bool sub) {
-        GameObject.Find("Save Manager").GetComponent<SaveManager>().inSubWorld = sub;
-        GameObject.Find("Save Manager").GetComponent<SaveManager>().SaveGame();
-        SceneManager.LoadScene(sceneNameToLoad);
+        if (unlocked)
+        {
+            GameObject.Find("Save Manager").GetComponent<SaveManager>().inSubWorld = sub;
+            GameObject.Find("Save Manager").GetComponent<SaveManager>().SaveGame();
+            SceneManager.LoadScene(sceneNameToLoad);
+        }
     }
 }
