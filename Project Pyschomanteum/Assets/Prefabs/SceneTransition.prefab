@@ -63,6 +63,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactable: 1
   sceneNameToLoad: MainMenu
+  loadingSubArea: 0
 --- !u!212 &5444823190446371724
 SpriteRenderer:
   m_ObjectHideFlags: 0
