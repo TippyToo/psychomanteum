@@ -122,6 +122,7 @@ public class JournalManager : MonoBehaviour
     public void PopulatePresentButton(ItemData item = null) {
         if (isPresenting) {
             GameObject button = transform.GetChild(6).gameObject;
+            button.GetComponent<PresentClue>().clueData = null;
             button.SetActive(true);
             if (item != null) { button.GetComponent<PresentClue>().itemToPresent = item; }
         }
@@ -131,6 +132,7 @@ public class JournalManager : MonoBehaviour
         if (isPresenting)
         {
             GameObject button = transform.GetChild(6).gameObject;
+            button.GetComponent<PresentClue>().itemToPresent = null;
             button.SetActive(true);
             if (vClue != null) { button.GetComponent<PresentClue>().clueData = vClue; }
         }

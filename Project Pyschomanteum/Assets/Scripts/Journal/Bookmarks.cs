@@ -6,9 +6,13 @@ public class Bookmarks : MonoBehaviour
 {
     private float maxHeight = 40;
     private float baseHeight;
+    private InventoryManager inventory;
+    private GameObject presentButton;
     // Start is called before the first frame update
     void Start()
     {
+        presentButton = FindObjectOfType<JournalManager>().transform.GetChild(6).gameObject;
+        inventory = FindObjectOfType<InventoryManager>();
         baseHeight = transform.localPosition.y;
     }
 
@@ -16,6 +20,11 @@ public class Bookmarks : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public void UpdateInventory() {
+        //inventory.UpdateInventory();
+        presentButton.SetActive(false);
     }
 
     //Lifts bookmark to a desired height
