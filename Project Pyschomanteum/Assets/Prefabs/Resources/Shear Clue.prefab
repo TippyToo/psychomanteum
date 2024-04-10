@@ -10,6 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 344977066420437606, guid: 6d1a27c44de6d1741a517b52eb877198,
         type: 3}
+      propertyPath: chapter
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 344977066420437606, guid: 6d1a27c44de6d1741a517b52eb877198,
+        type: 3}
       propertyPath: itemDescription
       value: 'Property of Dave Cicero: If found, return to 346 Rose Way.'
       objectReference: {fileID: 0}

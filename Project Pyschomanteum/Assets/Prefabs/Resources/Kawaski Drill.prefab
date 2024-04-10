@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7390427150923090780}
   - component: {fileID: 1687273456067411295}
   m_Layer: 0
-  m_Name: Drill Clue
+  m_Name: Kawaski Drill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemDescription: Trust me dear player, it's a drill
-  chapter: 1
+  chapter: 0
   itemImage: {fileID: 0}
   collected: 0
 --- !u!65 &1687273456067411295

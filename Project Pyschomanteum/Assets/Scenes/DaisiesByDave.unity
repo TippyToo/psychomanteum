@@ -406,6 +406,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6978058640666460698, guid: 4778ed0697456444d8c96a306f05745e,
+        type: 3}
+      propertyPath: verticalMoveSpeed
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978058640666460698, guid: 4778ed0697456444d8c96a306f05745e,
+        type: 3}
+      propertyPath: horizontalMoveSpeed
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1659,7 +1669,7 @@ TerrainCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_TerrainData: {fileID: 15600000, guid: d9bf765c600aff541a861bfe5736bf21, type: 2}
+  m_TerrainData: {fileID: 15600000, guid: caee070c980c721429e041eff5a435b9, type: 2}
   m_EnableTreeColliders: 1
 --- !u!218 &901351903
 Terrain:
@@ -1670,7 +1680,7 @@ Terrain:
   m_GameObject: {fileID: 901351901}
   m_Enabled: 1
   serializedVersion: 6
-  m_TerrainData: {fileID: 15600000, guid: d9bf765c600aff541a861bfe5736bf21, type: 2}
+  m_TerrainData: {fileID: 15600000, guid: caee070c980c721429e041eff5a435b9, type: 2}
   m_TreeDistance: 5000
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
