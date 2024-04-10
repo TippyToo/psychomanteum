@@ -1,8 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Observation : MonoBehaviour, ISettings
 {
@@ -19,7 +19,7 @@ public class Observation : MonoBehaviour, ISettings
 
     private AudioSource audSource;
     private GameObject dialogueBox;
-    private Text dialogueText;
+    private TextMeshProUGUI dialogueText;
     private GameObject playerResponseBox;
     private GameObject arrow;
 
@@ -34,7 +34,7 @@ public class Observation : MonoBehaviour, ISettings
     {
         playerResponseBox = GameObject.Find("UI").transform.GetChild(2).gameObject;
         dialogueBox = GameObject.Find("UI").transform.GetChild(1).gameObject;
-        dialogueText = dialogueBox.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>();
+        dialogueText = dialogueBox.transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         arrow = dialogueBox.transform.GetChild(0).transform.GetChild(1).gameObject;
         audSource = GameObject.Find("Main Camera").GetComponent<AudioSource>();
     }
@@ -83,8 +83,10 @@ public class Observation : MonoBehaviour, ISettings
         isTalking = true;
         speaking = true;
         currentFullText = observations[currSentence].sentenceText;
+        string fullText = currentFullText;
         string currText;
         float talkSpeed;
+        int alphaIndex = 0;
         
         dialogueBox.SetActive(true);
         dialogueBox.transform.GetChild(1).gameObject.SetActive(false);
@@ -108,14 +110,19 @@ public class Observation : MonoBehaviour, ISettings
         audSource.ignoreListenerVolume = true;
 
         //Writes out the text character by character with selected settings
-        for (int i = 1; i < currentFullText.Length + 1; i++)
+        foreach (char c in fullText.ToCharArray())
         {
-            int sound = Random.Range(0, talkSound.Length);
-            currText = currentFullText.Substring(0, i);
-            if (!currText.EndsWith(" ")) { audSource.PlayOneShot(talkSound[sound], 1); }
+            alphaIndex++;
+            int sound = UnityEngine.Random.Range(0, talkSound.Length);
+            dialogueText.text = fullText;
+            currText = dialogueText.text.Insert(alphaIndex, "<color=#00000000>");
             dialogueText.text = currText;
-            yield return new WaitForSecondsRealtime(1 / (talkSpeed * 5));
+            if (!char.IsWhiteSpace(c)) { audSource.PlayOneShot(talkSound[sound], 1); }
+            if (talkSpeed == DEFAULT_TALK_SPEED)
+            { talkSpeed *= PlayerPrefs.GetInt("Text Speed"); }
+            yield return new WaitForSeconds(1 / (talkSpeed * 5));
         }
+
         audSource.ignoreListenerPause = false;
         audSource.ignoreListenerVolume = false;
         speaking = false;

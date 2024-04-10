@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
 {
@@ -40,7 +41,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
     private Button[] playerResponses;
     
 
-    private Text dialogueText;
+    private TextMeshProUGUI dialogueText;
     private string currentFullText;
     private Queue<string> currentDialogue = new Queue<string>();
     public int conversationToLoad = 0;
@@ -100,7 +101,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
         playerResponses = new Button[]{ playerResponseBox.transform.GetChild(0).GetChild(0).GetComponent<Button>(),
         playerResponseBox.transform.GetChild(0).GetChild(1).GetComponent<Button>(), playerResponseBox.transform.GetChild(0).GetChild(2).GetComponent<Button>() };
         dialogueBox = GameObject.Find("UI").transform.GetChild(1).gameObject;
-        dialogueText = dialogueBox.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>();
+        dialogueText = dialogueBox.transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         dialogueBoxImage = dialogueBox.transform.GetChild(0).GetComponent<Image>();
         NPCImage = dialogueBox.transform.GetChild(1).GetComponent<SpriteRenderer>();
         arrow = dialogueBox.transform.GetChild(0).transform.GetChild(1).gameObject;
@@ -195,8 +196,9 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
                 {
                     for (int x = 0; sentenceText.Length > maxDialogueLength; x++)
                     {
-                        currentDialogue.Enqueue(sentenceText.Substring(0, maxDialogueLength));
-                        sentenceText = sentenceText.Substring(maxDialogueLength, sentenceText.Length - maxDialogueLength);
+                        int lastWordIndex = FindLastFullWord(sentenceText, maxDialogueLength);
+                        currentDialogue.Enqueue(sentenceText.Substring(0, lastWordIndex));
+                        sentenceText = sentenceText.Substring(lastWordIndex, sentenceText.Length - lastWordIndex);
                         ConversationSettings(conversation, "npc", i, false);
                     }
                     if (sentenceText.Length <= maxDialogueLength && sentenceText.Length > 0)
@@ -220,8 +222,9 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
                 {
                     for (int x = 0; sentenceText.Length > maxDialogueLength; x++)
                     {
-                        currentDialogue.Enqueue(sentenceText.Substring(0, maxDialogueLength));
-                        sentenceText = sentenceText.Substring(maxDialogueLength, sentenceText.Length - maxDialogueLength);
+                        int lastWordIndex = FindLastFullWord(sentenceText, maxDialogueLength);
+                        currentDialogue.Enqueue(sentenceText.Substring(0, lastWordIndex));
+                        sentenceText = sentenceText.Substring(lastWordIndex, sentenceText.Length - lastWordIndex);
                         ConversationSettings(conversation, "player", i, false);
                     }
                     if (sentenceText.Length <= maxDialogueLength && sentenceText.Length > 0)
@@ -240,6 +243,19 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
         dialogueBox.SetActive(true);
         dialogueBox.transform.GetChild(1).gameObject.SetActive(true);
         StartCoroutine(WriteText());
+    }
+    int FindLastFullWord(string sentence, int maxLength) {
+        int index = -1;
+        sentence = sentence.Substring(0, maxLength);
+        for (int i = 1; index == -1; i++) {
+            if (sentence.EndsWith(" ")) {
+                index = sentence.Length;
+            }
+            else
+                sentence = sentence.Substring(0, maxLength - i);
+        }
+
+        return index;
     }
 
     //Set settings for each conversation in the current dialogue
@@ -312,10 +328,11 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
         isTalking = true;
         speaking = true;
         currentFullText = currentDialogue.Dequeue();
-        string currText;
+        string fullText = currentFullText;
+        string currText = "";
         float talkSpeed = dialogueTalkSpeeds[currSentence];
         dialogueBoxImage.sprite = dialogueBoxImages[currSentence];
-        
+        int alphaIndex = 0;
 
         //Set Speaker Portraits
         if (portraits[currSentence].speaker == "player") 
@@ -334,16 +351,16 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
         }
 
         //Writes out the text character by character with selected settings
-        for (int i = 1; i < currentFullText.Length + 1; i++)
+        foreach (char c in fullText.ToCharArray())
         {
+            alphaIndex++;
             int sound = Random.Range(0, talkSound.Length);
-            currText = currentFullText.Substring(0, i);
-            if (!currText.EndsWith(" ")) { audSource.PlayOneShot(talkSound[sound], 1); }
+            dialogueText.text = fullText;
+            currText = dialogueText.text.Insert(alphaIndex, "<color=#00000000>");
             dialogueText.text = currText;
-
+            if (!char.IsWhiteSpace(c)) { audSource.PlayOneShot(talkSound[sound], 1); }
             if (talkSpeed == DEFAULT_TALK_SPEED)
             { talkSpeed *= PlayerPrefs.GetInt("Text Speed"); }
-
             yield return new WaitForSeconds(1 / (talkSpeed * 5));
         }
 

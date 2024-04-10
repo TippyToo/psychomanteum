@@ -1256,6 +1256,11 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1686837203}
+    - target: {fileID: 4965209924360267474, guid: 8938353376cbaad41884de52bbc3154c,
+        type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 5964438096058502171, guid: 8938353376cbaad41884de52bbc3154c,
         type: 3}
       propertyPath: m_Name
@@ -1277,7 +1282,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1284319354825877666, guid: 8938353376cbaad41884de52bbc3154c, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8938353376cbaad41884de52bbc3154c, type: 3}
