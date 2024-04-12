@@ -42,7 +42,7 @@ public class SceneTransition : MonoBehaviour
     private void LoadNextArea(bool sub) {
         if (unlocked)
         {
-            GameObject.Find("Save Manager").GetComponent<SaveManager>().inSubWorld = sub;
+            GameObject.Find("Save Manager").GetComponent<SaveManager>().loadingSubWorld = sub;
             GameObject.Find("Save Manager").GetComponent<SaveManager>().SaveGame();
             SceneManager.LoadScene(sceneNameToLoad);
         }

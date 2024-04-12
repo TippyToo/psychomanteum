@@ -329,6 +329,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ext_Apt_01_Roof_Mid_01 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2560334749433712346, guid: 5a8c5bdb2890760419fa0ba36befc73e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1492,6 +1497,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ext_Apt_01_Roof_Mid_01 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2560334749433712346, guid: 5a8c5bdb2890760419fa0ba36befc73e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2163,6 +2173,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ext_Apt_01_Roof_Mid_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2560334749433712346, guid: 5a8c5bdb2890760419fa0ba36befc73e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

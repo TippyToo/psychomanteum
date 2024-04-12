@@ -2728,7 +2728,7 @@ GameObject:
   - component: {fileID: 1770570314}
   - component: {fileID: 1770570313}
   - component: {fileID: 1770570312}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2825,7 +2825,7 @@ PrefabInstance:
     - target: {fileID: 1309536799974350605, guid: 95041813f0aaa594a829621b983e1197,
         type: 3}
       propertyPath: sceneNameToLoad
-      value: Scene1
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4102424327938573600, guid: 95041813f0aaa594a829621b983e1197,
         type: 3}
@@ -2880,7 +2880,7 @@ PrefabInstance:
     - target: {fileID: 4219602733587437656, guid: 95041813f0aaa594a829621b983e1197,
         type: 3}
       propertyPath: m_Name
-      value: SceneTransition
+      value: Exit
       objectReference: {fileID: 0}
     - target: {fileID: 5444823190446371724, guid: 95041813f0aaa594a829621b983e1197,
         type: 3}

@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.SceneManagement;
 
-public class SaveManager : MonoBehaviour
+public class SaveManager : MonoBehaviour, IDataPersistance
 {
     [Header("File Storage Config")]
     [SerializeField] public string fileName;
@@ -20,12 +20,34 @@ public class SaveManager : MonoBehaviour
     private int currentSaveSlot;
 
     public bool freshLoad = true;
-    public bool inSubWorld;
-    public Vector3 preSubWorldCoords = new Vector3();
+    public bool loadingSubWorld;
+    public Stack<Vector3> preSubWorldCoords = new Stack<Vector3>();
+
+    #region Save and Load
+    public void SaveData(ref SaveData data)
+    {
+        if (data != null)
+        {
+            if (preSubWorldCoords != new Stack<Vector3>() && preSubWorldCoords.Count > 0) { data.playerPreSubWorldCoords = preSubWorldCoords; }
+        }
+        else
+            Debug.Log("No Save Slot Found");
+    }
+    public void LoadData(SaveData data)
+    {
+        if (data != null)
+        {
+            if (data.playerPreSubWorldCoords != new Stack<Vector3>() && data.playerPreSubWorldCoords.Count > 0) 
+            { preSubWorldCoords = data.playerPreSubWorldCoords; }
+        }
+        loadingSubWorld = false;
+    }
+    #endregion
+
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -98,6 +120,7 @@ public class SaveManager : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
+        if (SceneManager.GetActiveScene().name == "StartMenu") { freshLoad = true; }
         this.dataPersistanceObjects = FindAllDataPersistanceObjects();
         saveData = dataHandler.LoadAll();
         LoadGame(currentSaveSlot);

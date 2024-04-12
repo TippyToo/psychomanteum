@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour, IDataPersistance
 {
@@ -28,31 +29,41 @@ public class PlayerController : MonoBehaviour, IDataPersistance
     public Rigidbody rigidBody;
     private Vector3 scale;
 
-    Vector3 checkpointPosition;
+    private Vector3 checkpointPosition;
+    private string saveScene;
 
-    
+    #region Save and Load
     public void LoadData(SaveData data) {
         if (data != null) {
             if (GameObject.Find("Save Manager").GetComponent<SaveManager>().freshLoad) {
                 transform.position = data.playerPosition;
                 GameObject.Find("Save Manager").GetComponent<SaveManager>().freshLoad = false;
             }
-            else if (!GameObject.Find("Save Manager").GetComponent<SaveManager>().inSubWorld && GameObject.Find("Save Manager").GetComponent<SaveManager>().preSubWorldCoords != new Vector3())
-            { transform.position = GameObject.Find("Save Manager").GetComponent<SaveManager>().preSubWorldCoords; }
+            else if (!GameObject.Find("Save Manager").GetComponent<SaveManager>().loadingSubWorld && GameObject.Find("Save Manager").GetComponent<SaveManager>().preSubWorldCoords.Count > 0)
+            { transform.position = GameObject.Find("Save Manager").GetComponent<SaveManager>().preSubWorldCoords.Pop(); }
 
         }
     
     }
     public void SaveData(ref SaveData data) {
         if (data != null) {
-            if (GameObject.Find("Save Manager").GetComponent<SaveManager>().inSubWorld)
-                { GameObject.Find("Save Manager").GetComponent<SaveManager>().preSubWorldCoords = transform.position; }
-            else {
+            if (GameObject.Find("Save Manager").GetComponent<SaveManager>().loadingSubWorld)
+                { 
+                GameObject.Find("Save Manager").GetComponent<SaveManager>().preSubWorldCoords.Push(transform.position);
+                SavePosition();
                 data.playerPosition = checkpointPosition;
+                data.sceneToLoad = saveScene;
+            }
+            else {
+                SavePosition();
+                data.playerPosition = checkpointPosition;
+                data.sceneToLoad = saveScene;
             }
         }
     
     }
+    #endregion
+
     // Start is called before the first frame update
     void Start()
     {
@@ -108,10 +119,13 @@ public class PlayerController : MonoBehaviour, IDataPersistance
 
     public void SavePosition() {
         checkpointPosition = transform.position;
+        saveScene = SceneManager.GetActiveScene().name;
     }
     public void SavePosition(Vector3 position)
     {
         checkpointPosition = position;
+
+        saveScene = SceneManager.GetActiveScene().name;
     }
 
     public void EnableMovement() { canMove = true; }

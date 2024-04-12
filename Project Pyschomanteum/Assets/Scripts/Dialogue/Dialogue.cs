@@ -451,6 +451,21 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
             SceneManager.LoadScene(endBehaviour.changeScene);
         }
 
+        if (endBehaviour.followPlayerAfter)
+        {
+            if (this.gameObject.GetComponent<FollowPlayer>() == null)
+            {
+                Debug.LogError("No follow player script attatched to the npc " + npcName, this.gameObject);
+            }
+            this.gameObject.GetComponent<FollowPlayer>().followPlayer = true;
+        }
+        else {
+            if (this.gameObject.GetComponent<FollowPlayer>() != null)
+            {
+                this.gameObject.GetComponent<FollowPlayer>().followPlayer = false;
+            }
+        }
+
         if (endBehaviour.presentClues && endBehaviour.correctClueName != null) {
             PresentClues(endBehaviour.correctClueName);
         } else { 
@@ -475,7 +490,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
                 isTalking = false;
             } else { conversationToLoad = -1; isTalking = false; }
 
-            if (endBehaviour.setNextConversationToStartOnProximity) {
+            if (endBehaviour.proxyTalk) {
                 speakOnProximity = true;
             }
         }

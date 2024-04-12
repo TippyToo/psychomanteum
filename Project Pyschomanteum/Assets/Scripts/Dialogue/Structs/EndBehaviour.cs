@@ -17,5 +17,8 @@ public struct EndBehaviour
     public string[] playerResponses;
     [Tooltip("Name of the scene to change to after dialogue ends.")]
     public string changeScene;
-    public bool setNextConversationToStartOnProximity;
+    [Tooltip("After completing the current conversation, set the next one to trigger automatically when in range")]
+    public bool proxyTalk;
+    [Tooltip("After completing the current conversation, follow the player")]
+    public bool followPlayerAfter;
 }

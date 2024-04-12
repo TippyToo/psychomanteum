@@ -10,7 +10,7 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (usingStarterCoords) GameObject.Find("Player").GetComponent<PlayerController>().transform.position = playerStartingCoords;
+        if (usingStarterCoords && FindObjectOfType<SaveManager>().preSubWorldCoords.Count > 0) GameObject.Find("Player").GetComponent<PlayerController>().transform.position = playerStartingCoords;
     }
 
     // Update is called once per frame
