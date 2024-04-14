@@ -6,6 +6,8 @@ using UnityEngine;
 [Tooltip("Settings for each individual text box")]
 public struct Sentence
 {
+    [Tooltip("Name of the current sentence speaker (Leave blank for base npcs name)")]
+    public string speakerName;
     [TextArea(5, 50)]
     [Tooltip("Text of the dialogue box")]
     public string sentenceText;

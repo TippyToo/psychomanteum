@@ -2051,38 +2051,44 @@ PrefabInstance:
     - target: {fileID: 759562385031098660, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: m_Size.x
-      value: 17.673117
+      value: 36.106506
       objectReference: {fileID: 0}
     - target: {fileID: 759562385031098660, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: m_Size.y
-      value: 14.804964
+      value: 33.900284
       objectReference: {fileID: 0}
     - target: {fileID: 759562385031098660, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: m_Size.z
-      value: 11.888983
+      value: 41.638268
       objectReference: {fileID: 0}
     - target: {fileID: 759562385031098660, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: m_Center.x
-      value: 5.2365656
+      value: -9.216713
       objectReference: {fileID: 0}
     - target: {fileID: 759562385031098660, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: m_Center.y
-      value: -4.7024717
+      value: -14.2501335
       objectReference: {fileID: 0}
     - target: {fileID: 759562385031098660, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: m_Center.z
-      value: -1.1983466
+      value: -1.4121994
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: npcName
       value: Dave
       objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: DEFAULT_NPC_SPEAKER_SPRITE
+      value: 
+      objectReference: {fileID: 21300000, guid: 2819b06f320d4d2428b99df870597332,
+        type: 3}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[0].npcSentences.Array.size
@@ -2093,46 +2099,81 @@ PrefabInstance:
       propertyPath: conversation.Array.data[0].npcSentences.Array.data[0].sentenceText
       value: Hi
       objectReference: {fileID: 0}
+    - target: {fileID: 1937719217329720905, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 8.771075
+      objectReference: {fileID: 0}
+    - target: {fileID: 1937719217329720905, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 31.392878
+      objectReference: {fileID: 0}
+    - target: {fileID: 1937719217329720905, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.22917354
+      objectReference: {fileID: 0}
+    - target: {fileID: 1937719217329720905, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.1591738
+      objectReference: {fileID: 0}
     - target: {fileID: 2723265754708588750, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1246431409, guid: a96acc6fdd553044a87f62752854d55e,
+      objectReference: {fileID: 21300000, guid: a0a5d002bc5b70345bb7b5e236d9249e,
         type: 3}
     - target: {fileID: 5150859441709233091, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5150859441709233091, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5150859441709233091, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5150859441709233091, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.524
+      value: 21.9
       objectReference: {fileID: 0}
     - target: {fileID: 6199082377805684377, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: -6.977756
+      value: 0.2157841
       objectReference: {fileID: 0}
     - target: {fileID: 6199082377805684377, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 6.977756
+      value: 0.2157841
       objectReference: {fileID: 0}
     - target: {fileID: 6199082377805684377, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 6.977756
+      value: 0.2157841
       objectReference: {fileID: 0}
     - target: {fileID: 6199082377805684377, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.970131
+      value: 2.9701
       objectReference: {fileID: 0}
     - target: {fileID: 6199082377805684377, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.4590745
+      value: 1.61
       objectReference: {fileID: 0}
     - target: {fileID: 6199082377805684377, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.7846546
+      value: 3.59
       objectReference: {fileID: 0}
     - target: {fileID: 6199082377805684377, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}

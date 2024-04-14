@@ -40,13 +40,13 @@ public class SaveSlot : MonoBehaviour
         {
             transform.GetComponent<Button>().onClick.RemoveListener(NewGame);
             transform.GetComponent<Button>().onClick.AddListener(LoadGame);
-            transform.GetChild(0).GetComponent<Text>().text = "Ch: " + saveManager.saveData[saveSlot].chapter;
+            transform.GetChild(0).GetComponent<Text>().text = "Slot " + (saveSlot + 1) + ":\n" + "Chapter " + saveManager.saveData[saveSlot].chapter;
         }
         else 
         {
             transform.GetComponent<Button>().onClick.RemoveListener(LoadGame);
             transform.GetComponent<Button>().onClick.AddListener(NewGame);
-            transform.GetChild(0).GetComponent<Text>().text = "New Game";
+            transform.GetChild(0).GetComponent<Text>().text = "Slot " + (saveSlot + 1) + ":\n" + "New Game";
         }
 
     }

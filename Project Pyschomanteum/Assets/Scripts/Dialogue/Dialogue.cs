@@ -54,6 +54,8 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
     private List<Sprite> dialogueBoxImages;
     private List<int> dialogueClues;
     private List<int> objectClues;
+    private List<string> speakerNames;
+
     class Portraits
     {
         public Sprite sprite;
@@ -64,12 +66,12 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
             this.speaker = speaker;
         }
     }
-
     private List<Portraits> portraits;
 
 
     private SpriteRenderer NPCImage;
     private Image dialogueBoxImage;
+    private Text nameplate;
     private JournalManager journal;
 
     private IsInteractable interact;
@@ -102,6 +104,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
         playerResponseBox.transform.GetChild(0).GetChild(1).GetComponent<Button>(), playerResponseBox.transform.GetChild(0).GetChild(2).GetComponent<Button>() };
         dialogueBox = GameObject.Find("UI").transform.GetChild(1).gameObject;
         dialogueText = dialogueBox.transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        nameplate = dialogueBox.transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<Text>(); ;
         dialogueBoxImage = dialogueBox.transform.GetChild(0).GetComponent<Image>();
         NPCImage = dialogueBox.transform.GetChild(1).GetComponent<SpriteRenderer>();
         arrow = dialogueBox.transform.GetChild(0).transform.GetChild(1).gameObject;
@@ -139,10 +142,13 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
             if (!isTalking)
             {
                 //If not talking and next dialogue is unlocked (cTL != 0), start a dialogue. If not, "stare" at the player in silence
-                if (conversationToLoad != -1 && conversationToLoad >= 0)
+                if (conversation.Count() > 0 && conversationToLoad != -1 && conversationToLoad >= 0)
                 { CreateDialogue(conversation[conversationToLoad]); }
                 else
-                { CreateDialogue(". . ."); }
+                { 
+                    conversationToLoad = -1;
+                    CreateDialogue(". . ."); 
+                }
             }
             else if (speaking)
             {
@@ -184,6 +190,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
         dialogueBoxImages = new List<Sprite>();
         dialogueClues = new List<int>();
         objectClues = new List<int>();
+        speakerNames = new List<string>();
         portraits = new List<Portraits>();
 
         //Check and add NPC dialogue for the current conversation
@@ -276,6 +283,9 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
 
             if (conversation.npcSentences[i].speakerPortrait != null) { portraits.Add(new Portraits(conversation.npcSentences[i].speakerPortrait, "npc")); }
             else { portraits.Add(new Portraits(DEFAULT_NPC_SPEAKER_SPRITE, "npc")); }
+
+            if (conversation.npcSentences.Count() > 0 && conversation.npcSentences[i].speakerName.Length > 0) { speakerNames.Add(conversation.npcSentences[i].speakerName); }
+            else { speakerNames.Add(name); }
         }
         else if (speaker == "player") 
         {
@@ -312,6 +322,10 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
         speaking = true;
         currentFullText = currentDialogue.Dequeue();
         string currText;
+
+        NPCImage.sprite = DEFAULT_NPC_SPEAKER_SPRITE;
+        nameplate.text = name;
+
         for (int i = 0; i < currentFullText.Length + 1; i++)
         {
             currText = currentFullText.Substring(0, i);
@@ -332,6 +346,8 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
         string currText = "";
         float talkSpeed = dialogueTalkSpeeds[currSentence];
         dialogueBoxImage.sprite = dialogueBoxImages[currSentence];
+        if (speakerNames.Count() > currSentence)
+        { nameplate.text = speakerNames[currSentence]; }
         int alphaIndex = 0;
 
         //Set Speaker Portraits
@@ -433,6 +449,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
     }
     //After the NPC finishes their dialogue, cleans up and prepares the end behaviour
     public void EndConversation() {
+        dialogueBox.SetActive(false);
         if (journal.isOpen)
         {
             journal.CloseJournal();
@@ -481,6 +498,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
             {
                 responding = true;
                 CreatePlayerResponses();
+                dialogueBox.SetActive(true);
             } else if (!endBehaviour.warp && conversation[conversationToLoad].persistentConversation && conversation[conversationToLoad].nextDialogue[0] != -1) {
                 conversationToLoad = conversation[conversationToLoad].nextDialogue[0];
                 CreateDialogue(conversation[conversationToLoad]);
@@ -494,6 +512,8 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
                 speakOnProximity = true;
             }
         }
+
+        
     }
 
     private void PresentClues(string correctClue) {

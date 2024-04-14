@@ -1420,6 +1420,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
+      propertyPath: DEFAULT_NPC_SPEAKER_SPRITE
+      value: 
+      objectReference: {fileID: 21300000, guid: 8d7754fb7df47334094bee571e864035,
+        type: 3}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
       propertyPath: conversation.Array.data[0].hasDialogueTree
       value: 1
       objectReference: {fileID: 0}
@@ -1536,7 +1542,7 @@ PrefabInstance:
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[4].nextDialogue.Array.data[0]
-      value: 3
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
@@ -1576,18 +1582,53 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
+      propertyPath: conversation.Array.data[0].npcSentences.Array.data[0].speakerName
+      value: Iona
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[0].npcSentences.Array.data[2].speakerName
+      value: Iona
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[1].npcSentences.Array.data[0].speakerName
+      value: Iona
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[1].npcSentences.Array.data[1].speakerName
+      value: Tony
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[2].npcSentences.Array.data[0].speakerName
+      value: Iona
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[2].npcSentences.Array.data[1].speakerName
+      value: Tony
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[4].npcSentences.Array.data[0].speakerName
+      value: Iona
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
       propertyPath: conversation.Array.data[0].npcSentences.Array.data[0].sentenceText
-      value: 'Iona: Tonnnn-ayyyyyyyyy!'
+      value: Tonnnn-ayyyyyyyyy!
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[0].npcSentences.Array.data[1].sentenceText
-      value: 'Tony: Don''t Tonnnn-ayyyy me, Iona. What do you want?'
+      value: Don't Tonnnn-ayyyy me, Iona. What do you want?
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[0].npcSentences.Array.data[2].sentenceText
-      value: 'Iona: Alright, since we''re cutting to the chase.
+      value: 'Alright, since we''re cutting to the chase.
 
 '
       objectReference: {fileID: 0}
@@ -1600,8 +1641,7 @@ PrefabInstance:
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[1].npcSentences.Array.data[1].sentenceText
-      value: 'Tony: I might''ve seen her, but my memory is a little foggy. What''s
-        it to you?'
+      value: I might've seen her, but my memory is a little foggy. What's it to you?
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
@@ -1612,14 +1652,14 @@ PrefabInstance:
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[2].npcSentences.Array.data[0].sentenceText
-      value: 'Iona: I don''t know. What''s this to you?
+      value: 'I don''t know. What''s this to you?
 
 '
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[2].npcSentences.Array.data[1].sentenceText
-      value: 'Tony: No freakin'' way!
+      value: 'No freakin'' way!
 
 '
       objectReference: {fileID: 0}
@@ -1636,8 +1676,8 @@ PrefabInstance:
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[3].npcSentences.Array.data[0].sentenceText
-      value: 'Tony: Not entirely sure what she was doing with these, but there''s
-        an address written on them. Knock yourself out.'
+      value: Not entirely sure what she was doing with these, but there's an address
+        written on them. Knock yourself out.
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
@@ -1659,8 +1699,38 @@ PrefabInstance:
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[4].npcSentences.Array.data[0].sentenceText
-      value: 'Iona: Thanks, Tony. We''ll be on our way now.'
+      value: Thanks, Tony. We'll be on our way now.
       objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[0].npcSentences.Array.data[0].speakerPortrait
+      value: 
+      objectReference: {fileID: 21300000, guid: 7ea1045d813c688439c5d0aaed731017,
+        type: 3}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[0].npcSentences.Array.data[2].speakerPortrait
+      value: 
+      objectReference: {fileID: 21300000, guid: 7ea1045d813c688439c5d0aaed731017,
+        type: 3}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[1].npcSentences.Array.data[0].speakerPortrait
+      value: 
+      objectReference: {fileID: 21300000, guid: 7ea1045d813c688439c5d0aaed731017,
+        type: 3}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[2].npcSentences.Array.data[0].speakerPortrait
+      value: 
+      objectReference: {fileID: 21300000, guid: 7ea1045d813c688439c5d0aaed731017,
+        type: 3}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[4].npcSentences.Array.data[0].speakerPortrait
+      value: 
+      objectReference: {fileID: 21300000, guid: 7ea1045d813c688439c5d0aaed731017,
+        type: 3}
     - target: {fileID: 2723265754708588750, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: m_Sprite
@@ -22073,6 +22143,12 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: -1.8784552
       objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: DEFAULT_NPC_SPEAKER_SPRITE
+      value: 
+      objectReference: {fileID: 21300000, guid: 31db8cecda7131e41a3c1845cc20e0af,
+        type: 3}
     - target: {fileID: 1937719217329720905, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: m_Size.x
@@ -28736,6 +28812,12 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: -3.04457
       objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: DEFAULT_NPC_SPEAKER_SPRITE
+      value: 
+      objectReference: {fileID: 21300000, guid: 577ade1d7a681d448953c30b40498c57,
+        type: 3}
     - target: {fileID: 1937719217329720905, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: m_Size.x

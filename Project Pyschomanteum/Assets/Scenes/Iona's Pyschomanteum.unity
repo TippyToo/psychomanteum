@@ -3893,14 +3893,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
-      propertyPath: DEFAULT_DIALOGUE_BOX_IMAGE
-      value: 
-      objectReference: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
-        type: 3}
       propertyPath: DEFAULT_NPC_SPEAKER_SPRITE
       value: 
-      objectReference: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 21300000, guid: 7ea1045d813c688439c5d0aaed731017,
+        type: 3}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[0].hasDialogueTree

@@ -224,27 +224,14 @@ MonoBehaviour:
   npcName: 
   speakOnProximity: 0
   DEFAULT_TALK_SPEED: 1
-  DEFAULT_DIALOGUE_BOX_IMAGE: {fileID: 10907, guid: 0000000000000000f000000000000000,
-    type: 0}
+  DEFAULT_DIALOGUE_BOX_IMAGE: {fileID: 21300000, guid: b459ad025993d3548b625d282c1a8232,
+    type: 3}
   DEFAULT_NPC_SPEAKER_SPRITE: {fileID: 10913, guid: 0000000000000000f000000000000000,
     type: 0}
-  DEFAULT_PLAYER_SPEAKER_SPRITE: {fileID: 10913, guid: 0000000000000000f000000000000000,
-    type: 0}
+  DEFAULT_PLAYER_SPEAKER_SPRITE: {fileID: 21300000, guid: 99f366fff441eed49a6d99487b342837,
+    type: 3}
   maxDialogueLength: 200
-  conversation:
-  - npcSentences: []
-    playerSentences: []
-    persistentConversation: 0
-    nextDialogue: 
-    endBehaviour:
-      presentClues: 0
-      correctClueName: 
-      warp: 0
-      warpLocation: {x: 0, y: 0, z: 0}
-      hasDialogueTree: 0
-      playerResponses: []
-      changeScene: 
-      setNextConversationToStartOnProximity: 0
+  conversation: []
   talkSound:
   - {fileID: 8300000, guid: 0ab3da2e96d191e49927cc6714f015f4, type: 3}
   - {fileID: 8300000, guid: 3bf5c3e4de0b5f545bbf025165565892, type: 3}
