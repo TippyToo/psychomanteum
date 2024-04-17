@@ -109,6 +109,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance
         arrow = dialogueBox.transform.GetChild(0).transform.GetChild(1).gameObject;
         journal = GameObject.Find("Journal").GetComponent<JournalManager>();
         interact = transform.GetChild(0).GetComponent<IsInteractable>();
+        arrow.SetActive(false);
     }
 
     // Update is called once per frame
@@ -335,7 +336,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance
 
     //Writes out the queued sentence character by character and removes it from the queue
     private IEnumerator WriteText() {
-
+        
         isTalking = true;
         speaking = true;
         currentFullText = currentDialogue.Dequeue();
@@ -345,7 +346,6 @@ public class Dialogue : MonoBehaviour, IDataPersistance
         dialogueBoxImage.sprite = dialogueBoxImages[currSentence];
         if (speakerNames.Count() > currSentence)
         { nameplate.text = speakerNames[currSentence]; }
-        int alphaIndex = 0;
 
         //Set Speaker Portraits
         if (portraits[currSentence].speaker == "player") 
@@ -364,20 +364,18 @@ public class Dialogue : MonoBehaviour, IDataPersistance
         }
 
         //Writes out the text character by character with selected settings
-        foreach (char c in fullText.ToCharArray())
-        {
-            alphaIndex++;
+        for (int i = 1; i <= fullText.Length; i++) {
             int sound = Random.Range(0, talkSound.Length);
             dialogueText.text = fullText;
-            currText = dialogueText.text.Insert(alphaIndex, "<color=#00000000>");
+            currText = dialogueText.text.Insert(i, "<color=#00000000>");
             dialogueText.text = currText;
-            
-            if (!char.IsWhiteSpace(c)) { AudioManager.Instance.dialogueSource.PlayOneShot(talkSound[sound], 1); }
-            if (talkSpeed == DEFAULT_TALK_SPEED)
-            { talkSpeed *= PlayerPrefs.GetInt("Text Speed"); }
-            yield return new WaitForSeconds(1 / (talkSpeed * 5));
-        }
 
+            if (!char.IsWhiteSpace(fullText[i - 1])) { AudioManager.Instance.dialogueSource.PlayOneShot(talkSound[sound], 1); }
+            if (talkSpeed == DEFAULT_TALK_SPEED)
+            { talkSpeed *= PlayerPrefs.GetInt("Text Speed", 2); }
+            float waitTime = 1 / (talkSpeed * 5);
+            yield return new WaitForSeconds(waitTime); 
+        }
         speaking = false;
         StartCoroutine(ArrowBlink());
     }

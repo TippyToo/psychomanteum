@@ -80,7 +80,6 @@ public class Observation : MonoBehaviour
         string fullText = currentFullText;
         string currText;
         float talkSpeed;
-        int alphaIndex = 0;
         
         dialogueBox.SetActive(true);
         dialogueBox.transform.GetChild(1).gameObject.SetActive(false);
@@ -104,17 +103,18 @@ public class Observation : MonoBehaviour
         //audSource.ignoreListenerVolume = true;
 
         //Writes out the text character by character with selected settings
-        foreach (char c in fullText.ToCharArray())
+        for (int i = 1; i <= fullText.Length; i++)
         {
-            alphaIndex++;
-            int sound = UnityEngine.Random.Range(0, talkSound.Length);
+            int sound = Random.Range(0, talkSound.Length);
             dialogueText.text = fullText;
-            currText = dialogueText.text.Insert(alphaIndex, "<color=#00000000>");
+            currText = dialogueText.text.Insert(i, "<color=#00000000>");
             dialogueText.text = currText;
-            if (!char.IsWhiteSpace(c)) { AudioManager.Instance.dialogueSource.PlayOneShot(talkSound[sound], 1); }
+
+            if (!char.IsWhiteSpace(fullText[i - 1])) { AudioManager.Instance.dialogueSource.PlayOneShot(talkSound[sound], 1); }
             if (talkSpeed == DEFAULT_TALK_SPEED)
-            { talkSpeed *= PlayerPrefs.GetInt("Text Speed"); }
-            yield return new WaitForSeconds(1 / (talkSpeed * 5));
+            { talkSpeed *= PlayerPrefs.GetInt("Text Speed", 2); }
+            float waitTime = 1 / (talkSpeed * 5);
+            yield return new WaitForSeconds(waitTime);
         }
 
         //audSource.ignoreListenerPause = false;
