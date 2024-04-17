@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
+public class Dialogue : MonoBehaviour, IDataPersistance
 {
     [Tooltip("ONLY FILL OUT IF DATA SHOULD BE SAVED")]
     public string npcName;
@@ -31,7 +31,6 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
 
     [HideInInspector]
     public PlayerController player;
-    private AudioSource audSource;
     public AudioClip clueFound;
 
     private float talkVolume;
@@ -108,10 +107,8 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
         dialogueBoxImage = dialogueBox.transform.GetChild(0).GetComponent<Image>();
         NPCImage = dialogueBox.transform.GetChild(1).GetComponent<SpriteRenderer>();
         arrow = dialogueBox.transform.GetChild(0).transform.GetChild(1).gameObject;
-        audSource = GameObject.Find("Main Camera").GetComponent<AudioSource>();
         journal = GameObject.Find("Journal").GetComponent<JournalManager>();
         interact = transform.GetChild(0).GetComponent<IsInteractable>();
-        ApplySettings();
     }
 
     // Update is called once per frame
@@ -374,7 +371,8 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
             dialogueText.text = fullText;
             currText = dialogueText.text.Insert(alphaIndex, "<color=#00000000>");
             dialogueText.text = currText;
-            if (!char.IsWhiteSpace(c)) { audSource.PlayOneShot(talkSound[sound], 1); }
+            
+            if (!char.IsWhiteSpace(c)) { AudioManager.Instance.dialogueSource.PlayOneShot(talkSound[sound], 1); }
             if (talkSpeed == DEFAULT_TALK_SPEED)
             { talkSpeed *= PlayerPrefs.GetInt("Text Speed"); }
             yield return new WaitForSeconds(1 / (talkSpeed * 5));
@@ -430,7 +428,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
     private IEnumerator Scribble()
     {
         Debug.Log("Do");
-        audSource.PlayOneShot(clueFound, 1);
+        AudioManager.Instance.sfxSource.PlayOneShot(clueFound, 1);
         dialogueBox.transform.GetChild(2).gameObject.SetActive(true);
         yield return new WaitForSecondsRealtime(1.0f);
         dialogueBox.transform.GetChild(2).gameObject.SetActive(false);
@@ -595,10 +593,5 @@ public class Dialogue : MonoBehaviour, IDataPersistance, ISettings
             { CreateDialogue(". . ."); }
             speakOnProximity = false;
         }
-    }
-    //Settings
-    public void ApplySettings()
-    {
-        talkVolume = PlayerPrefs.GetFloat("Dialogue");
     }
 }

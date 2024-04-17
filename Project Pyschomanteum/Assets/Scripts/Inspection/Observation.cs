@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Observation : MonoBehaviour, ISettings
+public class Observation : MonoBehaviour
 {
     public float DEFAULT_TALK_SPEED = 1.0f;
     public Sprite DEFAULT_DIALOGUE_BOX_IMAGE;
@@ -17,7 +17,6 @@ public class Observation : MonoBehaviour, ISettings
     private bool isTalking = false;
     private bool speaking = false;
 
-    private AudioSource audSource;
     private GameObject dialogueBox;
     private TextMeshProUGUI dialogueText;
     private GameObject playerResponseBox;
@@ -36,17 +35,12 @@ public class Observation : MonoBehaviour, ISettings
         dialogueBox = GameObject.Find("UI").transform.GetChild(1).gameObject;
         dialogueText = dialogueBox.transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         arrow = dialogueBox.transform.GetChild(0).transform.GetChild(1).gameObject;
-        audSource = GameObject.Find("Main Camera").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
         InteractButton();
-    }
-    public void ApplySettings()
-    {
-        talkVolume = PlayerPrefs.GetFloat("Dialogue");
     }
     private void InteractButton()
     {
@@ -106,8 +100,8 @@ public class Observation : MonoBehaviour, ISettings
         if (observations[currSentence].speakerPortrait != null) { playerResponseBox.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = observations[currSentence].speakerPortrait; }
         else { playerResponseBox.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = DEFAULT_PLAYER_SPEAKER_SPRITE; }
 
-        audSource.ignoreListenerPause = true;
-        audSource.ignoreListenerVolume = true;
+        //audSource.ignoreListenerPause = true;
+        //audSource.ignoreListenerVolume = true;
 
         //Writes out the text character by character with selected settings
         foreach (char c in fullText.ToCharArray())
@@ -117,21 +111,21 @@ public class Observation : MonoBehaviour, ISettings
             dialogueText.text = fullText;
             currText = dialogueText.text.Insert(alphaIndex, "<color=#00000000>");
             dialogueText.text = currText;
-            if (!char.IsWhiteSpace(c)) { audSource.PlayOneShot(talkSound[sound], 1); }
+            if (!char.IsWhiteSpace(c)) { AudioManager.Instance.dialogueSource.PlayOneShot(talkSound[sound], 1); }
             if (talkSpeed == DEFAULT_TALK_SPEED)
             { talkSpeed *= PlayerPrefs.GetInt("Text Speed"); }
             yield return new WaitForSeconds(1 / (talkSpeed * 5));
         }
 
-        audSource.ignoreListenerPause = false;
-        audSource.ignoreListenerVolume = false;
+        //audSource.ignoreListenerPause = false;
+        //audSource.ignoreListenerVolume = false;
         speaking = false;
         StartCoroutine(ArrowBlink());
     }
 
     private IEnumerator Scribble() {
         Debug.Log("Do");
-        audSource.PlayOneShot(clueFound, 1);
+        AudioManager.Instance.sfxSource.PlayOneShot(clueFound, 1);
         dialogueBox.transform.GetChild(2).gameObject.SetActive(true);
         yield return new WaitForSecondsRealtime(1.0f);
         dialogueBox.transform.GetChild(2).gameObject.SetActive(false);

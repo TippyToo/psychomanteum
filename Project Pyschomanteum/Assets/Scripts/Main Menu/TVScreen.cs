@@ -33,7 +33,8 @@ public class TVScreen : MonoBehaviour
 
     public void PopAll()
     {
-        for (int i = 0; i < tvScreen.Count; i++) { Pop(); }
+        int temp = tvScreen.Count;
+        for (int i = 0; i < temp; i++) { Pop(); }
     }
 
 

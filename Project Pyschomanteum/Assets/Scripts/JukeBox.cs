@@ -7,7 +7,6 @@ public class JukeBox : MonoBehaviour
     private bool detectsPlayer;
     public GameObject jukeBoxUI;
     private JournalManager journal;
-    public AudioSource audSource;
     public AudioClip[] songs;
     private int currentSong;
     private Queue<int> songQue = new Queue<int>();
@@ -18,9 +17,9 @@ public class JukeBox : MonoBehaviour
     {
         journal = FindObjectOfType<JournalManager>();
         currentSong = Random.Range(0, songs.Length);
-        audSource.clip = songs[currentSong];
-        audSource.time = Random.Range(0, audSource.clip.length);
-        audSource.Play();
+        AudioManager.Instance.musicSource.clip = songs[currentSong];
+        AudioManager.Instance.musicSource.time = Random.Range(0, AudioManager.Instance.musicSource.clip.length);
+        AudioManager.Instance.musicSource.Play();
     }
 
     // Update is called once per frame
@@ -30,7 +29,7 @@ public class JukeBox : MonoBehaviour
             Open();
         }
 
-        if (!audSource.isPlaying) {
+        if (!AudioManager.Instance.musicSource.isPlaying) {
             PlayNextSong();
         }
     }
@@ -43,8 +42,8 @@ public class JukeBox : MonoBehaviour
         else { currentSong++; }
 
         if (currentSong >= songs.Length) { currentSong = 0; }
-        audSource.clip = songs[currentSong];
-        audSource.Play();
+        AudioManager.Instance.musicSource.clip = songs[currentSong];
+        AudioManager.Instance.musicSource.Play();
     }
     public void Open()
     {

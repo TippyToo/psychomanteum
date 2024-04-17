@@ -48,7 +48,8 @@ public class TapeMover : MonoBehaviour
     void DeactivateTape(Tape tape) 
     {
         tape.transform.position = slots[tape.homeSlot];
-        activeTape = null;
         screen.PopAll();
+        activeTape = null;
+        
     }
 }
