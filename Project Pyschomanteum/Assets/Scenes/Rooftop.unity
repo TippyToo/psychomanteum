@@ -1471,7 +1471,7 @@ PrefabInstance:
         type: 3}
       propertyPath: conversation.Array.data[0].playerSentences.Array.data[0].speakerPortrait
       value: 
-      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 0}
     - target: {fileID: 2723265754708588750, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: m_Sprite
