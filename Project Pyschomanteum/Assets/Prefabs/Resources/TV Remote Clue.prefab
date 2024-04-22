@@ -225,7 +225,16 @@ MonoBehaviour:
     type: 3}
   observations:
   - speakerName: 
-    sentenceText: Has a note that says "for Tony" on the side of the remote
+    sentenceText: There's a note here attached to the side of the remote.
+    dialogueBoxImage: {fileID: 0}
+    speakerPortrait: {fileID: 0}
+    talkSpeed: 0
+    objectClue: {fileID: 0}
+    isVerbalClue: 0
+    clueName: 
+    clueText: 
+  - speakerName: 
+    sentenceText: It says "for Tony".
     dialogueBoxImage: {fileID: 0}
     speakerPortrait: {fileID: 0}
     talkSpeed: 0
