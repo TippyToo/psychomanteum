@@ -4191,8 +4191,8 @@ PrefabInstance:
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[0].npcSentences.Array.data[0].sentenceText
-      value: 'Iona: Come on! You''re gonna love it...okay, well maybe not love, but
-        it''s definitely going to blow your mind!
+      value: 'Come on! You''re gonna love it...okay, well maybe not love, but it''s
+        definitely going to blow your mind!
 
 '
       objectReference: {fileID: 0}
@@ -4271,7 +4271,7 @@ PrefabInstance:
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[1].npcSentences.Array.data[0].sentenceText
-      value: 'Iona: Didn''t I already tell you what we were doing on the phone?
+      value: 'Didn''t I already tell you what we were doing on the phone?
 
 '
       objectReference: {fileID: 0}
@@ -4314,9 +4314,9 @@ PrefabInstance:
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[2].npcSentences.Array.data[0].sentenceText
-      value: 'Iona: No, I''m not high, Polaris. And, for the record, the room we''re
-        in is known as a Psychomanteum. It''s a way of creating a connection to speak
-        with the dead, or more accurately...'
+      value: No, I'm not high, Polaris. And, for the record, the room we're in is
+        known as a Psychomanteum. It's a way of creating a connection to speak with
+        the dead, or more accurately...
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
@@ -4326,7 +4326,7 @@ PrefabInstance:
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[3].npcSentences.Array.data[0].sentenceText
-      value: 'Iona: Just sit down and trust me on this, okay?!
+      value: 'Just sit down and trust me on this, okay?!
 
 '
       objectReference: {fileID: 0}
@@ -4346,16 +4346,15 @@ PrefabInstance:
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[0].playerSentences.Array.data[0].sentenceText
-      value: 'Polaris: Remind me again what we''re doing in this room? Also, did
-        you light these candles before coming to meet me? Because that is definitely
-        a fire hazard.'
+      value: Remind me again what we're doing in this room? Also, did you light these
+        candles before coming to meet me? Because that is definitely a fire hazard.
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[1].playerSentences.Array.data[0].sentenceText
-      value: 'Polaris: Uh...no. You just called me and said, "Come over, I''ve got
-        something cool to show you!" I asked, "what is it?" And you simply responded,
-        "we''re gonna talk to the dead!" '
+      value: 'Uh...no. You just called me and said, "Come over, I''ve got something
+        cool to show you!" I asked, "what is it?" And you simply responded, "we''re
+        gonna talk to the dead!" '
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
@@ -4373,16 +4372,15 @@ PrefabInstance:
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[2].playerSentences.Array.data[0].sentenceText
-      value: 'Polaris: How''s a mirror and a bunch of candles supposed to allow us
-        to speak with the dead, Iona?!
+      value: 'How''s a mirror and a bunch of candles supposed to allow us to speak
+        with the dead, Iona?!
 
 '
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[3].playerSentences.Array.data[0].sentenceText
-      value: 'Polaris: Fineeeee, but when nothing happens, I''m going to laugh my
-        ass off.
+      value: 'Fineeeee, but when nothing happens, I''m going to laugh my ass off.
 
 '
       objectReference: {fileID: 0}
