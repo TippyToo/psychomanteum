@@ -1359,33 +1359,88 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
+      propertyPath: conversation.Array.data[1].npcSentences.Array.data[0].speakerName
+      value: Iona
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[2].npcSentences.Array.data[0].speakerName
+      value: Iona
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[3].npcSentences.Array.data[0].speakerName
+      value: Iona
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[4].npcSentences.Array.data[0].speakerName
+      value: Iona
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[5].npcSentences.Array.data[0].speakerName
+      value: Iona
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[5].npcSentences.Array.data[1].speakerName
+      value: Iona
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[6].npcSentences.Array.data[0].speakerName
+      value: Iona
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[6].npcSentences.Array.data[1].speakerName
+      value: Iona
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[7].npcSentences.Array.data[0].speakerName
+      value: Iona
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[7].npcSentences.Array.data[1].speakerName
+      value: Iona
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[7].npcSentences.Array.data[2].speakerName
+      value: Iona
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
       propertyPath: conversation.Array.data[1].npcSentences.Array.data[0].sentenceText
-      value: 'Iona: I told youuuuuuu.
+      value: 'I told youuuuuuu.
 
 '
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[2].npcSentences.Array.data[0].sentenceText
-      value: 'Iona: Oh, right, I should probably tell you what this place is.
+      value: 'Oh, right, I should probably tell you what this place is.
 
 '
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[3].npcSentences.Array.data[0].sentenceText
-      value: 'Iona: Shush! I''m explaining! This is Asphodel, the realm of the dead.'
+      value: Shush! I'm explaining! This is Asphodel, the realm of the dead.
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[4].npcSentences.Array.data[0].sentenceText
-      value: "Iona: Dead...yes, sheesh, it's not like it's a dirty word around here!\r"
+      value: "Dead...yes, sheesh, it's not like it's a dirty word around here!\r"
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[5].npcSentences.Array.data[0].sentenceText
-      value: "Iona: Oh, please, like I need to drag you to the afterlife in order
-        to screw with you. I can do that anytime by showing up at the precinct unannounced
+      value: "Oh, please, like I need to drag you to the afterlife in order to screw
+        with you. I can do that anytime by showing up at the precinct unannounced
         \r"
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
@@ -1396,7 +1451,7 @@ PrefabInstance:
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[6].npcSentences.Array.data[0].sentenceText
-      value: "Iona: I brought you here to lend me a hand with my side hustle. I needed
+      value: "I brought you here to lend me a hand with my side hustle. I needed
         someone else with investigative skills to help make things a little more
         efficient around here\u2014\r"
       objectReference: {fileID: 0}
@@ -1408,8 +1463,8 @@ PrefabInstance:
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[7].npcSentences.Array.data[0].sentenceText
-      value: 'Iona: Yeah, you''d be surprised how much rich schmucks are willing
-        to shell out to make sure granddaddy didn''t write them out of the will,'
+      value: Yeah, you'd be surprised how much rich schmucks are willing to shell
+        out to make sure granddaddy didn't write them out of the will,
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
@@ -1426,36 +1481,71 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
+      propertyPath: conversation.Array.data[0].playerSentences.Array.data[0].speakerName
+      value: Polaris
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[1].playerSentences.Array.data[0].speakerName
+      value: Polaris
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[2].playerSentences.Array.data[0].speakerName
+      value: Polaris
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[3].playerSentences.Array.data[0].speakerName
+      value: Polaris
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[4].playerSentences.Array.data[0].speakerName
+      value: Polaris
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[5].playerSentences.Array.data[0].speakerName
+      value: Polaris
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: conversation.Array.data[6].playerSentences.Array.data[0].speakerName
+      value: Polaris
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
       propertyPath: conversation.Array.data[0].playerSentences.Array.data[0].sentenceText
-      value: 'Polaris: WOAH! WHERE ARE WE?! WHAT''S HAPPENING?!'
+      value: WOAH! WHERE ARE WE?! WHAT'S HAPPENING?!
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[1].playerSentences.Array.data[0].sentenceText
-      value: "Polaris: IONA, I'M NOT IN THE MOOD. SERIOUSLY, WHERE ARE WE?!\r"
+      value: "IONA, I'M NOT IN THE MOOD. SERIOUSLY, WHERE ARE WE?!\r"
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[2].playerSentences.Array.data[0].sentenceText
-      value: "Polaris: You think?!\r\n\r"
+      value: "You think?!\r\n\r"
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[3].playerSentences.Array.data[0].sentenceText
-      value: 'Polaris: Wait, so everyone walking down below us is....?'
+      value: Wait, so everyone walking down below us is....?
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[4].playerSentences.Array.data[0].sentenceText
-      value: 'Polaris: Okay! Well, you''ve definitely shifted my understanding of
-        reality and the afterlife, so I guess mission accomplished for you in terms
-        of screwing with me.'
+      value: Okay! Well, you've definitely shifted my understanding of reality and
+        the afterlife, so I guess mission accomplished for you in terms of screwing
+        with me.
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: conversation.Array.data[5].playerSentences.Array.data[0].sentenceText
-      value: "Polaris: Okay, well, if you're not screwing with me, why'd you bring
-        me here? Hell, how'd you even find out about this place?\r"
+      value: "Okay, well, if you're not screwing with me, why'd you bring me here?
+        Hell, how'd you even find out about this place?\r"
       objectReference: {fileID: 0}
     - target: {fileID: 1491309711784782373, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
@@ -1471,7 +1561,8 @@ PrefabInstance:
         type: 3}
       propertyPath: conversation.Array.data[0].playerSentences.Array.data[0].speakerPortrait
       value: 
-      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 21300000, guid: 99f366fff441eed49a6d99487b342837,
+        type: 3}
     - target: {fileID: 2723265754708588750, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: m_Sprite
