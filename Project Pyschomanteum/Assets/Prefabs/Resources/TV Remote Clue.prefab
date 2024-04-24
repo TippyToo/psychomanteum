@@ -225,7 +225,16 @@ MonoBehaviour:
     type: 3}
   observations:
   - speakerName: 
-    sentenceText: Has a note that says "for Tony" on the side of the remote
+    sentenceText: There's a note here attached to the side of the remote.
+    dialogueBoxImage: {fileID: 0}
+    speakerPortrait: {fileID: 0}
+    talkSpeed: 0
+    objectClue: {fileID: 0}
+    isVerbalClue: 0
+    clueName: 
+    clueText: 
+  - speakerName: 
+    sentenceText: It says "for Tony".
     dialogueBoxImage: {fileID: 0}
     speakerPortrait: {fileID: 0}
     talkSpeed: 0
@@ -234,9 +243,8 @@ MonoBehaviour:
     clueName: 
     clueText: 
   talkSound:
-  - {fileID: 8300000, guid: 0ab3da2e96d191e49927cc6714f015f4, type: 3}
-  - {fileID: 8300000, guid: 3bf5c3e4de0b5f545bbf025165565892, type: 3}
-  - {fileID: 8300000, guid: 6477159c7c1656247ac2009ffa55c935, type: 3}
+  - {fileID: 8300000, guid: bada8e6286744c9499daaf5a3bcb68ce, type: 3}
+  - {fileID: 8300000, guid: ba985d1dac5c85d4ab000f880d420706, type: 3}
   clueFound: {fileID: 8300000, guid: d9e6bdc14d8ee3445aad9d3c57d819d5, type: 3}
 --- !u!65 &2761669164759074226
 BoxCollider:

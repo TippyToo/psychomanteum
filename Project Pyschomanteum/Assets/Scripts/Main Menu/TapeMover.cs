@@ -10,6 +10,8 @@ public class TapeMover : MonoBehaviour
     [HideInInspector]
     public Tape activeTape;
     private TVScreen screen;
+    public AudioSource sfxSource;
+    public AudioClip vhsSound;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +36,7 @@ public class TapeMover : MonoBehaviour
         {
             if (activeTape != null) { DeactivateTape(activeTape); }
             ActivateTape(tape);
+            sfxSource.PlayOneShot(vhsSound, 1);
         }
 
     }

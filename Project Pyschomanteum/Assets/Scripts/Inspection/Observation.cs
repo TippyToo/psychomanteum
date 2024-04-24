@@ -89,7 +89,7 @@ public class Observation : MonoBehaviour
         if (observations[currSentence].talkSpeed != 0) { talkSpeed = observations[currSentence].talkSpeed; }
         else {talkSpeed = DEFAULT_TALK_SPEED; }
 
-        talkSpeed *= PlayerPrefs.GetInt("Text Speed");
+        talkSpeed *= PlayerPrefs.GetInt("Text Speed", 2);
 
         //Set dialogue box image
         if (observations[currSentence].dialogueBoxImage != null) { dialogueBox.transform.GetChild(0).GetComponent<Image>().sprite = observations[currSentence].dialogueBoxImage; }
@@ -114,6 +114,7 @@ public class Observation : MonoBehaviour
             if (talkSpeed == DEFAULT_TALK_SPEED)
             { talkSpeed *= PlayerPrefs.GetInt("Text Speed", 2); }
             float waitTime = 1 / (talkSpeed * 5);
+            Debug.Log(waitTime);
             yield return new WaitForSeconds(waitTime);
         }
 

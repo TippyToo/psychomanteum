@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour, IDataPersistance
                 transform.position = data.playerPosition;
                 GameObject.Find("Save Manager").GetComponent<SaveManager>().freshLoad = false;
             }
-            else if (!GameObject.Find("Save Manager").GetComponent<SaveManager>().loadingSubWorld && GameObject.Find("Save Manager").GetComponent<SaveManager>().preSubWorldCoords.Count > 0)
+            else if (!GameObject.Find("Save Manager").GetComponent<SaveManager>().loadingSubWorld && GameObject.Find("Save Manager").GetComponent<SaveManager>().preSubWorldCoords.Count > 0 && !FindObjectOfType<LevelManager>().usingStarterCoords)
             { transform.position = GameObject.Find("Save Manager").GetComponent<SaveManager>().preSubWorldCoords.Pop(); }
 
         }
