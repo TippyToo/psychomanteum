@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3900,6 +3900,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6781676631923336920, guid: 1321a03fd762cce4f8b9554cc07955a0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 9140543299801458415, guid: 1321a03fd762cce4f8b9554cc07955a0,
         type: 3}
       propertyPath: m_Name
@@ -4487,6 +4492,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1280351151154211475, guid: 8938353376cbaad41884de52bbc3154c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 20.178604
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280351151154211475, guid: 8938353376cbaad41884de52bbc3154c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.31060028
+      objectReference: {fileID: 0}
+    - target: {fileID: 1922326380218074997, guid: 8938353376cbaad41884de52bbc3154c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 10.289703
+      objectReference: {fileID: 0}
     - target: {fileID: 2105681897828003179, guid: 8938353376cbaad41884de52bbc3154c,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4541,6 +4561,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.UI.Slider, UnityEngine.UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 3595495247804972298, guid: 8938353376cbaad41884de52bbc3154c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 20.978104
       objectReference: {fileID: 0}
     - target: {fileID: 4965209924360267474, guid: 8938353376cbaad41884de52bbc3154c,
         type: 3}
