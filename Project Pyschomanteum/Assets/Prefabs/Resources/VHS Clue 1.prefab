@@ -119,6 +119,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemDescription: Reads For Evelyn on the Front
-  chapter: 1
-  itemImage: {fileID: 21300000, guid: e85fa91d806987947ba6b276b6acda95, type: 3}
+  chapter: 0
+  itemImage: {fileID: 0}
   collected: 0
