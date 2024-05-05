@@ -17,6 +17,9 @@ public class PlayerController : MonoBehaviour, IDataPersistance
     public float groundDistance;
     public LayerMask groundLayer;
 
+
+    public bool canInteract = true;
+
     //Debug Stuff
     public bool seeRayCast;
 

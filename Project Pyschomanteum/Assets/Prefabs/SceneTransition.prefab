@@ -66,6 +66,7 @@ MonoBehaviour:
   sceneNameToLoad: MainMenu
   loadingSubArea: 0
   unlocked: 1
+  fadeTimer: 2
 --- !u!212 &5444823190446371724
 SpriteRenderer:
   m_ObjectHideFlags: 0

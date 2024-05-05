@@ -153,16 +153,13 @@ public class Observation : MonoBehaviour
         Destroy(this.gameObject);
     }
     public void MakeObservation() {
-        //Debug.Log(observations.Length);
         clicked = true;
         if (observations.Length > 0 && observations != null)
         {
-            //Debug.Log("Do");
             StartCoroutine(WriteText());
         }
         else
         {
-            //Debug.Log("Don't");
             EndConversation();
         }
     }

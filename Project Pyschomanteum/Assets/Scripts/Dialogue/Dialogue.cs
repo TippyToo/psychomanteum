@@ -110,6 +110,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance
         journal = GameObject.Find("Journal").GetComponent<JournalManager>();
         interact = transform.GetChild(0).GetComponent<IsInteractable>();
         arrow.SetActive(false);
+        player = FindObjectOfType<PlayerController>();
     }
 
     // Update is called once per frame
@@ -135,44 +136,47 @@ public class Dialogue : MonoBehaviour, IDataPersistance
 
     //Determine how the interact button should function based on the current state of dialogue
     private void InteractButton() {
-        if (detectsPlayer && Input.GetButtonUp("Interact") && !responding && !journal.isOpen && !speakOnProximity && !inspecting)
+        if (player.canInteract)
         {
-            if (!isTalking)
+            if (detectsPlayer && Input.GetButtonUp("Interact") && !responding && !journal.isOpen && !speakOnProximity && !inspecting)
             {
-                //If not talking and next dialogue is unlocked (cTL != 0), start a dialogue. If not, "stare" at the player in silence
-                if (conversation.Count() > 0 && conversationToLoad != -1 && conversationToLoad >= 0)
-                { CreateDialogue(conversation[conversationToLoad]); }
-                else
-                { 
-                    conversationToLoad = -1;
-                    CreateDialogue(". . ."); 
-                }
-            }
-            else if (speaking)
-            {
-                //If currently speaking, end it early and display all dialogue without waiting
-                StopAllCoroutines();
-                speaking = false;
-                dialogueText.text = currentFullText;
-                StartCoroutine(ArrowBlink());
-            }
-            else
-            {
-                StopAllCoroutines();
-                arrow.SetActive(false);
-                dialogueBox.transform.GetChild(2).gameObject.SetActive(false);
-                if (inspectAfter)
+                if (!isTalking)
                 {
-                    dialogueBox.SetActive(false);
-                    inspecting = true;
-                    inspectAfter = false;
-                    Debug.Log(currSentence - (objectClues.Count() - conversation[conversationToLoad].npcSentences.Count()));
-                    GameObject tempObj = conversation[conversationToLoad].npcSentences[currSentence - (objectClues.Count() - (conversation[conversationToLoad].npcSentences.Count() + conversation[conversationToLoad].playerSentences.Count()))].objectClue;
-                    tempObj.GetComponent<ItemBehaviour>().AddToInventoryFromDialogue(this.gameObject);
+                    //If not talking and next dialogue is unlocked (cTL != 0), start a dialogue. If not, "stare" at the player in silence
+                    if (conversation.Count() > 0 && conversationToLoad != -1 && conversationToLoad >= 0)
+                    { CreateDialogue(conversation[conversationToLoad]); }
+                    else
+                    {
+                        conversationToLoad = -1;
+                        CreateDialogue(". . .");
+                    }
+                }
+                else if (speaking)
+                {
+                    //If currently speaking, end it early and display all dialogue without waiting
+                    StopAllCoroutines();
+                    speaking = false;
+                    dialogueText.text = currentFullText;
+                    StartCoroutine(ArrowBlink());
                 }
                 else
                 {
-                    DecideEndBehaviour();
+                    StopAllCoroutines();
+                    arrow.SetActive(false);
+                    dialogueBox.transform.GetChild(2).gameObject.SetActive(false);
+                    if (inspectAfter)
+                    {
+                        dialogueBox.SetActive(false);
+                        inspecting = true;
+                        inspectAfter = false;
+                        Debug.Log(currSentence - (objectClues.Count() - conversation[conversationToLoad].npcSentences.Count()));
+                        GameObject tempObj = conversation[conversationToLoad].npcSentences[currSentence - (objectClues.Count() - (conversation[conversationToLoad].npcSentences.Count() + conversation[conversationToLoad].playerSentences.Count()))].objectClue;
+                        tempObj.GetComponent<ItemBehaviour>().AddToInventoryFromDialogue(this.gameObject);
+                    }
+                    else
+                    {
+                        DecideEndBehaviour();
+                    }
                 }
             }
         }
@@ -461,7 +465,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance
         EndBehaviour endBehaviour = conversation[conversationToLoad].endBehaviour;
 
         if (endBehaviour.changeScene != "" && endBehaviour.changeScene != null) {
-            SceneManager.LoadScene(endBehaviour.changeScene);
+            StartCoroutine(FindObjectOfType<Fade>().FadeOutLoadScene(endBehaviour.changeScene));
         }
 
         if (endBehaviour.followPlayerAfter)
@@ -486,7 +490,9 @@ public class Dialogue : MonoBehaviour, IDataPersistance
             if (endBehaviour.warp) {
                 if (endBehaviour.hasDialogueTree) { Debug.LogError("Can not warp and respond to an NPC at the same time at element " + conversationToLoad, transform); }
                 if (!endBehaviour.presentClues)
-                { player.transform.position = endBehaviour.warpLocation; }
+                {
+                    StartCoroutine(FindObjectOfType<Fade>().FadeOutThenIn(player.gameObject, endBehaviour.warpLocation));
+                }
             }
 
             //Determines what conversation to load next
@@ -551,6 +557,7 @@ public class Dialogue : MonoBehaviour, IDataPersistance
     }
 
     //After the player chooses their response, reset the buttons and prep the next conversation if applicable
+
     public void PlayersResponse(int toLoad) {
         
         for (int i = 0; i < conversation[conversationToLoad].endBehaviour.playerResponses.Count(); i++)
